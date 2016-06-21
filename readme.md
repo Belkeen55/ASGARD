@@ -59,5 +59,11 @@ Installation du Brain d'Asgard
 	echo "********** mise en production *********" 
 	cd /var/www/html 
 	unset GIT_DIR 
-	git pull GIT master 
+	git pull origin master 
 	sudo chmod +x /home/belkeen/brain/.git/hooks/post-update 
+	
+#### Mise en place des crontab
+	crontab -e 
+	*/15 * * * * php /var/www/html/script/check_DHT.php > /var/www/html/server/script/log_DHT.txt 
+
+	

@@ -5,14 +5,14 @@
 <html>
     <head>
         <meta charset="utf-8" />
-		<link rel="stylesheet" href="/server/css/style.css" />
+		<link rel="stylesheet" href="/css/style.css" />
         <title>ASGARD - Connexion</title>
     </head>
     <body>
 		<table class="page">
 			<tr>
 				<td align="center" colspan="3">
-					<img src="/server/img/banniere.png">
+					<img src="/img/banniere.png">
 				</td>
 			</tr>
 			<?php
@@ -20,10 +20,10 @@
 			?>
 			<tr align="center">
 				<td style="widht:30%">
-					<img src="/server/img/vide.png" height="200">
+					<img src="/img/vide.png" height="200">
 				</td>
 				<td>
-					<form action="server\home.php" method="post">
+					<form action="web\home.php" method="post">
 					<table>
 						<tr>
 							<td>
@@ -34,12 +34,12 @@
 					</form>
 				</td>
 				<td style="widht:30%">
-					<img src="/server/img/vide.png" height="200">
+					<img src="/img/vide.png" height="200">
 				</td>
 			</tr>
 			<tr>
 				<td align="right" colspan="3">
-					<img src="/server/img/Cc-by-nc-sa_icon.png">
+					<img src="/img/Cc-by-nc-sa_icon.png">
 				</td>
 			</tr>
 			<?php
@@ -49,10 +49,10 @@
 			?>
 			<tr align="center">
 				<td style="widht:30%">
-					<img src="/server/img/vide.png" height="200">
+					<img src="/img/vide.png" height="200">
 				</td>
 				<td>
-					<form action="server\home.php" method="post">
+					<form action="web\home.php" method="post">
 					<table>
 						<tr>
 							<td>
@@ -67,7 +67,7 @@
 								Mot de passe :
 							</td>
 							<td>
-								<form action="server\home.php" method="post"><input type="password" name="mot_de_passe" />
+								<form action="web\home.php" method="post"><input type="password" name="mot_de_passe" />
 							</td>
 						</tr>
 						<tr align="center">
@@ -79,12 +79,12 @@
 					</form>
 				</td>
 				<td style="widht:30%">
-					<img src="/server/img/vide.png" height="200">
+					<img src="/img/vide.png" height="200">
 				</td>
 			</tr>
 			<tr>
 				<td align="right" colspan="3">
-					<img src="/server/img/Cc-by-nc-sa_icon.png">
+					<img src="/img/Cc-by-nc-sa_icon.png">
 				</td>
 			</tr>
 			<?php
