@@ -42,6 +42,7 @@ end
 function connect()
     wifi.setmode(wifi.STATION)
     wifi.sta.config(SSID, PASSWORD, 1)
+	wifi.sta.autoconnect(1)
     wait_for_wifi_conn ( )
 end
 
