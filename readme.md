@@ -64,6 +64,6 @@ Installation du Brain d'Asgard
 	
 #### Mise en place des crontab
 	crontab -e 
-	*/15 * * * * php /var/www/html/script/check_DHT.php > /var/www/html/server/script/log_DHT.txt 
+	*/15 * * * * php /var/www/html/script/check_DHT.php > /var/www/html/script/log_DHT.txt 
 
 	
