@@ -8,17 +8,14 @@
 	error_reporting(E_ALL);
 	
 	// ---- chargement des modules
-	include("../modules/connexionBDD.php");
+	include("../modules/BDD.php");
+	include("../modules/meteo.php");
+	
+	// ---- Si un post est dispo, on met à jour la BSS
 	if(isset($_POST['conf_radiateur']))
 	{
 		$bdd->exec('UPDATE Radiateurs SET Radiateur =' . $_POST['conf_radiateur'] . ' WHERE Id_Pieces = ' . $_POST['piece']);
 	}
-	$reponse = $bdd->query('SELECT Radiateur 
-				FROM Radiateurs 
-				WHERE Id_Pieces = 1');
-	$donnees = $reponse->fetch();
-	$radiateur = $donnees['Radiateur'];
-	$reponse->closeCursor();
 ?>
 <html>
     <head>
@@ -52,6 +49,9 @@
 						<tr>
 							<td>
 								<table class="cadre">
+								<?php
+									$radiateur = etat_radiateur($bdd, 1);
+								?>
 									<tr>
 										<td rowspan="4" align="center" valign="middle"><img src="/img/bebe.png" height="64"></td>
 										<td rowspan="4"><img src="/img/vide.png" height="32"></td>

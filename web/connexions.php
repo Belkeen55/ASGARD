@@ -7,17 +7,8 @@
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL);
 	
-	function ping($ip_a_tester)
-	{
-			if(exec("ping ".$ip_a_tester." -w 1"))
-		{
-			return "on";
-		}
-		else
-		{
-			return "off";
-		}
-	}
+	// ---- Chargement modules
+	include("../modules/network.php");
 ?>
 <html>
     <head>

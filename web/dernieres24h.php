@@ -8,13 +8,8 @@
 	error_reporting(E_ALL);
 	
 	// ---- chargement des modules
-	include("../modules/connexionBDD.php");
-	$heurodatage = date('Y-m-d H:i:s');
-	$heurodatage24H = date('Y-m-d H:i:s', mktime(date('H')-24, date('i'), date('s'), date('m'), date('d'), date('Y')));
-	$reponse = $bdd->query('SELECT *
-							FROM Mesures 
-							WHERE Heurodatage BETWEEN \'' . $heurodatage24H . '\' AND \'' . $heurodatage . '\'
-							AND Id_Pieces = 1');
+	include("../modules/BDD.php");
+	include("../modules/meteo.php");
 ?>
 <html>
     <head>
@@ -45,6 +40,10 @@
 				<td align="center">
 					<img src="/img/vide.png" height="50">
 					<table>
+					<?php
+						// ---- Chargement des données des dernière 24h de la piece chambre
+						$reponse = last_24($bdd, 1);
+					?>
 						<tr>
 							<td class="cadre">
 								<table>
@@ -94,13 +93,11 @@
 						</tr>
 					</table>
 					<img src="/img/vide.png" height="50">
-					<?php
-						$reponse = $bdd->query('SELECT *
-												FROM Mesures 
-												WHERE Heurodatage BETWEEN \'' . $heurodatage24H . '\' AND \'' . $heurodatage . '\'
-												AND Id_Pieces = 2');
-					?>
 					<table>
+					<?php
+						// ---- Chargement des données des dernière 24h de la piece chambre
+						$reponse = last_24($bdd, 2);
+					?>
 						<tr>
 							<td class="cadre">
 								<table>

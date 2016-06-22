@@ -9,18 +9,7 @@
 	
 	// ---- chargement des librairies
 	include('../lib/simple_html_dom.php');
-	
-	function ping($ip_a_tester)
-	{
-			if(exec("ping ".$ip_a_tester." -w 1"))
-		{
-			return "on";
-		}
-		else
-		{
-			return "off";
-		}
-	}
+	include('../modules/network.php');
 ?>
 <html>
     <head>
