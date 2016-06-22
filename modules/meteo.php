@@ -1,4 +1,37 @@
 <?php
+	function meteo_act($bdd) {
+		$reponse = $bdd->query('SELECT Code, Temperature, Humidite
+								FROM Meteo
+								WHERE Id = 1');
+		$donnees = $reponse->fetch();
+		$reponse->closeCursor();
+		$result = [
+			'temperature' => $donnees['Temperature'],
+			'humidite' => $donnees['Humidite'],
+			'code' => $donnees['Code']
+		];
+		return $result;
+	}
+	
+	function prevision($bdd, $date) {
+		$reponse = $bdd->query('SELECT Heurodatage, Code, Temperature
+								FROM Meteo
+								WHERE Heurodatage = \'' . $date . '\'');
+		$lignes = $reponse->rowCount();
+		if($lignes == 1){
+			$donnees = $reponse->fetch();
+			$temperature = $donnees['Temperature'];
+			$code = $donnees['Code'];
+			$heurodatage = $donnees['Heurodatage'];
+			$reponse->closeCursor();
+		}
+		$result = [
+			'temperature' => $donnees['Temperature'],
+			'code' => $donnees['Code']
+		];
+		return $result;
+	}
+	
 	function temp_ext($bdd) {
 		$reponse = $bdd->query('SELECT Id, Tempext 
 					FROM Mesures

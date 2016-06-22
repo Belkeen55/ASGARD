@@ -1,6 +1,10 @@
 <?php
+	// ---- Redirection toutes les 10 secondes
 	header('Refresh: 10; url=chambre.php');
-	include('../modules/connexionBDD.php');
+	
+	// ---- Chargement des modules
+	include('../modules/BDD.php');
+	include('../modules/meteo.php');
 ?>
 <head>
 	<link rel="stylesheet" href="/css/style.css" />
@@ -23,23 +27,16 @@
 					<td>
 					
 					</td>
-				<?php
-					$prev = 0;
-					$date = date('Y-m-d H:i:s', mktime(9, 0, 0, date('m'), date('d'), date('Y')));
-					$reponse = $bdd->query('SELECT Heurodatage, Code, Temperature
-											FROM Meteo
-											WHERE Heurodatage = \'' . $date . '\'');
-					$lignes = $reponse->rowCount();
-					if($lignes == 1){
-						$donnees = $reponse->fetch();
-						$temperature = $donnees['Temperature'];
-						$code = $donnees['Code'];
-						$heurodatage = $donnees['Heurodatage'];
-						$reponse->closeCursor();
-						$prev++;
-				?>
-<td>					
-					<table>
+					<td>					
+						<?php
+							// ---- Informations du matin
+							$prev = 0;
+							$date = date('Y-m-d H:i:s', mktime(9, 0, 0, date('m'), date('d'), date('Y')));
+							$result = prevision($bdd, $date);
+							if($result != NULL) {
+								$prev++;
+						?>
+						<table>
 							<tr>
 								<td align="center" class="taille2">
 									Matin
@@ -47,12 +44,12 @@
 							</tr>
 							<tr>
 								<td align="center">
-									<img src="/img/<?php echo $code; ?>.png" width="140">
+									<img src="/img/<?php echo $result['code']; ?>.png" width="140">
 								</td>
 							</tr>
 							<tr>
 								<td align="center" class="taille2">
-									<?php echo (int)$temperature ?> C
+									<?php echo (int)$result['temperature'] ?> C
 								</td>
 							</tr>
 						</table>
@@ -60,24 +57,16 @@
 					<td>
 						<img src="/img/vide.png" height="40">
 					</td>
-					
-				<?php	
-					}
-					$date = date('Y-m-d H:i:s', mktime(15, 0, 0, date('m'), date('d'), date('Y')));
-					$reponse = $bdd->query('SELECT Heurodatage, Code, Temperature
-											FROM Meteo
-											WHERE Heurodatage = \'' . $date . '\'');
-					$lignes = $reponse->rowCount();
-					if($lignes == 1){
-						$donnees = $reponse->fetch();
-						$temperature = $donnees['Temperature'];
-						$code = $donnees['Code'];
-						$heurodatage = $donnees['Heurodatage'];
-						$reponse->closeCursor();
-						$prev++;
-				?>
-<td>					
-					<table>
+					<td>					
+						<?php
+							}
+							// ---- Informations de l'après midi
+							$date = date('Y-m-d H:i:s', mktime(15, 0, 0, date('m'), date('d'), date('Y')));
+							$result = prevision($bdd, $date);
+							if($result != NULL) {
+								$prev++;
+						?>
+						<table>
 							<tr>
 								<td align="center" class="taille2">
 									Ap. Midi
@@ -85,12 +74,12 @@
 							</tr>
 							<tr>
 								<td align="center">
-									<img src="/img/<?php echo $code; ?>.png" width="140">
+									<img src="/img/<?php echo $result['code']; ?>.png" width="140">
 								</td>
 							</tr>
 							<tr>
 								<td align="center" class="taille2">
-									<?php echo (int)$temperature ?> C
+									<?php echo (int)$result['temperature'] ?> C
 								</td>
 							</tr>
 						</table>
@@ -98,24 +87,16 @@
 					<td>
 						<img src="/img/vide.png" height="40">
 					</td>
-					
-				<?php
-					}
-					if($prev<2){
-						$date = date('Y-m-d H:i:s', mktime(9, 0, 0, date('m'), date('d')+1, date('Y')));
-						$reponse = $bdd->query('SELECT Heurodatage, Code, Temperature
-												FROM Meteo
-												WHERE Heurodatage = \'' . $date . '\'');
-						$lignes = $reponse->rowCount();
-						if($lignes == 1){
-							$donnees = $reponse->fetch();
-							$temperature = $donnees['Temperature'];
-							$code = $donnees['Code'];
-							$heurodatage = $donnees['Heurodatage'];
-							$reponse->closeCursor();
-							$prev++;
-				?>
-						<td>
+					<td>
+						<?php
+							}
+							// ---- Informations du lendemain matin
+							if($prev<2){
+								$date = date('Y-m-d H:i:s', mktime(9, 0, 0, date('m'), date('d')+1, date('Y')));
+								$result = prevision($bdd, $date);
+								if($result != NULL) {
+									$prev++;
+						?>
 						<table>
 							<tr>
 								<td align="center" class="taille2">
@@ -124,43 +105,31 @@
 							</tr>
 							<tr>
 								<td align="center">
-									<img src="/img/<?php echo $code; ?>.png" width="140">
+									<img src="/img/<?php echo $result['code']; ?>.png" width="140">
 								</td>
 							</tr>
 							<tr>
 								<td align="center" class="taille2">
-									<?php echo (int)$temperature ?> C
+									<?php echo (int)$result['temperature'] ?> C
 								</td>
 							</tr>
 						</table>
 					</td>
-					<?php
-						if($prev==2){
-					?>
 					<td>
 						<img src="/img/vide.png" height="40">
 					</td>
-					
-				<?php
-						}
-						}
-					}
-					if($prev<2){
-						$date = date('Y-m-d H:i:s', mktime(15, 0, 0, date('m'), date('d')+1, date('Y')));
-						$reponse = $bdd->query('SELECT Heurodatage, Code, Temperature
-												FROM Meteo
-												WHERE Heurodatage = \'' . $date . '\'');
-						$lignes = $reponse->rowCount();
-						if($lignes == 1){
-							$donnees = $reponse->fetch();
-							$temperature = $donnees['Temperature'];
-							$code = $donnees['Code'];
-							$heurodatage = $donnees['Heurodatage'];
-							$reponse->closeCursor();
-							$prev++;
-				?>
-							<td>
-							<table>
+					<td>
+						<?php
+								}
+							}
+							// ---- Informations du lendemain aprsè midi
+							if($prev<2){
+								$date = date('Y-m-d H:i:s', mktime(15, 0, 0, date('m'), date('d')+1, date('Y')));
+								$result = prevision($bdd, $date);
+								if($result != NULL) {
+									$prev++;
+						?>
+						<table>
 							<tr>
 								<td align="center" class="taille2">
 									D. Ap.Midi
@@ -168,24 +137,23 @@
 							</tr>
 							<tr>
 								<td align="center">
-									<img src="/img/<?php echo $code; ?>.png" width="140">
+									<img src="/img/<?php echo $result['code']; ?>.png" width="140">
 								</td>
 							</tr>
 							<tr>
 								<td align="center" class="taille2">
-									<?php echo (int)$temperature ?> C
+									<?php echo (int)$result['temperature'] ?> C
 								</td>
 							</tr>
 						</table>
-						</td>
-						<td>
+					</td>
+					<td>
 						<img src="/img/vide.png" height="40">
 					</td>
-				<?php
-						}
-					}
-				?>
-					
+						<?php
+								}
+							}
+						?>
 				</tr>
 			</table>
 		</td>

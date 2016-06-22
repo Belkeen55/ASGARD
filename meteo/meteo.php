@@ -1,14 +1,11 @@
 <?php
+	// ---- Redirection toutes les 10 secondes
 	header('Refresh: 10; url=previsions.php');
-	include('../modules/connexionBDD.php');
-	$reponse = $bdd->query('SELECT Code, Temperature, Humidite
-							FROM Meteo
-							WHERE Id = 1');
-	$donnees = $reponse->fetch();
-	$api = $donnees['Temperature'];
-	$code = $donnees['Code'];
-	$humidite = $donnees['Humidite'];
-	$reponse->closeCursor();
+	
+	// ---- Chargement des modules
+	include('../modules/BDD.php');
+	include('../modules/meteo.php');
+	$result = meteo_act($bdd);
 ?>
 <head>
 	<link rel="stylesheet" href="/css/style.css" />
@@ -28,19 +25,19 @@
 					</td>
 				</tr>
 				<tr>
-					<td rowspan="4"><img src="/img/<?php echo $code; ?>.png" height=200></td>
+					<td rowspan="4"><img src="/img/<?php echo $result['code']; ?>.png" height=200></td>
 					<td rowspan="4">
 						<img src="/img/vide.png" height="40">
 					</td>
 				</tr>
 				<tr>
 					<td align="left" class="taille3">
-						<h2><?php echo (int)$api . ' C'; ?></h2>
+						<h2><?php echo (int)$result['temperature'] . ' C'; ?></h2>
 					</td>
 				</tr>
 				<tr>
 					<td align="left" class="taille3">
-						<h2><?php echo (int)$humidite . '%'; ?></h2>
+						<h2><?php echo (int)$result['humidite'] . '%'; ?></h2>
 					</td>
 				</tr>
 			</table>
