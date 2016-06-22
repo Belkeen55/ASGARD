@@ -24,12 +24,12 @@
 			$code = $donnees['Code'];
 			$heurodatage = $donnees['Heurodatage'];
 			$reponse->closeCursor();
+			$result = [
+				'temperature' => $donnees['Temperature'],
+				'code' => $donnees['Code']
+			];
+			return $result;
 		}
-		$result = [
-			'temperature' => $donnees['Temperature'],
-			'code' => $donnees['Code']
-		];
-		return $result;
 	}
 	
 	function temp_ext($bdd) {
