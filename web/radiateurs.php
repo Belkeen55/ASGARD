@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <?php
+	// ---- Debut de session
 	session_start();
+	
+	// ---- Debug
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	
+	// ---- chargement des modules
 	include("../modules/connexionBDD.php");
 	if(isset($_POST['conf_radiateur']))
 	{
@@ -20,6 +27,7 @@
         <title>ASGARD - Radiateurs</title>
     </head>
     <body>
+		<!-- Tableau de page -->
 		<table class="page">
 			<tr align="center">
 				<td>
@@ -30,10 +38,11 @@
 				</td>
 			</tr>
 			<?php
-				if ($_SESSION['login'])
-					{
+				if ($_SESSION['login']) {
+					// ---- Si l'utilisateur est loggé
 			?>
 			<tr>
+				<!-- Chargement du menu de navigation -->
 				<td class='taillemenu' valign="top">
 					<?php include('menu.php'); ?>
 				</td>

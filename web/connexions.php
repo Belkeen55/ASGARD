@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
+	// ---- Debut de session
 	session_start();
+	
+	// ---- Debug
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	
 	function ping($ip_a_tester)
 	{
 			if(exec("ping ".$ip_a_tester." -w 1"))
@@ -20,6 +26,7 @@
         <title>ASGARD - Radiateurs</title>
     </head>
     <body>
+		<!-- Tableau de page -->
 		<table class="page">
 			<tr align="center">
 				<td>
@@ -30,10 +37,11 @@
 				</td>
 			</tr>
 			<?php
-				if ($_SESSION['login'])
-					{
+				if ($_SESSION['login'])	{
+					// ---- Si l'utilisateur est loggé
 			?>
 			<tr>
+				<!-- Chargement du menu de navigation -->
 				<td class='taillemenu' valign="top">
 					<?php include('menu.php'); ?>
 				</td>

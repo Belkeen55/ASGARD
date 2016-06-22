@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <?php
-	//----- Initialisation Session
+	// ---- Debut de session
 	session_start();
-
-	//----- Initialisation des librairies
+	
+	// ---- Debug
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	
+	// ---- chargement des librairies
 	include('../lib/simple_html_dom.php');
 
-	//----- Connexion BDD
+	// ---- chargement des modules
 	include('../modules/connexionBDD.php');
+	
+	// ---- temperature exterieur
+	function temp_ext($bdd) {
+		$reponse = $bdd->query('SELECT Id, Tempext 
+					FROM Mesures
+					WHERE Id_Pieces = 1
+					ORDER BY Id DESC
+					LIMIT 1');
+		$donnees = $reponse->fetch();
+		$reponse->closeCursor();
+		$api = $donnees['Tempext'];
+		return $api;
+	}
 ?>
 <html>
     <head>
@@ -16,6 +33,7 @@
         <title>ASGARD - Home</title>
     </head>
     <body>
+		<!-- Tableau de page -->
 		<table class="page">
 			<tr align="center">
 				<td>
@@ -26,29 +44,37 @@
 				</td>
 			</tr>
 			<?php
-				//----- Si loggué ou cookie
-				if ($_SESSION['login'])
-					{
+				if ($_SESSION['login']) {
+					// ---- Si l'utilisateur est loggé
 			?>
 			<tr>
+				<!-- Chargement du menu de navigation -->
 				<td class='taillemenu' valign="top">
 					<?php include('menu.php'); ?>
 				</td>
 				<td align="center">
+					<img src="/img/vide.png" height="50">
+					<table>
+						<tr>
+							<td class="cadre">
+								<!-- Temperature exterieure -->
+								<table>
+									<tr>
+										<td rowspan="2" align="center" valign="middle"><img src="/img/temperature.png" height="32"></td>
+										<td rowspan="3"><img src="/img/vide.png" height="32"></td>
+										<td>Temperature exterieure</td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center"><?php echo temp_ext($bdd) . ' C'; ?></td>
+									</tr>
+								</table>
+							</td>
 					<?php
 						$html = file_get_html('http://192.168.1.15');
 						foreach($html->find('input[name=temperature]') as $element) 
 							$temperature=$element->value;
 						foreach($html->find('input[name=humidite]') as $element) 
 							$humidite=$element->value;
-						$reponse = $bdd->query('SELECT Id, Tempext 
-												FROM Mesures
-												WHERE Id_Pieces = 1
-												ORDER BY Id DESC
-												LIMIT 1');
-						$donnees = $reponse->fetch();
-						$api = $donnees['Tempext'];
-						$reponse->closeCursor();
 						$reponse = $bdd->query('SELECT Radiateur 
 												FROM Radiateurs 
 												WHERE Id_Pieces = 1');
@@ -142,21 +168,7 @@
 						$reponse->closeCursor();
 
 					?>		
-				<img src="/img/vide.png" height="50">
-				<table>
-					<tr>
-						<td class="cadre">
-							<table>
-								<tr>
-									<td rowspan="2" align="center" valign="middle"><img src="/img/temperature.png" height="32"></td>
-									<td rowspan="3"><img src="/img/vide.png" height="32"></td>
-									<td>Temperature exterieure</td>
-								</tr>
-								<tr>
-									<td colspan="2" align="center"><?php echo $api . ' C'; ?></td>
-								</tr>
-							</table>
-						</td>
+				
 						<td>
 							<img src="/img/vide.png" widht="200">
 						</td>

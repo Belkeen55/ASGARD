@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <?php
-	// ---- Debut de session ----
+	// ---- Debut de session
 	session_start();
-	echo 'Cookie = ' . $_COOKIE['infos'];
 	
-	// ---- Chargement des modules ----
+	// ---- Debug
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	
+	// ---- Chargement des modules
 	include('modules/connexionBDD.php');
 	include('modules/testlogin.php');
 
-	// ---- Tentative de connexion et génération du cookie ----
+	// ---- Tentative de connexion et génération du cookie
 	$_SESSION['login'] = False;
 	if((isset($_POST['mot_de_passe'])) AND (isset($_POST['identifiant']))) {
 		$reponse = $bdd->query('SELECT Id 
@@ -36,6 +39,8 @@
         <title>ASGARD - Connexion</title>
     </head>
     <body>
+	
+		<!-- Tableau de page -->
 		<table class="page">
 			<tr>
 				<td align="center" colspan="3">
@@ -44,16 +49,23 @@
 			</tr>
 			<?php
 				if($_SESSION['login']) {
+					// ---- Si l'utilisateur est loggé
 			?>
 			<tr align="center">
 				<td style="widht:30%">
 					<img src="/img/vide.png" height="200">
 				</td>
 				<td>
+					<!-- On renvoit vers les pages web de BRAIN -->
 					<form action="web/home.php" method="post">
 					<table>
 						<tr>
-							<td>
+							<td align="center">
+								Bienvenue BELKEEN
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
 								<input type="submit" value="Connexion" />
 							</td>
 						</tr>
@@ -73,12 +85,14 @@
 				}
 				else
 				{
+				// ---- Si l'utilisateur n'est pas loggé
 			?>
 			<tr align="center">
 				<td style="widht:30%">
 					<img src="/img/vide.png" height="200">
 				</td>
 				<td>
+					<!-- On renvoit vers la même page avec des POST -->
 					<form action="index.php" method="post">
 					<table>
 						<tr>
