@@ -1,6 +1,6 @@
 <?php
 	// ---- Redirection toutes les 10 secondes
-	header('Refresh: 10; url=meteo.php');
+	header('Refresh: 10; url=heure.php');
 	
 	// ---- Chargement librairies
 	include('../lib/simple_html_dom.php');
