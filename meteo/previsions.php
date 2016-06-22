@@ -2,6 +2,10 @@
 	// ---- Redirection toutes les 10 secondes
 	header('Refresh: 10; url=chambre.php');
 	
+	// ---- Debug
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	
 	// ---- Chargement des modules
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
@@ -33,7 +37,7 @@
 							$prev = 0;
 							$date = date('Y-m-d H:i:s', mktime(9, 0, 0, date('m'), date('d'), date('Y')));
 							$result = prevision($bdd, $date);
-							if($result != NULL) {
+							if(isset($result)) {
 								$prev++;
 						?>
 						<table>
@@ -63,7 +67,7 @@
 							// ---- Informations de l'après midi
 							$date = date('Y-m-d H:i:s', mktime(15, 0, 0, date('m'), date('d'), date('Y')));
 							$result = prevision($bdd, $date);
-							if($result != NULL) {
+							if(isset($result)) {
 								$prev++;
 						?>
 						<table>
@@ -94,7 +98,7 @@
 							if($prev<2){
 								$date = date('Y-m-d H:i:s', mktime(9, 0, 0, date('m'), date('d')+1, date('Y')));
 								$result = prevision($bdd, $date);
-								if($result != NULL) {
+								if(isset($result)) {
 									$prev++;
 						?>
 						<table>
@@ -126,7 +130,7 @@
 							if($prev<2){
 								$date = date('Y-m-d H:i:s', mktime(15, 0, 0, date('m'), date('d')+1, date('Y')));
 								$result = prevision($bdd, $date);
-								if($result != NULL) {
+								if(isset($result)) {
 									$prev++;
 						?>
 						<table>

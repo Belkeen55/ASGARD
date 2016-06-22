@@ -2,6 +2,10 @@
 	// ---- Redirection toutes les 10 secondes
 	header('Refresh: 10; url=heure.php');
 	
+	// ---- Debug
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	
 	// ---- Chargement librairies
 	include('../lib/simple_html_dom.php');
 	

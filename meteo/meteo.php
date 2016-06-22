@@ -2,6 +2,10 @@
 	// ---- Redirection toutes les 10 secondes
 	header('Refresh: 10; url=previsions.php');
 	
+	// ---- Debug
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+	
 	// ---- Chargement des modules
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
