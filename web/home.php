@@ -8,22 +8,6 @@
 
 	//----- Connexion BDD
 	include('../modules/connexionBDD.php');
-	include('../modules/testlogin.php');
-
-	//----- Tentative de connexion et génération du cookie
-	$login = False;
-	if((isset($_POST['mot_de_passe'])) AND (isset($_POST['identifiant']))) {
-		$reponse = $bdd->query('SELECT Id 
-								FROM Utilisateurs 
-								WHERE Login = \'' . $_POST['identifiant'] . '\'
-								AND Password = ' . cryptage($_POST['mot_de_passe']));
-		
-		$donnees = $reponse->rowCount();
-		if($donnees!=0) {
-			setcookie('infos', 'BelkhomeLogin', time() + 365*24*3600, null, null, false, true);
-			$login = True;
-		}
-	}
 ?>
 <html>
     <head>
@@ -43,7 +27,7 @@
 			</tr>
 			<?php
 				//----- Si loggué ou cookie
-				if (($_COOKIE['infos'] == "BelkhomeLogin") OR ($login == True))
+				if ($_SESSION['login'])
 					{
 			?>
 			<tr>
@@ -382,8 +366,7 @@
 					}
 						else
 						{
-							echo '<p>Mot de passe incorrect</p>';
-							echo '<a href="/index.php">Retour</a>';
+							echo "<script type='text/javascript'>document.location.replace('../index.php');</script>";
 						}
 					?>
 				</td>

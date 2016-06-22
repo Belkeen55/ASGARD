@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	session_start();
-		include("../modules/connexionBDD.php");
+	include("../modules/connexionBDD.php");
 	$heurodatage = date('Y-m-d H:i:s');
 	$heurodatage24H = date('Y-m-d H:i:s', mktime(date('H')-24, date('i'), date('s'), date('m'), date('d'), date('Y')));
 	$reponse = $bdd->query('SELECT *
@@ -26,7 +26,7 @@
 				</td>
 			</tr>
 			<?php
-				if ($_COOKIE['infos'] == "BelkhomeLogin")
+				if ($_SESSION['login'])
 					{
 			?>
 			<tr>
@@ -145,8 +145,7 @@
 						}
 						else
 						{
-							echo '<p>Mot de passe incorrect</p>';
-							echo '<a href="/index.php">Retour</a>';
+							echo "<script type='text/javascript'>document.location.replace('../index.php');</script>";
 						}
 					?>
 				</td>

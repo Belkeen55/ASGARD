@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <?php
+	// ---- Debut de session ----
 	session_start();
+	echo 'Cookie = ' . $_COOKIE['infos'];
+	
+	// ---- Chargement des modules ----
+	include('modules/connexionBDD.php');
+	include('modules/testlogin.php');
+
+	// ---- Tentative de connexion et génération du cookie ----
+	$_SESSION['login'] = False;
+	if((isset($_POST['mot_de_passe'])) AND (isset($_POST['identifiant']))) {
+		$reponse = $bdd->query('SELECT Id 
+								FROM Utilisateurs 
+								WHERE Login = \'' . $_POST['identifiant'] . '\'
+								AND Password = ' . cryptage($_POST['mot_de_passe']));
+		
+		$donnees = $reponse->rowCount();
+		if($donnees!=0) {
+			setcookie('infos', 'BelkhomeLogin', time() + 365*24*3600, null, null, false, true);
+			$login = True;
+		}
+		$_SESSION['login'] = True;
+	}
+	if((isset($_COOKIE['infos'])) AND ($_SESSION['login'] == False)) {
+		if($_COOKIE['infos'] == 'BelkhomeLogin') {
+			$_SESSION['login'] = True;
+		}
+	}
 ?>
 <html>
     <head>
@@ -16,14 +43,14 @@
 				</td>
 			</tr>
 			<?php
-				if((isset($_COOKIE['infos'])) and ($_COOKIE['infos'] == 'BelkhomeLogin')) {
+				if($_SESSION['login']) {
 			?>
 			<tr align="center">
 				<td style="widht:30%">
 					<img src="/img/vide.png" height="200">
 				</td>
 				<td>
-					<form action="web\home.php" method="post">
+					<form action="web/home.php" method="post">
 					<table>
 						<tr>
 							<td>
@@ -52,7 +79,7 @@
 					<img src="/img/vide.png" height="200">
 				</td>
 				<td>
-					<form action="web\home.php" method="post">
+					<form action="index.php" method="post">
 					<table>
 						<tr>
 							<td>
@@ -67,7 +94,7 @@
 								Mot de passe :
 							</td>
 							<td>
-								<form action="web\home.php" method="post"><input type="password" name="mot_de_passe" />
+								<input type="password" name="mot_de_passe" />
 							</td>
 						</tr>
 						<tr align="center">

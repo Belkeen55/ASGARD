@@ -32,7 +32,7 @@
 				</td>
 			</tr>
 			<?php
-				if ($_COOKIE['infos'] == "BelkhomeLogin")
+				if ($_SESSION['login'])
 					{
 			?>
 			<tr>
@@ -199,8 +199,7 @@
 						}
 						else
 						{
-							echo '<p>Mot de passe incorrect</p>';
-							echo '<a href="/index.php">Retour</a>';
+							echo "<script type='text/javascript'>document.location.replace('../index.php');</script>";
 						}
 					?>
 				</td>
