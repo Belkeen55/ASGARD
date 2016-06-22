@@ -73,7 +73,7 @@
 			}
 			else
 			{
-				if($temperature > $Tmax)
+				if($temperature >= $Tmax)
 				{
 					$Tetat = 'high';
 				}
