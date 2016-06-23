@@ -36,7 +36,7 @@
 							// ---- Informations du matin
 							$prev = 0;
 							$date = date('Y-m-d H:i:s', mktime(9, 0, 0, date('m'), date('d'), date('Y')));
-							$result = prevision($bdd, $date);
+							$result = prevision_BDD($bdd, $date);
 							if(isset($result)) {
 								$prev++;
 						?>
@@ -66,7 +66,7 @@
 							}
 							// ---- Informations de l'après midi
 							$date = date('Y-m-d H:i:s', mktime(15, 0, 0, date('m'), date('d'), date('Y')));
-							$result = prevision($bdd, $date);
+							$result = prevision_BDD($bdd, $date);
 							if(isset($result)) {
 								$prev++;
 						?>
@@ -97,7 +97,7 @@
 							// ---- Informations du lendemain matin
 							if($prev<2){
 								$date = date('Y-m-d H:i:s', mktime(9, 0, 0, date('m'), date('d')+1, date('Y')));
-								$result = prevision($bdd, $date);
+								$result = prevision_BDD($bdd, $date);
 								if(isset($result)) {
 									$prev++;
 						?>
@@ -129,7 +129,7 @@
 							// ---- Informations du lendemain aprsè midi
 							if($prev<2){
 								$date = date('Y-m-d H:i:s', mktime(15, 0, 0, date('m'), date('d')+1, date('Y')));
-								$result = prevision($bdd, $date);
+								$result = prevision_BDD($bdd, $date);
 								if(isset($result)) {
 									$prev++;
 						?>
