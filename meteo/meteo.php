@@ -9,7 +9,7 @@
 	// ---- Chargement des modules
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
-	$result = meteo_act($bdd);
+	$result = meteo_act_BDD($bdd);
 ?>
 <head>
 	<link rel="stylesheet" href="/css/style.css" />
