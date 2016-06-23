@@ -10,6 +10,20 @@
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
 	$result = meteo_act_BDD($bdd);
+	if(!isset($result['temperature'])) {
+		$ip_log = $_SERVER['REMOTE_ADDR'];
+		$fonction = 'meteo/meteo.php';
+		$commentaire = 'Aucune donnée pour la méteo, lancement du refresh';
+		$erreur = True;
+		$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Fonction, Commentaire, Erreur) 
+		VALUES(NOW(), \'' . $ip_log . '\', \'' . $fonction . '\', \''. $commentaire . '\', ' . $erreur . ')');
+		$meteo = meteo_act_live();
+		if(isset($meteo)) {
+			$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
+						VALUES(1, NOW(), \'' . $meteo['code'] . '\', '. $meteo['temperature'] . ', ' . $meteo['humidite'] . ')');	
+		}
+		$result = meteo_act_BDD($bdd);
+	}
 ?>
 <head>
 	<link rel="stylesheet" href="/css/style.css" />

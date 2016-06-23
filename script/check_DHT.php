@@ -19,7 +19,7 @@
 		// ---- Recuperation de la méteo
 		$meteo = meteo_act_live();
 		
-		if(isset($meteo)) {
+		if(isset($meteo['temperature'])) {
 			// ---- Recuperation des données de chacune des sondes
 			$sondes_BDD = $bdd->query('	SELECT Id_Pieces, Ip 
 										FROM Equipements

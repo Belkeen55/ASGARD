@@ -157,6 +157,14 @@
 						<?php
 								}
 							}
+							if($prev<2) {
+								$ip_log = $_SERVER['REMOTE_ADDR'];
+								$fonction = 'meteo/previsions.php';
+								$commentaire = 'Impossible de remonter 2 prévisions';
+								$erreur = True;
+								$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Fonction, Commentaire, Erreur) 
+								VALUES(NOW(), \'' . $ip_log . '\', \'' . $fonction . '\', \''. $commentaire . '\', ' . $erreur . ')');
+							}
 						?>
 				</tr>
 			</table>
