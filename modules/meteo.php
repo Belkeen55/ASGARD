@@ -43,6 +43,22 @@
 		return $donnees;
 	}
 	
+	function donnees_sonde_BDD($bdd, $ip) {
+		$equipements_BDD = $bdd->query('SELECT Mesures.Id, Mesures.Tempint, Mesures.Humidite 
+										FROM Mesures, Equipements 
+										WHERE Equipements.Ip = \'' . $ip . '\' 
+										AND Mesures.Id_Pieces = Equipements.Id_Pieces
+										ORDER BY Mesures.Id DESC
+										LIMIT 1');
+		$infos_equipement = $equipements_BDD->fetch();
+		$donnees = [
+			'temperature' => $infos_equipement['Tempint'],
+			'humidite' => $infos_equipement['Humidite']
+		];
+		$equipements_BDD->closeCursor();
+		return $donnees;
+	}
+	
 	function meteo_act_live() {
 		$dom = new DomDocument();
 		$dom->load('http://api.openweathermap.org/data/2.5/weather?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
@@ -139,6 +155,121 @@
 		$ip = $donnees['Ip'];
 		$reponse->closeCursor();
 		$infos_sonde = donnees_sonde_live($ip);
+		$reponse = $bdd->query('SELECT Radiateur 
+								FROM Radiateurs 
+								WHERE Id_Pieces = ' . $piece);
+		$donnees = $reponse->fetch();
+		$radiateur = $donnees['Radiateur'];
+		$reponse->closeCursor();
+		$reponse = $bdd->query('SELECT T_ideal, H_ideal 
+								FROM Pieces
+								WHERE Id = ' . $piece);
+		$donnees = $reponse->fetch();
+		$Tideal = $donnees['T_ideal'];
+		$Hideal = $donnees['H_ideal'];
+		$reponse->closeCursor();
+		$Tmin = $Tideal*0.9;
+		$Tmax = $Tideal*1.1;
+		$Hmin = $Hideal*0.8;
+		$Hmax = $Hideal*1.2;
+		if($infos_sonde['temperature'] < $Tmin) 
+		{
+			$Tetat = 'low';
+		}
+		else
+		{
+			if(($infos_sonde['temperature'] > $Tmin) AND ($infos_sonde['temperature'] < $Tmax))
+			{
+				$Tetat = 'ok';
+			}
+			else
+			{
+				if($infos_sonde['temperature'] >= $Tmax)
+				{
+					$Tetat = 'high';
+				}
+			}
+		}
+		if($infos_sonde['humidite'] < $Hmin) 
+		{
+			$Hetat = 'low';
+		}
+		else
+		{
+			if(($infos_sonde['humidite'] > $Hmin) AND ($infos_sonde['humidite'] < $Hmax))
+			{
+				$Hetat = 'ok';
+			}
+			else
+			{
+				if($infos_sonde['humidite'] > $Hmax)
+				{
+					$Hetat = 'high';
+				}
+			}
+		}
+		$TRmin = (int)$infos_sonde['temperature'];
+		$TRmax = (int)$infos_sonde['temperature']+1;
+		$TiRmin = (int)temperature_exterieure_BDD($bdd);
+		$TiRmax = (int)temperature_exterieure_BDD($bdd)+1;
+		$reponse = $bdd->query('SELECT Id_Pieces, AVG(Radiateur) as Reglage 
+								FROM Mesures
+								WHERE Id_Pieces = ' . $piece . ' 
+								AND Tempint > ' . $TRmin . '
+								AND Tempint < ' . $TRmax . '
+								AND Tempext > ' . $TiRmin . '
+								AND Tempext < ' . $TiRmax . '
+								GROUP BY Id_Pieces');
+		$lignes = $reponse->rowCount();
+		if($lignes == 0)
+		{
+			$reglage = 'Pas dinformations';
+			$Retat = 'ok';
+		}
+		else
+		{
+			$donnees = $reponse->fetch();
+			$reglage = (int)$donnees['Reglage'];
+			if($reglage-(int)$radiateur > 0)
+			{
+				$Retat = 'low';
+			}
+			else
+			{
+				if($reglage-(int)$radiateur < 0)
+				{
+					$Retat = 'high';
+				}
+				else
+				{
+					$Retat = 'ok';
+				}
+			}
+		}
+		$reponse->closeCursor();
+		$infos = [
+			'Tetat' => $Tetat,
+			'temperature' => $infos_sonde['temperature'],
+			'Tideal' => $Tideal,
+			'Hetat' => $Hetat,
+			'humidite' => $infos_sonde['humidite'],
+			'Hideal' => $Hideal,
+			'Retat' => $Retat,
+			'radiateur' => $radiateur,
+			'reglage' => $reglage
+		];
+		return $infos;
+	}
+	
+	function donnees_piece_BDD($bdd, $piece) {
+		$reponse = $bdd->query('SELECT Ip 
+								FROM Equipements 
+								WHERE Id_Type_Equip = 2
+								AND Id_Pieces = ' . $piece);
+		$donnees = $reponse->fetch();
+		$ip = $donnees['Ip'];
+		$reponse->closeCursor();
+		$infos_sonde = donnees_sonde_BDD($bdd, $ip);
 		$reponse = $bdd->query('SELECT Radiateur 
 								FROM Radiateurs 
 								WHERE Id_Pieces = ' . $piece);

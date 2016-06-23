@@ -13,7 +13,7 @@
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
 	
-	$infos = donnees_piece($bdd, 1);
+	$infos = donnees_piece_BDD($bdd, 1);
 
 ?>
 <link rel="stylesheet" href="/css/style.css" />		
