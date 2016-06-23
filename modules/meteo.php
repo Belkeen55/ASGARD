@@ -3,7 +3,7 @@
 		$dom = new DomDocument();
 		$dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
 		$prevision = $dom->getElementsByTagName("time");
-		if(isset($prevision)){
+		if($prevision != NULL){
 			$bdd->exec('DELETE FROM Meteo WHERE Id <> 1');
 			$i = 2;
 			foreach($prevision as $infos) {

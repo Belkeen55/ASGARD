@@ -9,6 +9,19 @@
 	// ---- Chargement des modules
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
+	$meteo_BDD = $bdd->query('	SELECT Id 
+								FROM Meteo 
+								WHERE Id = 2');
+	$nb_lignes = $meteo_BDD->rowCount();
+	if($nb_lignes == 0) {
+		$ip_log = $_SERVER['REMOTE_ADDR'];
+		$fonction = 'meteo/previsions.php';
+		$commentaire = 'Aucune prévisions dans la BDD, Refresh';
+		$erreur = True;
+		$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Fonction, Commentaire, Erreur) 
+		VALUES(NOW(), \'' . $ip_log . '\', \'' . $fonction . '\', \''. $commentaire . '\', ' . $erreur . ')');
+		add_previsions_BDD($bdd);
+	}
 ?>
 <head>
 	<link rel="stylesheet" href="/css/style.css" />
