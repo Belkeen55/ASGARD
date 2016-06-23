@@ -1,5 +1,71 @@
 <?php
-	function meteo_act($bdd) {
+	function add_previsions_BDD($bdd) {
+		$dom = new DomDocument();
+		$dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
+		$prevision = $dom->getElementsByTagName("time");
+		if(isset($prevision)){
+			$bdd->exec('DELETE FROM Meteo WHERE Id <> 1');
+			$i = 2;
+			foreach($prevision as $infos) {
+				$heuro=$infos->getAttribute("from");
+				
+				$balise = $infos->getElementsByTagName("temperature");
+				foreach($balise as $valeur)
+					$tempprev=$valeur->getAttribute("value");
+				
+				$balise = $infos->getElementsByTagName("symbol");
+				foreach($balise as $valeur)
+					$codeprev=$valeur->getAttribute("var");
+					
+				$balise = $infos->getElementsByTagName("humidity");
+				foreach($balise as $valeur)
+					$humprev=$valeur->getAttribute("value");
+				
+				if(isset($heuro)){
+					$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
+								VALUES(' . $i . ', \'' . $heuro . '\', \'' . $codeprev . '\', '. $tempprev . ', ' . $humprev . ')');
+				}
+				$i = $i + 1;
+			}
+		}
+	}
+	
+	function donnees_sonde_live($ip) {
+		$html = file_get_html('http://' . $ip);
+		foreach($html->find('input[name=temperature]') as $element) 
+		$temperature=$element->value;
+		foreach($html->find('input[name=humidite]') as $element) 
+		$humidite=$element->value;
+		$donnees = [
+			'temperature' => $temperature,
+			'humidite' => $humidite
+		];
+		return $donnees;
+	}
+	
+	function meteo_act_live() {
+		$dom = new DomDocument();
+		$dom->load('http://api.openweathermap.org/data/2.5/weather?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
+		$balise = $dom->getElementsByTagName("temperature");
+		foreach($balise as $valeur)
+			$tempext=$valeur->getAttribute("value");
+		
+		$balise = $dom->getElementsByTagName("humidity");
+		foreach($balise as $valeur)
+			$humext=$valeur->getAttribute("value");
+		
+		$balise = $dom->getElementsByTagName("weather");
+		foreach($balise as $valeur)
+			$code=$valeur->getAttribute("icon");
+		$meteo = [
+			'temperature' => $tempext,
+			'humidite' => $humext,
+			'code' => $code
+		];
+		return $meteo;
+	}
+	
+	function meteo_act_BDD($bdd) {
 		$reponse = $bdd->query('SELECT Code, Temperature, Humidite
 								FROM Meteo
 								WHERE Id = 1');
@@ -13,7 +79,7 @@
 		return $result;
 	}
 	
-	function prevision($bdd, $date) {
+	function prevision_BDD($bdd, $date) {
 		$reponse = $bdd->query('SELECT Heurodatage, Code, Temperature
 								FROM Meteo
 								WHERE Heurodatage = \'' . $date . '\'');
@@ -32,7 +98,7 @@
 		}
 	}
 	
-	function temp_ext($bdd) {
+	function temp_ext_BDD($bdd) {
 		$reponse = $bdd->query('SELECT Id, Tempext 
 					FROM Mesures
 					WHERE Id_Pieces = 1
@@ -44,7 +110,7 @@
 		return $api;
 	}
 	
-	function etat_radiateur($bdd, $piece) {
+	function etat_radiateur_BDD($bdd, $piece) {
 		$reponse = $bdd->query('SELECT Radiateur 
 								FROM Radiateurs 
 								WHERE Id_Pieces = ' . $piece);
@@ -64,7 +130,7 @@
 		return $reponse;
 	}
 	
-	function donnees_piece($bdd, $piece) {
+	function donnees_piece_live($bdd, $piece) {
 		$reponse = $bdd->query('SELECT Ip 
 								FROM Equipements 
 								WHERE Id_Type_Equip = 2
@@ -72,11 +138,7 @@
 		$donnees = $reponse->fetch();
 		$ip = $donnees['Ip'];
 		$reponse->closeCursor();
-		$html = file_get_html('http://' . $ip);
-		foreach($html->find('input[name=temperature]') as $element) 
-			$temperature=$element->value;
-		foreach($html->find('input[name=humidite]') as $element) 
-			$humidite=$element->value;
+		$infos_sonde = donnees_sonde_live($ip);
 		$reponse = $bdd->query('SELECT Radiateur 
 								FROM Radiateurs 
 								WHERE Id_Pieces = ' . $piece);
@@ -171,10 +233,10 @@
 		$reponse->closeCursor();
 		$infos = [
 			'Tetat' => $Tetat,
-			'temperature' => $temperature,
+			'temperature' => $infos_sonde['temperature'],
 			'Tideal' => $Tideal,
 			'Hetat' => $Hetat,
-			'humidite' => $humidite,
+			'humidite' => $infos_sonde['humidite'],
 			'Hideal' => $Hideal,
 			'Retat' => $Retat,
 			'radiateur' => $radiateur,
