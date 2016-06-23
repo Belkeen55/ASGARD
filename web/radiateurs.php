@@ -50,7 +50,7 @@
 							<td>
 								<table class="cadre">
 								<?php
-									$radiateur = etat_radiateur($bdd, 1);
+									$radiateur = etat_radiateur_BDD($bdd, 1);
 								?>
 									<tr>
 										<td rowspan="4" align="center" valign="middle"><img src="/img/bebe.png" height="64"></td>
@@ -82,12 +82,7 @@
 							</td>
 						</tr>
 						<?php
-							$reponse = $bdd->query('SELECT Radiateur 
-										FROM Radiateurs 
-										WHERE Id_Pieces = 2');
-							$donnees = $reponse->fetch();
-							$radiateur = $donnees['Radiateur'];
-							$reponse->closeCursor();
+							$radiateur = etat_radiateur_BDD($bdd, 2);
 						?>		
 						<tr>
 							<td>

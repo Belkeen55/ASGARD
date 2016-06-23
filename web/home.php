@@ -54,7 +54,7 @@
 										<td>Temperature exterieure</td>
 									</tr>
 									<tr>
-										<td colspan="2" align="center"><?php echo temp_ext($bdd) . ' C'; ?></td>
+										<td colspan="2" align="center"><?php echo temperature_exterieure_BDD($bdd) . ' C'; ?></td>
 									</tr>
 								</table>
 							</td>
@@ -65,7 +65,7 @@
 								<table>
 								<?php
 									// ---- Recuperation des donnees de la chambre
-									$infos_piece = donnees_piece($bdd, 1);
+									$infos_piece = donnees_piece_live($bdd, 1);
 								?>		
 									<tr>
 										<td rowspan="8"><img src="/img/bebe.png" height="64"></td>
@@ -118,7 +118,7 @@
 								<table class="cadre">
 									<?php
 										// ---- Recuperation des donnees du salon
-										$infos_piece = donnees_piece($bdd, 2);
+										$infos_piece = donnees_piece_live($bdd, 2);
 									?>		
 									<tr>
 										<td rowspan="8"><img src="/img/salon.png" height="64"></td>

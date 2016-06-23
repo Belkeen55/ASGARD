@@ -98,7 +98,7 @@
 		}
 	}
 	
-	function temp_ext_BDD($bdd) {
+	function temperature_exterieure_BDD($bdd) {
 		$reponse = $bdd->query('SELECT Id, Tempext 
 					FROM Mesures
 					WHERE Id_Pieces = 1
@@ -156,46 +156,46 @@
 		$Tmax = $Tideal*1.1;
 		$Hmin = $Hideal*0.8;
 		$Hmax = $Hideal*1.2;
-		if($temperature < $Tmin) 
+		if($infos_sonde['temperature'] < $Tmin) 
 		{
 			$Tetat = 'low';
 		}
 		else
 		{
-			if(($temperature > $Tmin) AND ($temperature < $Tmax))
+			if(($infos_sonde['temperature'] > $Tmin) AND ($infos_sonde['temperature'] < $Tmax))
 			{
 				$Tetat = 'ok';
 			}
 			else
 			{
-				if($temperature >= $Tmax)
+				if($infos_sonde['temperature'] >= $Tmax)
 				{
 					$Tetat = 'high';
 				}
 			}
 		}
-		if($humidite < $Hmin) 
+		if($infos_sonde['humidite'] < $Hmin) 
 		{
 			$Hetat = 'low';
 		}
 		else
 		{
-			if(($humidite > $Hmin) AND ($humidite < $Hmax))
+			if(($infos_sonde['humidite'] > $Hmin) AND ($infos_sonde['humidite'] < $Hmax))
 			{
 				$Hetat = 'ok';
 			}
 			else
 			{
-				if($humidite > $Hmax)
+				if($infos_sonde['humidite'] > $Hmax)
 				{
 					$Hetat = 'high';
 				}
 			}
 		}
-		$TRmin = (int)$temperature;
-		$TRmax = (int)$temperature+1;
-		$TiRmin = (int)temp_ext($bdd);
-		$TiRmax = (int)temp_ext($bdd)+1;
+		$TRmin = (int)$infos_sonde['temperature'];
+		$TRmax = (int)$infos_sonde['temperature']+1;
+		$TiRmin = (int)temperature_exterieure_BDD($bdd);
+		$TiRmax = (int)temperature_exterieure_BDD($bdd)+1;
 		$reponse = $bdd->query('SELECT Id_Pieces, AVG(Radiateur) as Reglage 
 								FROM Mesures
 								WHERE Id_Pieces = ' . $piece . ' 
