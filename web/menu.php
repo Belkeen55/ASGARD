@@ -6,7 +6,7 @@
 		<li><a href="radiateurs.php">Radiateurs</a></li>
 		<li><a href="dernieres24h.php">Dernieres 24H</a></li>
 	</ul>
-	<li class='titremenu'>Organes</li>
+	<li class='titremenu'>Système</li>
 	<ul>
 		<li><a href="connexions.php">Connexions</a></li>
 		<li><a href="etat.php">Etats</a></li>
