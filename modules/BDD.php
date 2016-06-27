@@ -10,5 +10,12 @@
 		return 'PASSWORD(\'rudy' . sha1($passwd) . 'laura\')';
 	}
 	
+	function gestion_erreur($bdd, $num) {
+		$ip_log = $_SERVER['REMOTE_ADDR'];
+		$erreur = False;
+		$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Erreur, Corrige) 
+		VALUES(NOW(), \'' . $ip_log . '\', ' . $num . ', ' . $erreur . ')');
+	}
+	
 	$bdd = connect_bdd($loginSQL, $passwordSQL);
 ?>
