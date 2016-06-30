@@ -49,38 +49,7 @@
 			<?php
 				if($_SESSION['login']) {
 					// ---- Si l'utilisateur est loggé
-			?>
-			<tr align="center">
-				<td style="widht:30%">
-					<img src="/img/vide.png" height="200">
-				</td>
-				<td>
-					<!-- On renvoit vers les pages web de BRAIN -->
-					<form action="web/home.php" method="post">
-					<table>
-						<tr>
-							<td align="center">
-								Bienvenue BELKEEN
-							</td>
-						</tr>
-						<tr>
-							<td align="center">
-								<input type="submit" value="Connexion" />
-							</td>
-						</tr>
-					</table>
-					</form>
-				</td>
-				<td style="widht:30%">
-					<img src="/img/vide.png" height="200">
-				</td>
-			</tr>
-			<tr>
-				<td align="right" colspan="3">
-					<img src="/img/Cc-by-nc-sa_icon.png">
-				</td>
-			</tr>
-			<?php
+					echo "<script type='text/javascript'>document.location.replace('web/home.php');</script>";
 				}
 				else
 				{
