@@ -17,7 +17,7 @@
 						VALUES(NOW(), \'' . str_replace('\'', '\'\'', $_POST['titre']) . '\', \'' . str_replace('\'', '\'\'', $_POST['commentaire']) . '\', ' . $_POST['type'] . ', 1, ' . $_POST['module'] . ')');
 		}
 		if($_POST['action'] == 'update') {
-			if($_POST['etape'] == 6) {
+			if(($_POST['etape'] == 6) OR ($_POST['etape'] == 7)) {
 				$bdd->exec('UPDATE Taches
 							SET Titre = \'' . str_replace('\'', '\'\'', $_POST['titre']) . '\', 
 							Commentaires = \'' . str_replace('\'', '\'\'', $_POST['commentaire']) . '\', 
