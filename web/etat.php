@@ -10,6 +10,12 @@
 	// ---- chargement des librairies
 	include('../lib/simple_html_dom.php');
 	include('../modules/network.php');
+	include("../modules/BDD.php");
+	$equipements_BDD = $bdd->query('SELECT 	Equipements.Id, Equipements.Nom, Equipements.Ip, Equipements.Commentaires, Pieces.Nom AS Location, 
+											Type_Equip.Id AS Type, Type_Equip.Image
+									FROM Equipements, Pieces, Type_Equip
+									WHERE Equipements.Id_Pieces = Pieces.Id
+									AND Equipements.Id_Type_Equip = Type_Equip.Id');
 ?>
 <html>
     <head>
@@ -54,14 +60,17 @@
 											Temperature
 										</td>
 									</tr>
+									<?php
+										while($infos_equipement = $equipements_BDD->fetch()) {
+											$connec = ping($infos_equipement['Ip']);
+									?>
 									<tr>
 										<td align="center" class="tableau">
-											<img src="/img/raspberryon.png" title="WLAN : 192.168.1.22"><br>
-											GIT
+											<img src="<?php echo $infos_equipement['Image']; echo $connec;?>.png" title="WLAN : <?php echo $infos_equipement['Ip']; ?>"><br>
+											<?php echo $infos_equipement['Nom']; ?>
 										</td>
 										<td align="center" class="tableau">
 											<?php 
-												$connec = ping('192.168.1.22');
 												echo $connec;
 											?>
 										</td>
@@ -69,64 +78,18 @@
 											<?php
 												if($connec == 'on')
 												{
-													$html = file_get_html('http://192.168.1.22/temppi.php');
-													foreach($html->find('input[name=temperature]') as $element) 
-													$temperature=$element->value;
-													echo $temperature;
-												}
-												else
-												{
-													echo 'NA';
-												}
-											?>
-										</td>
-									</tr>
-									<tr>
-										<td align="center" class="tableau">
-											<a href="brain.php"><img src="/img/raspberryon.png" title="LAN : 192.168.1.16 WLAN : 192.168.1.17"><br>
-											Brain</a>
-										</td>
-										<td align="center" class="tableau">
-											<?php 
-												$connec = ping('192.168.1.16');
-												echo $connec;
-											?>
-										</td>
-										<td align="center" class="tableau">
-											<?php
-												if($connec == 'on')
-												{
-													$html = file_get_html('http://192.168.1.16/script/temppi.php');
-													foreach($html->find('input[name=temperature]') as $element) 
+													if($infos_equipement['Type'] == 1) {
+														$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
+														foreach($html->find('input[name=temperature]') as $element) 
 														$temperature=$element->value;
-													echo $temperature;
-												}
-												else
-												{
-													echo 'NA';
-												}
-											?>
-										</td>
-									</tr>
-									<tr>
-										<td align="center" class="tableau">
-											<img src="/img/raspberryon.png" title="WLAN : 192.168.1.19"><br>
-											Meteo
-										</td>
-										<td align="center" class="tableau">
-											<?php 
-												$connec = ping('192.168.1.19');
-												echo $connec;
-											?>
-										</td>
-										<td align="center" class="tableau">
-											<?php
-												if($connec == 'on')
-												{
-													$html = file_get_html('http://192.168.1.19/temppi.php');
-													foreach($html->find('input[name=temperature]') as $element) 
+														echo $temperature;
+													}
+													if($infos_equipement['Type'] == 2) {
+														$html = file_get_html('http://' . $infos_equipement['Ip']);
+														foreach($html->find('input[name=temperature]') as $element) 
 														$temperature=$element->value;
-													echo $temperature;
+														echo (int)$temperature;
+													}
 												}
 												else
 												{
@@ -135,60 +98,9 @@
 											?>
 										</td>
 									</tr>
-									<tr>
-										<td align="center" class="tableau">
-											<img src="/img/sondetempon.png" title="WLAN : 192.168.1.15"><br>
-											S.Chambre
-										</td>
-										<td align="center" class="tableau">
-											<?php 
-												$connec = ping('192.168.1.15');
-												echo $connec;
-											?>
-										</td>
-										<td align="center" class="tableau">
-											<?php
-												if($connec == 'on')
-												{
-													$html = file_get_html('http://192.168.1.15');
-													foreach($html->find('input[name=temperature]') as $element) 
-														$temperature=$element->value;
-													echo (int)$temperature;
-												}
-												else
-												{
-													echo 'NA';
-												}
-											?>
-										</td>
-									</tr>
-									<tr>
-										<td align="center" class="tableau">
-											<img src="/img/sondetempon.png" title="WLAN : 192.168.1.21"><br>
-											S.Salon
-										</td>
-										<td align="center" class="tableau">
-											<?php 
-												$connec = ping('192.168.1.21');
-												echo $connec;
-											?>
-										</td>
-										<td align="center" class="tableau">
-											<?php
-												if($connec == 'on')
-												{
-													$html = file_get_html('http://192.168.1.21');
-													foreach($html->find('input[name=temperature]') as $element) 
-														$temperature=$element->value;
-													echo (int)$temperature;
-												}
-												else
-												{
-													echo 'NA';
-												}
-											?>
-										</td>
-									</tr>
+									<?php
+										}
+									?>
 								</table>
 							</td>
 						</tr>
