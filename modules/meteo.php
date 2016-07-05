@@ -1,31 +1,36 @@
 <?php
 	function add_previsions_BDD($bdd) {
 		$dom = new DomDocument();
-		$dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
-		$prevision = $dom->getElementsByTagName("time");
-		if($prevision != NULL){
-			$bdd->exec('DELETE FROM Meteo WHERE Id <> 1');
-			$i = 2;
-			foreach($prevision as $infos) {
-				$heuro=$infos->getAttribute("from");
-				
-				$balise = $infos->getElementsByTagName("temperature");
-				foreach($balise as $valeur)
-					$tempprev=$valeur->getAttribute("value");
-				
-				$balise = $infos->getElementsByTagName("symbol");
-				foreach($balise as $valeur)
-					$codeprev=$valeur->getAttribute("var");
+		//$dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
+		if($dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric')) {
+			//$dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric';
+			$prevision = $dom->getElementsByTagName("time");
+			if($prevision->length != 0){
+				$bdd->exec('DELETE FROM Meteo WHERE Id <> 1');
+				$i = 2;
+				foreach($prevision as $infos) {
+					$heuro=$infos->getAttribute("from");
 					
-				$balise = $infos->getElementsByTagName("humidity");
-				foreach($balise as $valeur)
-					$humprev=$valeur->getAttribute("value");
-				
-				if(isset($heuro)){
-					$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
-								VALUES(' . $i . ', \'' . $heuro . '\', \'' . $codeprev . '\', '. $tempprev . ', ' . $humprev . ')');
+					$balise = $infos->getElementsByTagName("temperature");
+					foreach($balise as $valeur)
+						$tempprev=$valeur->getAttribute("value");
+					
+					$balise = $infos->getElementsByTagName("symbol");
+					foreach($balise as $valeur)
+						$codeprev=$valeur->getAttribute("var");
+						
+					$balise = $infos->getElementsByTagName("humidity");
+					foreach($balise as $valeur)
+						$humprev=$valeur->getAttribute("value");
+					
+					if(isset($heuro)){
+						$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
+									VALUES(' . $i . ', \'' . $heuro . '\', \'' . $codeprev . '\', '. $tempprev . ', ' . $humprev . ')');
+					}
+					$i = $i + 1;
 				}
-				$i = $i + 1;
+				//$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Codes_Id) 
+				//			VALUES(NOW(), \'' . $_SERVER['REMOTE_ADDR'] . '\', 1)');
 			}
 		}
 	}
