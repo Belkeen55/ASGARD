@@ -9,17 +9,27 @@
 	// ---- Chargement des modules
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
+	
+	// ---- Test de présence de données
 	$meteo_BDD = $bdd->query('	SELECT Id 
 								FROM Meteo 
 								WHERE Id = 2');
 	$nb_lignes = $meteo_BDD->rowCount();
 	if($nb_lignes == 0) {
-		$ip_log = $_SERVER['REMOTE_ADDR'];
-		$fonction = 'meteo/previsions.php';
-		$commentaire = 'Aucune prévisions dans la BDD, Refresh';
-		$erreur = True;
-		$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Fonction, Commentaire, Erreur) 
-		VALUES(NOW(), \'' . $ip_log . '\', \'' . $fonction . '\', \''. $commentaire . '\', ' . $erreur . ')');
+		add_log($bdd, 4);
+		add_previsions_BDD($bdd);
+	}
+	$meteo_BDD->closeCursor();
+	
+	// ---- Verification du dernier rafraichissement
+	$logs_BDD = $bdd->query('	SELECT * 
+								FROM Logs 
+								WHERE (Id_Codes = 5 OR Id_Codes = 3)
+								ORDER BY Heurodatage
+								LIMIT 1');
+	$infos_log = $logs_BDD->fetch();
+	if($infos_log['Id_Codes'] == 5) {
+		add_log($bdd, 4);
 		add_previsions_BDD($bdd);
 	}
 ?>
@@ -171,12 +181,7 @@
 								}
 							}
 							if($prev<2) {
-								$ip_log = $_SERVER['REMOTE_ADDR'];
-								$fonction = 'meteo/previsions.php';
-								$commentaire = 'Impossible de remonter 2 prévisions';
-								$erreur = True;
-								$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Fonction, Commentaire, Erreur) 
-								VALUES(NOW(), \'' . $ip_log . '\', \'' . $fonction . '\', \''. $commentaire . '\', ' . $erreur . ')');
+								add_logs($bdd, 4);
 							}
 						?>
 				</tr>

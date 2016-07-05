@@ -1,9 +1,7 @@
 <?php
 	function add_previsions_BDD($bdd) {
 		$dom = new DomDocument();
-		//$dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
 		if($dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric')) {
-			//$dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric';
 			$prevision = $dom->getElementsByTagName("time");
 			if($prevision->length != 0){
 				$bdd->exec('DELETE FROM Meteo WHERE Id <> 1');
@@ -29,10 +27,17 @@
 					}
 					$i = $i + 1;
 				}
-				//$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Codes_Id) 
-				//			VALUES(NOW(), \'' . $_SERVER['REMOTE_ADDR'] . '\', 1)');
+				add_log($bdd, 3);
+			}
+			else {
+				add_log($bdd, 5);
 			}
 		}
+		else {
+			add_log($bdd, 5);
+		}
+		
+		
 	}
 	
 	function donnees_sonde_live($ip) {

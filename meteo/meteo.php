@@ -9,18 +9,16 @@
 	// ---- Chargement des modules
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
+	
 	$result = meteo_act_BDD($bdd);
+	
+	// Gestion de l'absence d'informations dans la BDD et tentative de refresh
 	if(!isset($result['temperature'])) {
-		$ip_log = $_SERVER['REMOTE_ADDR'];
-		$fonction = 'meteo/meteo.php';
-		$commentaire = 'Aucune donnée pour la méteo, lancement du refresh';
-		$erreur = True;
-		$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Fonction, Commentaire, Erreur) 
-		VALUES(NOW(), \'' . $ip_log . '\', \'' . $fonction . '\', \''. $commentaire . '\', ' . $erreur . ')');
+		add_log($bdd, 2);
 		$meteo = meteo_act_live();
 		if(isset($meteo)) {
 			$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
-						VALUES(1, NOW(), \'' . $meteo['code'] . '\', '. $meteo['temperature'] . ', ' . $meteo['humidite'] . ')');	
+						VALUES(1, NOW(), \'' . $meteo['code'] . '\', '. $meteo['temperature'] . ', ' . $meteo['humidite'] . ')');
 		}
 		$result = meteo_act_BDD($bdd);
 	}
