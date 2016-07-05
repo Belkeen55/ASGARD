@@ -8,6 +8,7 @@
 	</ul>
 	<li class='titremenu'>Système</li>
 	<ul>
+		<li><a href="/web/equipements/equipements.php">Equipements</a></li>
 		<li><a href="/web/connexions.php">Connexions</a></li>
 		<li><a href="/web/etat.php">Etats</a></li>
 	</ul>
