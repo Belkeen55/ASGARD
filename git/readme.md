@@ -1,10 +1,10 @@
-Installation serveur GIT et environnement de test
+Installation serveur Mimir et environnement de test
 ==
 #### Installation du systeme (Fait sur Raspbian jessie lite 2016 05 10) 
 	sudo raspi-config 
 		Expand SD card 
 		Internationalisation 
-		HostName GIT 
+		HostName Mimir 
 
 #### Mise à jour du systeme 
 	sudo apt update 
@@ -41,25 +41,18 @@ Installation serveur GIT et environnement de test
 	sudo apt install mysql-server php5-mysql 
 	sudo apt install phpmyadmin 
 
-#### Mise en place de la clé USB 
-	sudo blkid 
-	sudo nano /etc/fstab 
-		UUID="resultat_blkid"  /media/usb1     vfat    umask=770         0       3 
-	cd /etc/apache2/site-available 
-	dir 
-	sudo nano /etc/apache2/sites-available/"site_trouvé" 
-	changer le documentRoot = /media/usb1 
-
 #### Creation Key SSH 
 	ssh-keygen -t rsa -b 4096 -C "adresse_mail" 
 	cd ~/.ssh 
+	eval `ssh-agent -s` 
+	eval `ssh-agent -c` 
 	ssh-add id_rsa 
 	more id_rsa.pub 
 		copier/collé dans gitHub 
 
 #### Mise en place des gits 
 	création des git (un par un) 
-	sudo git remote add meteo ssh://user@monserveur.fr/home/user/MonProjet 
+	sudo git remote add deploy ssh://user@monserveur.fr/home/user/MonProjet 
 	sudo git remote add hub git@github.com:Belkeen55/"deposit".git 
 
 #### Configuration réseau
