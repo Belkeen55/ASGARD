@@ -1,10 +1,10 @@
-Installation du Brain d'Asgard
+Installation Odin (serveur principal)
 ==
 #### Installation du systeme (Fait sur Raspbian jessie lite 2016 05 10) 
 	sudo raspi-config 
 		Expand SD card 
 		Internationalisation 
-		HostName Brain 
+		HostName Odin 
 
 #### Configuration reseau
 	sudo nano /etc/network/interfaces 
@@ -24,9 +24,9 @@ Installation du Brain d'Asgard
 #### Securisation de connexion
 	sudo adduser belkeen 
 	sudo visudo 
-	Ajouter Belkeen ALL=(ALL) NOPASSWD: ALL 
+	Ajouter "utilisateur" ALL=(ALL) NOPASSWD: ALL 
 	logout 
-	login avec Belkeen 
+	login avec "utilisateur" 
 	sudo visudo 
 	retirer la ligne pi ALL=(ALL) NOPASSWD: ALL 
 	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp 
@@ -47,12 +47,12 @@ Installation du Brain d'Asgard
 	sudo apt install git 
 
 #### Mise en place du git de déploiement
-	mkdir /home/belkeen/brain.git/ 
-	cd /home/belkeen/brain.git/ 
+	mkdir /home/"utilisateur"/brain.git/ 
+	cd /home/"utilisateur"/brain.git/ 
 	git init 
 	git config receive.denyCurrentBranch ignore 
 	Faire un push du coté de GIT 
-	git clone /home/user/brain.git /var/www/html 
+	git clone /home/"utilisateur"/brain.git /var/www/html 
 	git remote add GIT ssh://user@monserveur/var/www/brain
 	sudo nano /home/belkeen/brain.git/.git/hooks/post-update 
 	#!/bin/bash 
