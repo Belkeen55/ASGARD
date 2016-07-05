@@ -153,7 +153,7 @@
 						VALUES(\'' . $_POST['nom'] . '\',' . $_POST['note'] . ', ' . $G . ', ' . $DD . ', '
 								. $DA . ', ' . $DG . ', ' . $MDD . ', ' . $MDA . ', ' 
 								. $MDG . ', ' . $MD . ', ' . $MA . ', ' . $MG . ', ' 
-								. $MOD . ', ' . $MOA . ', ' . $MDG . ', ' . $AD . ', ' 
+								. $MOD . ', ' . $MOA . ', ' . $MOG . ', ' . $AD . ', ' 
 								. $AA . ', ' . $AG . ', 0, 0)');
 		}
 		if($_POST['action'] == 'update') {
