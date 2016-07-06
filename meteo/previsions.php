@@ -3,8 +3,8 @@
 	header('Refresh: 10; url=chambre.php');
 	
 	// ---- Debug
-	ini_set('display_errors', 1);
-	error_reporting(E_ALL);
+	//ini_set('display_errors', 1);
+	//error_reporting(E_ALL);
 	
 	// ---- Chargement des modules
 	include('../modules/BDD.php');
