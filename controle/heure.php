@@ -1,6 +1,6 @@
 <?php
 	// ---- Redirection toutes les 10 secondes
-	//header('Refresh: 10; url=meteo.php');
+	header('Refresh: 60; url=heure.php');
 	
 	// ---- Debug
 	ini_set('display_errors', 1);
@@ -16,7 +16,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td align="center" class="taille3">
+		<td align="center" class="taille2">
 			<?php echo date('H') . ':' . date('i') ?>
 		</td>
 	</tr>
