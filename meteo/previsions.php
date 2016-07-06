@@ -25,7 +25,7 @@
 	$logs_BDD = $bdd->query('	SELECT * 
 								FROM Logs 
 								WHERE (Id_Codes = 5 OR Id_Codes = 3)
-								ORDER BY Heurodatage
+								ORDER BY Heurodatage DESC
 								LIMIT 1');
 	$infos_log = $logs_BDD->fetch();
 	if($infos_log['Id_Codes'] == 5) {
