@@ -12,7 +12,7 @@
 <table class="page">
 	<tr>
 		<td>
-			<img src="/img/vide.png" height="100">
+			<img src="/img/vide.png" height="75">
 		</td>
 	</tr>
 	<tr>
