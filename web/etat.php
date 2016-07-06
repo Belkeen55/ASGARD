@@ -59,6 +59,9 @@
 										<td align="center" class="tableau">
 											Temperature
 										</td>
+										<td align="center" class="tableau">
+											Espace Disque
+										</td>
 									</tr>
 									<?php
 										while($infos_equipement = $equipements_BDD->fetch()) {
@@ -89,6 +92,26 @@
 														foreach($html->find('input[name=temperature]') as $element) 
 														$temperature=$element->value;
 														echo (int)$temperature;
+													}
+												}
+												else
+												{
+													echo 'NA';
+												}
+											?>
+										</td>
+										<td align="center" class="tableau">
+											<?php
+												if($connec == 'on')
+												{
+													if($infos_equipement['Type'] == 1) {
+														$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
+														foreach($html->find('input[name=disque]') as $element) 
+														$disque=$element->value;
+														echo $disque;
+													}
+													if($infos_equipement['Type'] == 2) {
+														echo 'NA';
 													}
 												}
 												else
