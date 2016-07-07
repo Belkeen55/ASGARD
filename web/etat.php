@@ -60,7 +60,13 @@
 											Temperature
 										</td>
 										<td align="center" class="tableau">
-											Espace Disque
+											D. libre
+										</td>
+										<td align="center" class="tableau">
+											Charge CPU
+										</td>
+										<td align="center" class="tableau">
+											R. Libre
 										</td>
 									</tr>
 									<?php
@@ -82,16 +88,17 @@
 												if($connec == 'on')
 												{
 													if($infos_equipement['Type'] == 1) {
+														$temperature = -1;
 														$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
 														foreach($html->find('input[name=temperature]') as $element) 
 														$temperature=$element->value;
-														echo $temperature;
+														echo $temperature . '°C';
 													}
 													if($infos_equipement['Type'] == 2) {
 														$html = file_get_html('http://' . $infos_equipement['Ip']);
 														foreach($html->find('input[name=temperature]') as $element) 
 														$temperature=$element->value;
-														echo (int)$temperature;
+														echo (int)$temperature . '°C';
 													}
 												}
 												else
@@ -105,10 +112,53 @@
 												if($connec == 'on')
 												{
 													if($infos_equipement['Type'] == 1) {
+														$disque = -1;
 														$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
 														foreach($html->find('input[name=disque]') as $element) 
 														$disque=$element->value;
-														echo $disque;
+														echo $disque . ' Go';
+													}
+													if($infos_equipement['Type'] == 2) {
+														echo 'NA';
+													}
+												}
+												else
+												{
+													echo 'NA';
+												}
+											?>
+										</td>
+										<td align="center" class="tableau">
+											<?php
+												if($connec == 'on')
+												{
+													if($infos_equipement['Type'] == 1) {
+														$cpu = -1;
+														$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
+														foreach($html->find('input[name=cpu]') as $element) 
+														$cpu=$element->value;
+														echo $cpu . '%';
+													}
+													if($infos_equipement['Type'] == 2) {
+														echo 'NA';
+													}
+												}
+												else
+												{
+													echo 'NA';
+												}
+											?>
+										</td>
+										<td align="center" class="tableau">
+											<?php
+												if($connec == 'on')
+												{
+													if($infos_equipement['Type'] == 1) {
+														$ram = -1;
+														$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
+														foreach($html->find('input[name=ram]') as $element) 
+														$ram=$element->value;
+														echo $ram . ' Mo';
 													}
 													if($infos_equipement['Type'] == 2) {
 														echo 'NA';
