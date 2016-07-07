@@ -84,7 +84,6 @@
 											}
 										}
 										$modules_BDD->closeCursor();
-										
 									?>
 								</select>
 							</td>
@@ -165,7 +164,9 @@
 							</td>
 							<td align="center">
 								<form action="../tickets.php" method="post">
-									<input type="submit" value="Retour" />
+									<input type="hidden" name="action" value="delete" />
+									<input type="hidden" name="id" value="<?php echo $_POST['id']; ?>" />
+									<input type="submit" value="Supprimer" />
 								</form>
 							</td>
 						</tr>

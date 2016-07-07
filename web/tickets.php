@@ -12,6 +12,9 @@
 	
 	// ---- Gestion du POST
 	if(isset($_POST['action'])) {
+		if($_POST['action'] == 'delete') {
+			$bdd->exec('DELETE FROM Taches WHERE Id = ' . $_POST['id']);
+		}
 		if($_POST['action'] == 'add') {
 			$bdd->exec('INSERT INTO Taches(Heurodatage, Titre, Commentaires, Id_Devs, Id_Etapes, Id_Modules) 
 						VALUES(NOW(), \'' . str_replace('\'', '\'\'', $_POST['titre']) . '\', \'' . str_replace('\'', '\'\'', $_POST['commentaire']) . '\', ' . $_POST['type'] . ', 1, ' . $_POST['module'] . ')');
