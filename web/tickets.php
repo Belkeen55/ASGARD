@@ -128,6 +128,13 @@
 										' AND(' . $besoin . $analyse . $conception . $codage . $tests . $deploye .
 										')');
 		}
+		else {
+			$tickets_BDD = $bdd->query('SELECT Taches.Id, Taches.Heurodatage, Taches.Titre, Modules.Nom AS Module, Devs.Nom AS Type, Etapes.Nom AS Etape, Taches.Deploiement
+										FROM Taches, Modules, Devs, Etapes
+										WHERE Taches.Id_Devs = Devs.Id
+										AND Taches.Id_Etapes = Etapes.Id
+										AND Taches.Id_Modules = Modules.Id');
+		}
 	}
 	else {
 		$tickets_BDD = $bdd->query('SELECT Taches.Id, Taches.Heurodatage, Taches.Titre, Modules.Nom AS Module, Devs.Nom AS Type, Etapes.Nom AS Etape, Taches.Deploiement
