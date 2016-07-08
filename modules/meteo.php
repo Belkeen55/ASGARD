@@ -233,7 +233,7 @@
 		$lignes = $reponse->rowCount();
 		if($lignes == 0)
 		{
-			$reglage = 'Pas dinformations';
+			$reglage = 'NA';
 			$Retat = 'ok';
 		}
 		else

@@ -1,6 +1,6 @@
 <?php
 	// ---- Redirection toutes les 10 secondes
-	header('Refresh: 10; url=cuisine.php');
+	header('Refresh: 10; url=heure.php');
 	
 	// ---- Debug
 	ini_set('display_errors', 1);
@@ -13,7 +13,7 @@
 	include('../modules/BDD.php');
 	include('../modules/meteo.php');
 	
-	$infos = donnees_piece_BDD($bdd, 2);
+	$infos = donnees_piece_BDD($bdd, 3);
 
 ?>
 <link rel="stylesheet" href="/css/style.css" />		
@@ -22,7 +22,7 @@
 		<td align="center">
 			<table>
 				<tr>
-					<td colspan="4" align="center" valign="middle" class="taille1">Salon</td>
+					<td colspan="4" align="center" valign="middle" class="taille1">Cuisine</td>
 				</tr>
 				<tr>
 					<td>

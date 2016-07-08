@@ -19,7 +19,7 @@
     <head>
         <meta charset="utf-8" />
 		<link rel="stylesheet" href="/css/style.css" />
-        <title>ASGARD - Home</title>
+        <title>ASGARD</title>
     </head>
     <body>
 		<!-- Tableau de page -->
@@ -59,7 +59,7 @@
 								</table>
 							</td>
 							<td>
-								<img src="/img/vide.png" widht="200">
+								<img src="/img/vide.png" width="50">
 							</td>
 							<td class="cadre">
 								<table>
@@ -68,7 +68,7 @@
 									$infos_piece = donnees_piece_live($bdd, 1);
 								?>		
 									<tr>
-										<td rowspan="8"><img src="/img/bebe.png" height="64"></td>
+										<td rowspan="8"><img src="/img/bebe.png" width="64"></td>
 										<td rowspan="8" valign="middle"><h2>Chambre</h2></td>
 										<td rowspan="8"><img src="/img/vide.png" height="32"></td>
 										<td rowspan="2" align="center" valign="middle"><img src="/img/temperature<?php echo $infos_piece['Tetat']; ?>.png" height="32"></td>
@@ -114,15 +114,64 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="center" colspan="3">
+							<td align="center">
 								<table class="cadre">
 									<?php
 										// ---- Recuperation des donnees du salon
 										$infos_piece = donnees_piece_live($bdd, 2);
 									?>		
 									<tr>
-										<td rowspan="8"><img src="/img/salon.png" height="64"></td>
+										<td rowspan="8"><img src="/img/salon.png" width="64"></td>
 										<td rowspan="8" valign="middle"><h2>Salon</h2></td>
+										<td rowspan="8"><img src="/img/vide.png" height="32"></td>
+										<td rowspan="2" align="center" valign="middle"><img src="/img/temperature<?php echo $infos_piece['Tetat']; ?>.png" height="32"></td>
+										<td rowspan="8"><img src="/img/vide.png" height="32"></td>
+										<td align="center">Temperature</td>
+										<td rowspan="8"><img src="/img/vide.png" height="32"></td>
+										<td align="center">Tmp reco</td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center"><?php echo (int)$infos_piece['temperature'] . ' C'; ?></td>
+										<td colspan="2" align="center"><?php echo (int)$infos_piece['Tideal'] . ' C'; ?></td>
+									</tr>
+									<tr>
+										<td><img src="/img/vide.png" height="5"></td>
+									</tr>
+									<tr>
+										<td rowspan="2" align="center" valign="middle"><img src="/img/humidity<?php echo $infos_piece['Hetat']; ?>.png" height="32"></td>
+										<td align="center">Humidite</td>
+										<td align="center">Hum reco</td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center"><?php echo (int)$infos_piece['humidite'] . ' %'; ?></td>
+										<td colspan="2" align="center"><?php echo (int)$infos_piece['Hideal'] . ' %'; ?></td>
+									</tr>
+									<tr>
+										<td><img src="/img/vide.png" height="5"></td>
+									</tr>
+									<tr>
+										<td rowspan="2" align="center" valign="middle"><img src="/img/heater<?php echo $infos_piece['Retat']; ?>.png" height="32"></td>
+										<td align="center">Radiateur</td>
+										<td align="center">Reg reco</td>
+									</tr>
+									<tr>
+										<td colspan="2" align="center"><?php echo (int)$infos_piece['radiateur']; ?></td>
+										<td colspan="2" align="center"><?php echo $infos_piece['reglage']; ?></td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<img src="/img/vide.png" width="50">
+							</td>
+							<td>
+								<table class="cadre">
+									<?php
+										// ---- Recuperation des donnees du salon
+										$infos_piece = donnees_piece_live($bdd, 3);
+									?>		
+									<tr>
+										<td rowspan="8"><img src="/img/cuisine.png" width="64"></td>
+										<td rowspan="8" valign="middle"><h2>Cuisine</h2></td>
 										<td rowspan="8"><img src="/img/vide.png" height="32"></td>
 										<td rowspan="2" align="center" valign="middle"><img src="/img/temperature<?php echo $infos_piece['Tetat']; ?>.png" height="32"></td>
 										<td rowspan="8"><img src="/img/vide.png" height="32"></td>
