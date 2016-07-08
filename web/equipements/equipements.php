@@ -27,6 +27,15 @@
 						Id_Type_Equip = ' . $_POST['type'] . '
 						WHERE Id = ' . $_POST['id']);
 		}
+		if($_POST['action'] == 'clonage') {
+			$clonage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')+1, date('d'), date('Y')));
+			$bdd->exec('UPDATE Equipements
+						SET Clonage = \'' . $clonage . '\' 
+						WHERE Id = ' . $_POST['id']);
+			echo 'UPDATE Equipements
+						SET Clonage = \'' . $clonage . '\'
+						WHERE Id = ' . $_POST['id'];
+		}
 	}
 ?>
 <html>

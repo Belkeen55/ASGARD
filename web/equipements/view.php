@@ -10,7 +10,7 @@
 	// ---- Chargement modules
 	include('../../modules/BDD.php');
 	
-	$equipements_BDD = $bdd->query('SELECT Id, Nom, Ip, Commentaires, Id_Pieces, Id_Type_Equip
+	$equipements_BDD = $bdd->query('SELECT Id, Nom, Ip, Commentaires, Clonage, Id_Pieces, Id_Type_Equip
 									FROM Equipements
 									WHERE Id = ' . $_POST['id']);
 	$infos_equipement = $equipements_BDD->fetch();
@@ -127,6 +127,29 @@
 								<textarea name="commentaire" rows="1" cols="60"><?php echo $infos_equipement['Commentaires']; ?></textarea>
 							</td>
 						</tr>
+						<?php
+							if($infos_equipement['Id_Type_Equip'] == 1) {
+						?>
+						<tr>
+							<td>
+								<img src="/img/vide.png" height="30">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Prochain clonage : <?php echo $infos_equipement['Clonage']; ?>
+							</td>
+							<td align="center">
+								<form action="equipements.php" method="post">
+									<input type="hidden" name="id" value="<?php echo $_POST['id']; ?>" />
+									<input type="hidden" name="action" value="clonage" />
+									<input type="submit" value="Clonage" />
+								</form>
+							</td>
+						</tr>
+						<?php
+							}
+						?>
 						<tr>
 							<td>
 								<img src="/img/vide.png" height="30">
