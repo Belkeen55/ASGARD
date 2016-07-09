@@ -146,6 +146,60 @@
 							</td>
 						</tr>
 					</table>
+					<img src="/img/vide.png" height="50">
+					<table>
+					<?php
+						// ---- Chargement des données des dernière 24h de la piece chambre
+						$reponse = last_24($bdd, 3);
+					?>
+						<tr>
+							<td class="cadre">
+								<table>
+									<tr>
+										<td colspan="5" align="center">
+											<table>
+												<tr>
+													<td><img src="/img/cuisine.png" width="64"></td>
+													<td>Cuisine</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td class="tableau">Heurodatage</td>
+										<td class="tableau">Temp. Int</td>
+										<td class="tableau">Temp. Ext</td>
+										<td class="tableau">Humidite</td>
+										<td class="tableau">Radiateur</td>
+									</tr>
+									<?php 
+										while ($donnees = $reponse->fetch()) {
+									?>
+									<tr class="tableau">
+										<td class="tableau" align="center">
+											<?php echo $donnees['Heurodatage'];; ?>
+										</td>
+										<td class="tableau" align="center">
+											<?php echo (int)$donnees['Tempint'];; ?>
+										</td>
+										<td class="tableau" align="center">
+											<?php echo (int)$donnees['Tempext'];; ?>
+										</td>
+										<td class="tableau" align="center">
+											<?php echo (int)$donnees['Humidite'];; ?>
+										</td>
+										<td class="tableau" align="center">
+											<?php echo (int)$donnees['Radiateur'];; ?>
+										</td>
+									</tr>
+									<?php 
+										}
+										$reponse->closeCursor(); 
+									?>
+								</table>
+							</td>
+						</tr>
+					</table>
 
 					<?php
 						}
