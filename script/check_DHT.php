@@ -15,7 +15,7 @@
 									AND DAY(Heurodatage) = DAY(NOW())
 									AND HOUR(Heurodatage) = HOUR(NOW())');
 	$nb_mesures = $mesures_BDD->rowCount();
-	if($nb_mesures<2) {
+	if($nb_mesures<3) {
 		// ---- Recuperation de la méteo
 		$meteo = meteo_act_live();
 		
@@ -35,6 +35,9 @@
 					$radiateur_BDD->closeCursor();
 					$bdd->exec('INSERT INTO Mesures(Heurodatage, Tempint, Tempext, Radiateur, Humidite, Id_Pieces) 
 								VALUES(NOW(), ' . $donnees_sonde['temperature'] . ', '. $meteo['temperature'] . ', ' . $radiateur . ', '. $donnees_sonde['humidite'] . ', ' . $sonde['Id_Pieces'] . ')');
+					echo 'INSERT INTO Mesures(Heurodatage, Tempint, Tempext, Radiateur, Humidite, Id_Pieces) 
+								VALUES(NOW(), ' . $donnees_sonde['temperature'] . ', '. $meteo['temperature'] . ', ' . $radiateur . ', '. $donnees_sonde['humidite'] . ', ' . $sonde['Id_Pieces'] . ')';
+					echo '<br />';			
 				}
 				else {
 					add_log($bdd, 6);
