@@ -41,9 +41,9 @@ Installation station meteo sur écran
 	unclutter -idle 1 
 	
 #### Extinction et reboot pour la nuit
-	sudo crontab -e
-	0 1 * * * /opt/vc/bin/tvservice -o >/dev/null 2>&1
-	0 6   *   *   *    /sbin/shutdown -r now
+	sudo crontab -e 
+	0 1 * * * /opt/vc/bin/tvservice -o >/dev/null 2>&1 
+	0 6   *   *   *    /sbin/shutdown -r now 
 	
 	
 #### Installation outils de clonage

@@ -42,6 +42,11 @@ Installation station meteo sur écran
 	Rechercher le block [SeatDefaults] 
 	mettre cette ligne : xserver-command=X -s 0 dpms 
 	
+#### Extinction et reboot pour la nuit
+	sudo crontab -e 
+	0 1 * * * /opt/vc/bin/tvservice -o >/dev/null 2>&1 
+	0 6   *   *   *    /sbin/shutdown -r now 
+	
 #### Installation outils de clonage
 	git clone https://github.com/billw2/rpi-clone.git 
 	cd rpi-clone 
