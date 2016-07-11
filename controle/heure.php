@@ -1,6 +1,6 @@
 <?php
 	// ---- Redirection toutes les 10 secondes
-	header('Refresh: 60; url=heure.php');
+	header('Refresh: 60; url=alertes.php');
 	
 	// ---- Debug
 	ini_set('display_errors', 1);
