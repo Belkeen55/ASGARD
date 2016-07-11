@@ -40,6 +40,12 @@ Installation station meteo sur écran
 	# Cache le curseur de la souris au bout de 1 seconde 
 	unclutter -idle 1 
 	
+#### Extinction et reboot pour la nuit
+	sudo crontab -e
+	0 1 * * * /opt/vc/bin/tvservice -o >/dev/null 2>&1
+	0 6   *   *   *    /sbin/shutdown -r now
+	
+	
 #### Installation outils de clonage
 	git clone https://github.com/billw2/rpi-clone.git 
 	cd rpi-clone 
