@@ -14,6 +14,7 @@
 		// ---- On insert l'information dans la table warning
 		while($infos_equipement = $equipements_BDD->fetch()) {
 			add_log($bdd, $infos_equipement['Id']);
+			suppr_log($bdd, $infos_equipement['Id'] + 300);
 		}
 	}
 	$equipements_BDD->closeCursor();

@@ -14,6 +14,10 @@
 		$bdd->exec('INSERT INTO Logs(Heurodatage, Id_Codes) 
 		VALUES(NOW(), ' . $code . ')');
 	}
+	function suppr_log($bdd, $code) {
+		$bdd->exec('DELETE FROM Logs 
+					WHERE Id_Codes = ' . $code);
+	}
 	
 	$bdd = connect_bdd($loginSQL, $passwordSQL);
 ?>
