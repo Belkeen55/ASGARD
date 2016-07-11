@@ -24,14 +24,15 @@
 	// ---- Verification du dernier rafraichissement
 	$logs_BDD = $bdd->query('	SELECT * 
 								FROM Logs 
-								WHERE (Id_Codes = 5 OR Id_Codes = 3)
+								WHERE (Id_Codes = 202 OR Id_Codes = 201)
 								ORDER BY Heurodatage DESC
 								LIMIT 1');
 	$infos_log = $logs_BDD->fetch();
-	if($infos_log['Id_Codes'] == 5) {
+	if($infos_log['Id_Codes'] == 202) {
 		add_log($bdd, 202);
 		add_previsions_BDD($bdd);
 	}
+	$logs_BDD->closeCursor();
 ?>
 <head>
 	<link rel="stylesheet" href="/css/style.css" />
