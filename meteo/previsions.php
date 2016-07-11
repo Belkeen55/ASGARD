@@ -16,6 +16,8 @@
 								WHERE Id = 2');
 	$nb_lignes = $meteo_BDD->rowCount();
 	if($nb_lignes == 0) {
+		suppr_log($bdd, 201);
+		suppr_log($bdd, 202);
 		add_log($bdd, 202);
 		add_previsions_BDD($bdd);
 	}
@@ -29,6 +31,8 @@
 								LIMIT 1');
 	$infos_log = $logs_BDD->fetch();
 	if($infos_log['Id_Codes'] == 202) {
+		suppr_log($bdd, 201);
+		suppr_log($bdd, 202);
 		add_log($bdd, 202);
 		add_previsions_BDD($bdd);
 	}
@@ -182,6 +186,8 @@
 								}
 							}
 							if($prev<2) {
+								suppr_log($bdd, 201);
+								suppr_log($bdd, 202);
 								add_logs($bdd, 202);
 							}
 						?>
