@@ -92,6 +92,13 @@
 						</tr>
 						<?php
 							while($infos_composition = $liste_compositions->fetch()) {
+								$effectif_compositions = $bdd->query('  SELECT Nom, COUNT(Joueur) AS Effectif
+																		FROM Formations 
+																		WHERE Joueur <> 0
+																		AND Nom = \'' . $infos_composition['Nom'] . '\'');
+								$nb_composition = $effectif_compositions->fetch();
+								$effectif_compositions->closeCursor();
+								if($nb_composition['Effectif'] == 11) {
 						?>
 						<form action="composition.php" method="post">
 						<tr>
@@ -108,7 +115,9 @@
 						</tr>
 						</form>
 						<?php
+								}
 							}
+							$liste_compositions->closeCursor();
 						?>
 					</table>
 			<?php				
