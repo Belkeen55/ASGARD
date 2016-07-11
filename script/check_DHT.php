@@ -21,7 +21,7 @@
 		
 		if(isset($meteo['temperature'])) {
 			// ---- Recuperation des données de chacune des sondes
-			$sondes_BDD = $bdd->query('	SELECT Id_Pieces, Ip 
+			$sondes_BDD = $bdd->query('	SELECT Id, Id_Pieces, Ip 
 										FROM Equipements
 										WHERE Id_Type_Equip = 2');
 			while($sonde = $sondes_BDD->fetch()) {
@@ -40,7 +40,7 @@
 					echo '<br />';			
 				}
 				else {
-					add_log($bdd, 6);
+					add_log($bdd, 100+$sonde['Id']);
 				}
 			}
 			$sondes_BDD->closeCursor();
@@ -48,7 +48,7 @@
 			$bdd->exec('DELETE FROM Meteo WHERE Id = 1');
 			$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
 						VALUES(1, NOW(), \'' . $meteo['code'] . '\', '. $meteo['temperature'] . ', ' . $meteo['humidite'] . ')');
-			add_log($bdd, 1);
+			add_log($bdd, 203);
 		}
 		// ---- Recuperation des prévisions méteo
 		add_previsions_BDD($bdd);

@@ -10,10 +10,9 @@
 		return 'PASSWORD(\'rudy' . sha1($passwd) . 'laura\')';
 	}
 	
-	function add_log($bdd, $num) {
-		$ip_log = $_SERVER['REMOTE_ADDR'];
-		$bdd->exec('INSERT INTO Logs(Heurodatage, Client, Id_Codes) 
-		VALUES(NOW(), \'' . $ip_log . '\', ' . $num . ')');
+	function add_log($bdd, $code) {
+		$bdd->exec('INSERT INTO Logs(Heurodatage, Id_Codes) 
+		VALUES(NOW(), ' . $code . ')');
 	}
 	
 	$bdd = connect_bdd($loginSQL, $passwordSQL);
