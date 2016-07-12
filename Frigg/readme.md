@@ -42,3 +42,10 @@ Installation Frigg (serveur Visio)
 #### Preparation des dossiers
 	sudo chown -R www-data:"Utilisateur" /var/www/html/ 
 	sudo chmod -R 770 /var/www/html 
+	
+#### Installation outils de clonage
+	git clone https://github.com/billw2/rpi-clone.git 
+	cd rpi-clone 
+	sudo cp rpi-clone /usr/local/sbin 
+	sudo blkid 
+	sudo rpi-clone "sdX" 
