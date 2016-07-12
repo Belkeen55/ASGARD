@@ -139,13 +139,6 @@
 							<td>
 								Prochain clonage : <?php echo $infos_equipement['Clonage']; ?>
 							</td>
-							<td align="center">
-								<form action="equipements.php" method="post">
-									<input type="hidden" name="id" value="<?php echo $_POST['id']; ?>" />
-									<input type="hidden" name="action" value="clonage" />
-									<input type="submit" value="Clonage" />
-								</form>
-							</td>
 						</tr>
 						<?php
 							}
@@ -160,6 +153,13 @@
 								<input type="hidden" name="action" value="update" />
 								<input type="hidden" name="id" value="<?php echo $_POST['id']; ?>" />
 								<input type="submit" value="Update" />
+								</form>
+							</td>
+							<td align="center">
+								<form action="equipements.php" method="post">
+									<input type="hidden" name="id" value="<?php echo $_POST['id']; ?>" />
+									<input type="hidden" name="action" value="clonage" />
+									<input type="submit" value="Clonage" />
 								</form>
 							</td>
 							<td align="center">
