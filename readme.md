@@ -18,6 +18,7 @@ Installation Odin (serveur principal)
 		wpa-psk "" 
 		up route add -host 192.168.1.15 dev wlan0 
 		up route add -host 192.168.1.21 dev wlan0 
+		up route add -host 192.168.1.26 dev wlan0 
 	sudo nano /etc/sysctl.conf 
 		net.ipv4.ip_forward=1 
 
@@ -39,12 +40,18 @@ Installation Odin (serveur principal)
 	
 #### Installation des packages
 	sudo apt install apache2 
-	sudo chown -R www-data:belkeen /var/www/html/ 
-	sudo chmod -R 770 /var/www/html 
 	sudo apt install php5 
 	sudo apt install mysql-server php5-mysql 
 	sudo apt install phpmyadmin 
 	sudo apt install git 
+	sudo apt install php5-imagick 
+
+#### Preparation des dossiers
+	sudo nano /etc/php5/apache2/php.ini 
+	ajouter extension=imagick.so 
+	sudo chown -R www-data:"Utilisateur" /var/www/html/ 
+	sudo chmod -R 770 /var/www/html 
+	sudo reboot 
 
 #### Mise en place du git de déploiement
 	mkdir /home/"utilisateur"/brain.git/ 
@@ -62,8 +69,13 @@ Installation Odin (serveur principal)
 	git pull origin master 
 	sudo chmod +x /home/belkeen/brain/.git/hooks/post-update 
 	
+#### Installation outils de clonage
+	git clone https://github.com/billw2/rpi-clone.git 
+	cd rpi-clone 
+	sudo cp rpi-clone /usr/local/sbin 
+	sudo blkid 
+	sudo rpi-clone "sdX" 
+	
 #### Mise en place des crontab
 	crontab -e 
 	*/15 * * * * php /var/www/html/script/check_DHT.php > /var/www/html/script/log_DHT.txt 
-
-	
