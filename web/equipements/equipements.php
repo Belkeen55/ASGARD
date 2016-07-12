@@ -32,8 +32,7 @@
 			$bdd->exec('UPDATE Equipements
 						SET Clonage = \'' . $clonage . '\' 
 						WHERE Id = ' . $_POST['id']);
-			suppr_log($bdd, $_POST['id']);
-			add_log($bdd, $_POST['id'] + 300);
+			add_log($bdd, $_POST['id'] + 300, $_POST['id']);
 		}
 	}
 ?>

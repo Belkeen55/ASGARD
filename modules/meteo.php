@@ -27,20 +27,14 @@
 					}
 					$i = $i + 1;
 				}
-				suppr_log($bdd, 201);
-				suppr_log($bdd, 202);
-				add_log($bdd, 201);
+				add_log($bdd, 201, 202);
 			}
 			else {
-				suppr_log($bdd, 201);
-				suppr_log($bdd, 202);
-				add_log($bdd, 202);
+				add_log($bdd, 202, 201);
 			}
 		}
 		else {
-			suppr_log($bdd, 201);
-			suppr_log($bdd, 202);
-			add_log($bdd, 202);
+			add_log($bdd, 202, 201);
 		}
 		
 		
