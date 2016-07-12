@@ -33,7 +33,7 @@
 		while($infos_log = $logs_BDD->fetch()) {
 	?>
 	<tr>
-		<td align="left" class="taille1">
+		<td align="left" class="taille4">
 			<?php echo $infos_log['Nom'] . ' >> ' . $infos_log['Commentaire'] ?>
 		</td>
 	</tr>
