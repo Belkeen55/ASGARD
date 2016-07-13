@@ -13,7 +13,7 @@ Installation station meteo sur écran
 	
 #### Securisation de connexion 
 	sudo visudo 
-	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp 
+	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp,/usr/bin/apt update 
 	sudo passwd 
 
 #### Installation des packages 

@@ -30,7 +30,7 @@ Installation Odin (serveur principal)
 	login avec "utilisateur" 
 	sudo visudo 
 	retirer la ligne pi ALL=(ALL) NOPASSWD: ALL 
-	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp 
+	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp,/usr/bin/apt update 
 	sudo deluser --remove-home pi 
 	sudo passwd 
 	
