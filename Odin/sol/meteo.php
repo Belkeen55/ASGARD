@@ -125,7 +125,7 @@
 			<a href="/Odin/sol.php?module=meteo" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
-					Pr&eacute;visions Semaine
+					Pr&eacute;visions de la semaine
 				</div>
 			</a>
 			<div class="cadre_center">
@@ -136,29 +136,57 @@
 					$i = 0;
 					while($i < 5) {
 						$date = date('Y-m-d H:i:s', mktime(12, 0, 0, date('m'), date('d') + $i, date('Y')));
-						$jour = date('l', mktime(12, 0, 0, date('m'), date('d') + $i, date('Y')));
 						$result = prevision_BDD($bdd, $date);
 						if(isset($result)) {
 							$code = $result['code'];
-						}
-						$meteo_BDD = $bdd->query('	SELECT DAY(Heurodatage), MIN(Temperature) AS Minimum, MAX(Temperature) AS Maximum
-													FROM Meteo 
-													WHERE DAY(\'' . $date . '\') = DAY(Heurodatage)
-													AND Id <> 1
-													GROUP BY DAY(Heurodatage)');
-						$infos_meteo = $meteo_BDD->fetch();
-						$mini = $infos_meteo['Minimum'];
-						$maxi = $infos_meteo['Maximum'];
-						$i++;
-						$meteo_BDD->closeCursor();
+							$meteo_BDD = $bdd->query('	SELECT DAY(Heurodatage), MIN(Temperature) AS Minimum, MAX(Temperature) AS Maximum
+																FROM Meteo 
+																WHERE DAY(\'' . $date . '\') = DAY(Heurodatage)
+																AND Id <> 1
+																GROUP BY DAY(Heurodatage)');
+							$infos_meteo = $meteo_BDD->fetch();
+							$mini = $infos_meteo['Minimum'];
+							$maxi = $infos_meteo['Maximum'];
+							$meteo_BDD->closeCursor();
+							if($i == 0) {
+								$jour = 'Aujourd\'hui';
+							}
+							else {
+								$jour = date('l', mktime(12, 0, 0, date('m'), date('d') + $i, date('Y')));
+								switch ($jour) {
+	    							case 'Monday':
+   	     							$jour = 'Lundi';
+      	  							break;
+    								case 'Tuesday':
+        								$jour = 'Mardi';
+        								break;
+        							case 'Wednesday':
+        								$jour = 'Mercredi';
+        								break;
+	        						case 'Thursday':
+   	     							$jour = 'Jeudi';
+      	  							break;
+        							case 'Friday':
+        								$jour = 'Vendredi';
+        								break;
+        							case 'Saturday':
+        								$jour = 'Samedi';
+        								break;
+	        						case 'Sunday':
+   	     							$jour = 'Dimanche';
+      	  							break;
+								}
+							}
 				?>
-						<div class="colonne">
-							<div class="line"><?php echo $jour ?></div>
-							<div class="line"><img src="/img/<?php echo $code; ?>.png" height=60></img></div>
-							<div class="line"><?php echo (int)$mini . '&deg;C'; ?>/<?php echo (int)$maxi . '&deg;C'; ?></div>
-						</div>
-						<div class="lefttitre"></div>
+							<div class="colonne">
+								<div class="line"><?php echo $jour ?></div>
+								<div class="line"><img src="/img/<?php echo $code; ?>.png" height=60></img></div>
+								<div class="line"><?php echo (int)$mini . '&deg;C'; ?>/<?php echo (int)$maxi . '&deg;C'; ?></div>
+							</div>
+							<div class="lefttitre"></div>
 				<?php
+						}
+						$i++;					
 					}
 				?>
 				<div class="liner"></div>
