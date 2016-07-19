@@ -51,6 +51,9 @@
 							if(($module == 'chambre') or ($module == 'cuisine') or ($module == 'salon')) {
 								include('sol/sonde.php');
 							}
+							if($module == 'meteo') {
+								include('sol/meteo.php');
+							}
 						?>
 					</div>
 				</body>

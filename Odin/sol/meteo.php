@@ -1,54 +1,6 @@
 <div class="line">
 	<div class="display_center">
 		<?php
-			$pieces_BDD = $bdd->query('SELECT Pieces.Id, Pieces.Nom 
-												FROM Pieces, Equipements 
-												WHERE Id_Type_Equip = 2
-												AND Equipements.Id_Pieces = Pieces.Id');
-			while($infos_piece = $pieces_BDD->fetch()) {
-				$infos_sonde = donnees_piece_live($bdd, $infos_piece['Id']);
-			//$infos = ['Tetat', 'temperature', 'Tideal', 'Hetat', 'humidite', 'Hideal', 'Retat', 'radiateur', 'reglage']
-		?>
-		<div class="sonde">
-			<a href="/Odin/sol.php?module=<?php echo strtolower($infos_piece['Nom']); ?>" class="black">
-				<div class="titre">
-					<div class="lefttitre"></div>
-					<?php echo $infos_piece['Nom']; ?>
-				</div>
-			</a>
-			<div class="cadre_center">
-				<div class="liner"></div>
-				<div class="colonne">
-					<div class="line"><img src="/img/black/temperature<?php echo $infos_sonde['Tetat']; ?>.png" height="40"></img></div>
-					<div class="liner"></div>
-					<div class="line"><?php echo $infos_sonde['temperature']; ?>&deg;C</div>
-				</div>
-				<div class="lefttitre"></div>
-				<div class="colonne">
-					<div class="line"><img src="/img/black/humidity<?php echo $infos_sonde['Hetat']; ?>.png" height="40"></img></div>
-					<div class="liner"></div>
-					<div class="line"><?php echo $infos_sonde['humidite']; ?>%</div>
-				</div>
-				<div class="lefttitre"></div>	
-				<div class="colonne">
-					<div class="line"><img src="/img/black/heater<?php echo $infos_sonde['Retat']; ?>.png" height="40"></img></div>
-					<div class="liner"></div>
-					<div class="line"><?php echo (int)$infos_sonde['radiateur']; ?></div>
-				</div>
-				<div class="liner"></div>
-			</div>
-		</div>
-		<div class="left1pct"></div>
-		<?php
-			}
-			$pieces_BDD->closeCursor();
-		?>
-	</div>
-</div>
-<div class="liner"></div>
-<div class="line">
-	<div class="display_center">
-		<?php
 			$result = meteo_act_BDD($bdd);
 		?>		
 		<div class="meteo">
@@ -60,7 +12,7 @@
 			</a>
 			<div class="cadre_center">
 				<div class="liner"></div>
-				<div class="liner"></div>
+				<div class="liner"></div>	
 				<div class="inline">
 					<img src="/img/<?php echo $result['code']; ?>.png" height=78></img>
 				</div>
@@ -71,7 +23,7 @@
 					</div>
 				</div>
 				<div class="liner"></div>
-				<div class="liner"></div>
+				<div class="liner"></div>	
 			</div>
 		</div>
 		<div class="left1pct"></div>
@@ -141,7 +93,7 @@
 			<a href="/Odin/sol.php?module=meteo" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
-					Pr&eacute;visions
+					Pr&eacute;visions 24h
 				</div>
 			</a>
 			<div class="cadre_center">
@@ -156,10 +108,60 @@
 				<div class="colonne">
 					<div class="line"><?php echo $periode2; ?></div>
 					<div class="line"><img src="/img/<?php echo $code2; ?>.png" height=60></img></div>
-					<div class="line"><?php echo $temperature2 . '&deg;C'; ?></img></div>
+					<div class="line"><?php echo $temperature2 . '&deg;C'; ?></div>
 				</div>
 				<div class="lefttitre"></div>
 				<div class="liner"></div>						
+			</div>
+		</div>
+	</div>
+</div>
+<div class="liner"></div>
+<div class="liner"></div>
+<div class="liner"></div>
+<div class="line">
+	<div class="display_center">
+		<div class="previsions">
+			<a href="/Odin/sol.php?module=meteo" class="black">
+				<div class="titre">
+					<div class="lefttitre"></div>
+					Pr&eacute;visions Semaine
+				</div>
+			</a>
+			<div class="cadre_center">
+				<div class="liner"></div>
+				<div class="lefttitre"></div>
+				<?php
+					// ---- Informations du matin
+					$i = 0;
+					while($i < 5) {
+						$date = date('Y-m-d H:i:s', mktime(12, 0, 0, date('m'), date('d') + $i, date('Y')));
+						$jour = date('l', mktime(12, 0, 0, date('m'), date('d') + $i, date('Y')));
+						$result = prevision_BDD($bdd, $date);
+						if(isset($result)) {
+							$code = $result['code'];
+						}
+						$meteo_BDD = $bdd->query('	SELECT DAY(Heurodatage), MIN(Temperature) AS Minimum, MAX(Temperature) AS Maximum
+													FROM Meteo 
+													WHERE DAY(\'' . $date . '\') = DAY(Heurodatage)
+													AND Id <> 1
+													GROUP BY DAY(Heurodatage)');
+						$infos_meteo = $meteo_BDD->fetch();
+						$mini = $infos_meteo['Minimum'];
+						$maxi = $infos_meteo['Maximum'];
+						$i++;
+						$meteo_BDD->closeCursor();
+				?>
+						<div class="colonne">
+							<div class="line"><?php echo $jour ?></div>
+							<div class="line"><img src="/img/<?php echo $code; ?>.png" height=60></img></div>
+							<div class="line"><?php echo (int)$mini . '&deg;C'; ?>/<?php echo (int)$maxi . '&deg;C'; ?></div>
+						</div>
+						<div class="lefttitre"></div>
+				<?php
+					}
+				?>
+				<div class="liner"></div>
 			</div>
 		</div>
 	</div>
@@ -182,7 +184,7 @@
 											FROM Logs, Equipements, Codes
 											WHERE Logs.Id_Codes = Codes.Id
 											AND Codes.Id_Equipements = Equipements.Id
-											AND ((Codes.Id > 100 AND Codes.Id < 300) OR (Codes.Id > 400 AND Codes.Id < 500))
+											AND (Codes.Id > 200 AND Codes.Id < 300)
 											ORDER BY Logs.Heurodatage');
 				while($infos_log = $logs_BDD->fetch()) {
 					if($infos_log['Warning']) {
