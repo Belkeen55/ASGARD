@@ -10,4 +10,24 @@
 <?php
 	}
 ?>
+<?php
+	if($page == 'fimageng') {
+?>
+		<a href="/Odin/sol.php?module=global"><div class="ongletsubmenu<?php if($module == 'global') {echo 'selected';} ?>"><div class="textesubmenu">Global</div></div></a>
+	<?php
+		$equipements_BDD = $bdd->query('SELECT 	Equipements.Id, Equipements.Nom, Equipements.Ip, Equipements.Commentaires, 
+											Pieces.Nom AS Location, Type_Equip.Id AS Type, Type_Equip.Image
+											FROM Equipements, Pieces, Type_Equip
+											WHERE Equipements.Id_Pieces = Pieces.Id
+											AND Equipements.Id_Type_Equip = Type_Equip.Id');
+		while($infos_equipement = $equipements_BDD->fetch()) {
+	?>
+		<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Nom']); ?>"><div class="ongletsubmenu<?php if($module == strtolower($infos_equipement['Nom'])) {echo 'selected';} ?>"><div class="textesubmenu"><?php echo strtolower($infos_equipement['Nom']); ?></div></div></a>
+	<?php
+		}
+		$equipements_BDD->closeCursor();
+	?>	
+<?php
+	}
+?>
 <div class="right1pct"></div>
