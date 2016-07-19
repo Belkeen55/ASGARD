@@ -1,14 +1,32 @@
-<div class="line">
-	<div class="display_center">
-		<?php
-			$pieces_BDD = $bdd->query('	SELECT Pieces.Id
+<?php
+	$pieces_BDD = $bdd->query('	SELECT Pieces.Id
 										FROM Pieces
 										WHERE Pieces.Nom = \'' . ucfirst($module) . '\'');
-			$infos_piece = $pieces_BDD->fetch();
-			$infos_sonde = donnees_piece_live($bdd, $infos_piece['Id']);
-			//$infos = ['Tetat', 'temperature', 'Tideal', 'Hetat', 'humidite', 'Hideal', 'Retat', 'radiateur', 'reglage']
-			$pieces_BDD->closeCursor();
-		?>
+	$infos_piece = $pieces_BDD->fetch();
+	$pieces_BDD->closeCursor();
+	if(isset($_GET['action']))
+	{
+		if($_GET['action'] == 'update_radiateur') {
+			$bdd->exec('UPDATE Radiateurs SET Radiateur =' . $_GET['radiateur'] . ' WHERE Id_Pieces = ' . $infos_piece['Id']);
+		}
+	}
+	
+	$infos_sonde = donnees_piece_live($bdd, $infos_piece['Id']);
+	//$infos = ['Tetat', 'temperature', 'Tideal', 'Hetat', 'humidite', 'Hideal', 'Retat', 'radiateur', 'reglage']
+	
+	$equipements_BDD = $bdd->query('SELECT Equipements.Id
+									FROM Pieces, Equipements
+									WHERE Pieces.Id = ' . $infos_piece['Id'] . '
+									AND Equipements.Id_Type_Equip = 2
+									AND Equipements.Id_Pieces = Pieces.Id');
+	$infos_equipement = $equipements_BDD->fetch();
+	$equipements_BDD->closeCursor();
+	$infos_radiateur = etat_radiateur_BDD($bdd, $infos_piece['Id']);
+	
+?>
+
+<div class="line">
+	<div class="display_center">
 		<div class="meteo">
 			<div class="titre">
 				<div class="lefttitre"></div>
@@ -87,6 +105,32 @@
 			</div>
 		</div>
 		<div class="left1pct"></div>
+		<div class="meteo">
+			<div class="titre">
+				<div class="lefttitre"></div>
+				Reglage radiateur
+			</div>
+			<div class="cadre_center">
+				<div class="liner"></div>
+				<div class="liner"></div>
+					<form action="sol.php" method="get">
+						<div class="line">
+							<input type="range" name="radiateur" value="<?php echo $infos_radiateur; ?>" max="5" min="0" step="1" oninput="document.getElementById('AfficheRange').textContent=value" />
+						</div>
+						<div class="line">
+							<span id="AfficheRange"><?php echo (int)$infos_radiateur; ?></span>
+						</div>
+						<div class="liner"></div>
+						<div class="line">
+							<input type="submit" value="Enregistrer" />
+						</div>	
+						<input type="hidden" name="module" value="<?php echo $module; ?>" />
+						<input type="hidden" name="action" value="update_radiateur" />
+					</form>
+				<div class="liner"></div>
+				<div class="liner"></div>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="liner"></div>
@@ -95,14 +139,29 @@
 <div class="line">
 	<div class="display_center">
 		<div>
-			<?php    
+			<?php
+				$mesures_BDD = last_24($bdd, $infos_piece['Id']);
+				$nb_lignes = $mesures_BDD->rowCount();
+				$i = 0;
+				while($i < $nb_lignes) {
+					$infos_mesure = $mesures_BDD->fetch();
+					$date = date_create($infos_mesure['Heurodatage']);
+					$abscisse[$i] = date_format($date, 'H');
+					$temperatures[$i] = $infos_mesure['Tempint'];
+					$temperatureideale[$i] = $infos_sonde['Tideal'];
+					$humidites[$i] = $infos_mesure['Humidite'];
+					$humiditeideale[$i] = $infos_sonde['Hideal'];
+					$i++;
+				}
+				
+				
 				/* Create and populate the pData object */ 
 				$MyData = new pData();   
-				$MyData->addPoints(array(-4,VOID,VOID,12,8,3),"Probe 1"); 
-				$MyData->addPoints(array(18,18,18,18,18,18),"Ideal");  
+				$MyData->addPoints($temperatures,"Temperature"); 
+				$MyData->addPoints($temperatureideale,"Ideale");  
 				$MyData->setAxisName(0,"Temperatures"); 
-				$MyData->addPoints(array("Jan","Feb","Mar","Apr","May","Jun"),"Labels"); 
-				$MyData->setSerieDescription("Labels","Months"); 
+				$MyData->addPoints($abscisse,"Labels"); 
+				$MyData->setSerieDescription("Labels","Hours"); 
 				$MyData->setAbscissa("Labels"); 
 
 				/* Create the pChart object */ 
@@ -112,11 +171,11 @@
 				$myPicture->Antialias = FALSE; 
 
 				/* Add a border to the picture */ 
-				$myPicture->drawRectangle(0,0,699,229,array("R"=>0,"G"=>0,"B"=>0)); 
+				$myPicture->drawRectangle(0,0,699,229,array("R"=>255,"G"=>255,"B"=>255));  
 				  
 				/* Write the chart title */  
 				$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf","FontSize"=>11)); 
-				$myPicture->drawText(150,35,"Temperature moyenne",array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE)); 
+				$myPicture->drawText(100,45,"Temperature moyenne",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE)); 
 
 				/* Set the default font */ 
 				$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/pf_arma_five.ttf","FontSize"=>6)); 
@@ -125,7 +184,8 @@
 				$myPicture->setGraphArea(60,40,650,200); 
 
 				/* Draw the scale */ 
-				$scaleSettings = array("XMargin"=>10,"YMargin"=>10,"Floating"=>TRUE,"GridR"=>200,"GridG"=>200,"GridB"=>200,"DrawSubTicks"=>TRUE,"CycleBackground"=>TRUE); 
+				$AxisBoundaries = array(0=>array("Min"=>10,"Max"=>30));
+				$scaleSettings = array("XMargin"=>10,"YMargin"=>10,"Floating"=>TRUE,"GridR"=>200,"GridG"=>200,"GridB"=>200,"DrawSubTicks"=>TRUE,"CycleBackground"=>TRUE,"Mode"=>SCALE_MODE_MANUAL, "ManualScale"=>$AxisBoundaries); 
 				$myPicture->drawScale($scaleSettings); 
 
 				/* Turn on Antialiasing */ 
@@ -135,7 +195,7 @@
 				$myPicture->drawLineChart(); 
 
 				/* Write the chart legend */ 
-				$myPicture->drawLegend(540,20,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL)); 
+				$myPicture->drawLegend(540,35,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL)); 
 
 				/* Render the picture (choose the best way) */ 
 				$myPicture->render("temperaturegraph.png");
@@ -143,16 +203,17 @@
 			<img src="temperaturegraph.png" class="graphique" />
 		</div>
 	</div>
+	<div class="liner"></div>
 	<div class="display_center">
 		<div>
 			<?php    
 				/* Create and populate the pData object */ 
 				$MyData = new pData();   
-				$MyData->addPoints(array(-4,VOID,VOID,12,8,3),"Probe 1"); 
-				$MyData->addPoints(array(18,18,18,18,18,18),"Ideal");  
-				$MyData->setAxisName(0,"Temperatures"); 
-				$MyData->addPoints(array("Jan","Feb","Mar","Apr","May","Jun"),"Labels"); 
-				$MyData->setSerieDescription("Labels","Months"); 
+				$MyData->addPoints($humidites,"Humidité"); 
+				$MyData->addPoints($humiditeideale,"Ideale");  
+				$MyData->setAxisName(0,"Humidite"); 
+				$MyData->addPoints($abscisse,"Labels"); 
+				$MyData->setSerieDescription("Labels","Hours"); 
 				$MyData->setAbscissa("Labels"); 
 
 				/* Create the pChart object */ 
@@ -162,11 +223,11 @@
 				$myPicture->Antialias = FALSE; 
 
 				/* Add a border to the picture */ 
-				$myPicture->drawRectangle(0,0,699,229,array("R"=>0,"G"=>0,"B"=>0)); 
+				$myPicture->drawRectangle(0,0,699,229,array("R"=>255,"G"=>255,"B"=>255)); 
 				  
 				/* Write the chart title */  
 				$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf","FontSize"=>11)); 
-				$myPicture->drawText(150,35,"Temperature moyenne",array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE)); 
+				$myPicture->drawText(100,45,"Humidité moyenne",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE)); 
 
 				/* Set the default font */ 
 				$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/pf_arma_five.ttf","FontSize"=>6)); 
@@ -175,7 +236,8 @@
 				$myPicture->setGraphArea(60,40,650,200); 
 
 				/* Draw the scale */ 
-				$scaleSettings = array("XMargin"=>10,"YMargin"=>10,"Floating"=>TRUE,"GridR"=>200,"GridG"=>200,"GridB"=>200,"DrawSubTicks"=>TRUE,"CycleBackground"=>TRUE); 
+				$AxisBoundaries = array(0=>array("Min"=>10,"Max"=>70));
+				$scaleSettings = array("XMargin"=>10,"YMargin"=>10,"Floating"=>TRUE,"GridR"=>200,"GridG"=>200,"GridB"=>200,"DrawSubTicks"=>TRUE,"CycleBackground"=>TRUE,"Mode"=>SCALE_MODE_MANUAL, "ManualScale"=>$AxisBoundaries); 
 				$myPicture->drawScale($scaleSettings); 
 
 				/* Turn on Antialiasing */ 
@@ -185,10 +247,11 @@
 				$myPicture->drawLineChart(); 
 
 				/* Write the chart legend */ 
-				$myPicture->drawLegend(540,20,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL)); 
+				$myPicture->drawLegend(540,35,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL)); 
 
 				/* Render the picture (choose the best way) */ 
 				$myPicture->render("humiditygraph.png");
+				$mesures_BDD->closeCursor(); 
 			?>
 			<img src="humiditygraph.png" class="graphique" />
 		</div>
@@ -209,6 +272,7 @@
 				$logs_BDD = $bdd->query('	SELECT Logs.Heurodatage, Codes.Commentaire, Codes.Warning, Equipements.Nom 
 											FROM Logs, Equipements, Codes
 											WHERE Logs.Id_Codes = Codes.Id
+											AND Equipements.Id = ' . $infos_equipement['Id'] . '
 											AND Codes.Id_Equipements = Equipements.Id
 											AND ((Codes.Id > 100 AND Codes.Id < 300) OR (Codes.Id > 400 AND Codes.Id < 500))
 											ORDER BY Logs.Heurodatage');
