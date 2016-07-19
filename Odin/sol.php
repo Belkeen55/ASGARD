@@ -11,10 +11,9 @@
 	include('../lib/simple_html_dom.php');
 	include('../lib/BDD.php');
 	include('../lib/meteo.php');
-	 /* pChart library inclusions */ 
- include("../lib/Pchart/class/pData.class.php"); 
- include("../lib/Pchart/class/pDraw.class.php"); 
- include("../lib/Pchart/class/pImage.class.php"); 
+	include("../lib/Pchart/class/pData.class.php"); 
+	include("../lib/Pchart/class/pDraw.class.php"); 
+	include("../lib/Pchart/class/pImage.class.php"); 
 	
 	if (!$_SESSION['login']) {
 		// ---- Si l'utilisateur n'est pas loggé

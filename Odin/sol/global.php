@@ -126,6 +126,14 @@
 					$prev++;
 				}
 			}
+			if(!isset($code1) and !isset($temperature1)) {
+				$code1 = 'na';
+				$temperature1 = '--';
+			}
+			if(!isset($code2) and !isset($temperature2)) {
+				$code2 = 'na';
+				$temperature2 = '--';
+			}
 		?>
 		<div class="meteo">
 			<a href="/Odin/sol.php?module=meteo" class="black">
