@@ -59,6 +59,20 @@ a
 	width: 92%;
 }
 
+.libelle
+{
+	display: inline-block;
+	width: 19%;
+	text-align: left;
+}
+
+.bar
+{
+	display: inline-block;
+	text-align: right;
+	width: 80%;
+}
+
 .right1pct
 {
 	display: inline-block;
@@ -177,6 +191,12 @@ a
 {
 	display: inline-block;
 	width: 250px;	
+}
+
+.equipement
+{
+	display: inline-block;
+	width: 350px;	
 }
 
 .logs

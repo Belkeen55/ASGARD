@@ -7,6 +7,9 @@
 											WHERE Equipements.Id_Pieces = Pieces.Id
 											AND Equipements.Id_Type_Equip = Type_Equip.Id
 											AND Type_Equip.Id = 1');
+			
+			$Settings = array("R"=>255, "G"=>255, "B"=>255, "Dash"=>0, "DashR"=>255, "DashG"=>255, "DashB"=>255);
+			$progressOptions = array("Width"=>165, "Height"=>15, "R"=>134, "G"=>209, "B"=>27, "Surrounding"=>20, "BoxBorderR"=>0, "BoxBorderG"=>0, "BoxBorderB"=>0, "BoxBackR"=>255, "BoxBackG"=>255, "BoxBackB"=>255, "RFade"=>255, "GFade"=>0, "BFade"=>0, "ShowLabel"=>TRUE, "LabelPos"=>LABEL_POS_LEFT);
 			while($infos_equipement = $equipements_BDD->fetch()) {
 				$connec = ping($infos_equipement['Ip']);
 				if($connec == 'on') {
@@ -23,35 +26,33 @@
 					$ram = -1;
 					foreach($html->find('input[name=ram]') as $element) 
 					$ram=$element->value;
-					
-					/* Create the pChart object */
- 					$myPicture = new pImage(100,30);
-
- 					/* Draw the background */
- 					$Settings = array("R"=>170, "G"=>183, "B"=>87, "Dash"=>1, "DashR"=>190, "DashG"=>203, "DashB"=>107);
- 					$myPicture->drawFilledRectangle(0,0,100,30,$Settings);
-
- 					/* Overlay with a gradient */
- 					$Settings = array("StartR"=>219, "StartG"=>231, "StartB"=>139, "EndR"=>1, "EndG"=>138, "EndB"=>68, "Alpha"=>50);
- 					$myPicture->drawGradientArea(0,0,100,230,DIRECTION_VERTICAL,$Settings);
- 					$myPicture->drawGradientArea(0,0,100,20,DIRECTION_VERTICAL,array("StartR"=>0,"StartG"=>0,"StartB"=>0,"EndR"=>50,"EndG"=>50,"EndB"=>50,"Alpha"=>80));
-
- 					/* Add a border to the picture */
- 					$myPicture->drawRectangle(0,0,99,29,array("R"=>0, "G"=>0, "B"=>0));
- 
- 					/* Write the picture title */ 
- 					//$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Silkscreen.ttf", "FontSize"=>6));
- 					//$myPicture->drawText(10,13, "drawProgress() - Simple progress bars",array("R"=>255, "G"=>255, "B"=>255)); 
- 					
- 					 /* Set the font & shadow options */ 
- 					$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>10));
+					$myPicture = new pImage(250,16);
+ 					$myPicture->drawFilledRectangle(0,0,250,16,$Settings);
+ 					$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
  					$myPicture->setShadow(TRUE,array("X"=>1, "Y"=>1, "R"=>0, "G"=>0, "B"=>0, "Alpha"=>20));
- 					
- 					/* Draw a progress bar */ 
- 					$progressOptions = array("Width"=>100, "R"=>209, "G"=>198, "B"=>27, "Surrounding"=>20, "BoxBorderR"=>0, "BoxBorderG"=>0, "BoxBorderB"=>0, "BoxBackR"=>255, "BoxBackG"=>255, "BoxBackB"=>255, "ShowLabel"=>TRUE, "LabelPos"=>LABEL_POS_LEFT);
- 					$myPicture->drawProgress(0,0,$cpu,$progressOptions);
- 					
- 					$myPicture->render("progresscpu.png"); 
+ 					$myPicture->drawProgress(50,0,$cpu,$progressOptions);
+ 					$myPicture->render('progresscpu' . $infos_equipement['Id'] . '.png');
+					
+					$myPicture = new pImage(250,16);
+ 					$myPicture->drawFilledRectangle(0,0,250,16,$Settings);
+ 					$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
+ 					$myPicture->setShadow(TRUE,array("X"=>1, "Y"=>1, "R"=>0, "G"=>0, "B"=>0, "Alpha"=>20));
+ 					$myPicture->drawProgress(50,0, $temperature,$progressOptions);
+ 					$myPicture->render('progresstemp' . $infos_equipement['Id'] . '.png');
+					
+					$myPicture = new pImage(250,16);
+ 					$myPicture->drawFilledRectangle(0,0,250,16,$Settings);
+ 					$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
+ 					$myPicture->setShadow(TRUE,array("X"=>1, "Y"=>1, "R"=>0, "G"=>0, "B"=>0, "Alpha"=>20));
+ 					$myPicture->drawProgress(50,0, $ram,$progressOptions);
+ 					$myPicture->render('progressram' . $infos_equipement['Id'] . '.png');
+					
+					$myPicture = new pImage(250,16);
+ 					$myPicture->drawFilledRectangle(0,0,250,16,$Settings);
+ 					$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
+ 					$myPicture->setShadow(TRUE,array("X"=>1, "Y"=>1, "R"=>0, "G"=>0, "B"=>0, "Alpha"=>20));
+ 					$myPicture->drawProgress(50,0, $disque,$progressOptions);
+ 					$myPicture->render('progressrom' . $infos_equipement['Id'] . '.png');
 				}
 				else
 				{
@@ -61,27 +62,24 @@
 					$ram = 'NA';
 				}
 		?>
-		<div class="sonde">
+		<div class="equipement">
 			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
-					<?php echo $infos_equipement['Nom']; ?>
+					<?php echo $infos_equipement['Nom']; ?> <img src="/img/log_OK.png" height=10></img>
 				</div>
 			</a>
 			<div class="cadre_left">
-				
 				<div class="liner"></div>
 				<div class="lefttitre"></div>
-				<div class="colonne">
-					<div class="line">Etat : <?php echo $connec; ?></div>
-					<div class="line">Temperature : <?php echo $temperature; ?>C</div>	
-					<div class="line">CPU : <?php echo $cpu; ?>% <img src="progresscpu.png" /></div>
-					<div class="line">RAM : <?php echo $ram; ?>Mo</div>
-					<div class="line">ROM : <?php echo $disque; ?>Go</div>
-				</div>
+					<div class="colonne">
+						<div class="line"><div class="libelle">Temp : </div><div class="bar"><img src="progresstemp<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
+						<div class="line"><div class="libelle">CPU : </div><div class="bar"><img src="progresscpu<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
+						<div class="line"><div class="libelle">RAM : </div><div class="bar"><img src="progressram<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
+						<div class="line"><div class="libelle">ROM : </div><div class="bar"><img src="progressrom<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
+					</div>
 				<div class="lefttitre"></div>
 				<div class="liner"></div>
-				
 			</div>
 		</div>
 		<div class="left1pct"></div>
