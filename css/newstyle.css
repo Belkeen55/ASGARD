@@ -284,3 +284,9 @@ a
 	display: inline-block;
 	vertical-align: -40%;
 }
+
+.performances
+{
+	display: inline-block;
+	width: 500px;	
+}

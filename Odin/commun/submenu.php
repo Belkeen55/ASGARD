@@ -13,7 +13,7 @@
 <?php
 	if($page == 'fimafeng') {
 ?>
-		<a href="/Odin/sol.php?module=global"><div class="ongletsubmenu<?php if($module == 'global') {echo 'selected';} ?>"><div class="textesubmenu">Global</div></div></a>
+		<a href="/Odin/fimafeng.php?module=global"><div class="ongletsubmenu<?php if($module == 'global') {echo 'selected';} ?>"><div class="textesubmenu">Global</div></div></a>
 	<?php
 		$equipements_BDD = $bdd->query('SELECT	Equipements.Id, Equipements.Nom, Equipements.Ip, Equipements.Commentaires, 
 											Pieces.Nom AS Location, Type_Equip.Id AS Type, Type_Equip.Image
@@ -22,7 +22,7 @@
 											AND Equipements.Id_Type_Equip = Type_Equip.Id');
 		while($infos_equipement = $equipements_BDD->fetch()) {
 	?>
-		<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Nom']); ?>"><div class="ongletsubmenu<?php if($module == strtolower($infos_equipement['Nom'])) {echo 'selected';} ?>"><div class="textesubmenu"><?php echo $infos_equipement['Nom']; ?></div></div></a>
+		<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>"><div class="ongletsubmenu<?php if($module == strtolower($infos_equipement['Id'])) {echo 'selected';} ?>"><div class="textesubmenu"><?php echo $infos_equipement['Nom']; ?></div></div></a>
 	<?php
 		}
 		$equipements_BDD->closeCursor();

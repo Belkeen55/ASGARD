@@ -14,6 +14,9 @@
 	include('../lib/network.php');
 	include("../lib/Pchart/class/pDraw.class.php"); 
 	include("../lib/Pchart/class/pImage.class.php"); 
+	include("../lib/Pchart/class/pData.class.php");  
+	include("../lib/Pchart/class/pPie.class.php"); 
+ 
 	
 	if (!$_SESSION['login']) {
 		// ---- Si l'utilisateur n'est pas loggé
@@ -45,11 +48,12 @@
 					</div>
 					<div class="page">
 						<?php
-							if($module == 'global') {
-								include('fimafeng/global.php');
-							}
-							if($module == 'equipement') {
-								include('fimafeng/equipement.php');
+							switch ($module) {
+								case 'global':
+									include('fimafeng/global.php');
+									break;
+								default:
+								   include('fimafeng/equipement.php');
 							}
 						?>
 					</div>
