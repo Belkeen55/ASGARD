@@ -12,8 +12,11 @@
 		
 		exec('df -h', $rep_cmd_disk);
 		$rep_cmd_disk = str_replace('/dev/root', '', $rep_cmd_disk[1]);
-		$rep_cmd_disk = explode(" ", $rep_cmd_disk);
-		$disk = str_replace('%', '', $rep_cmd_disk[13]);
+		$rep_cmd_disk = explode("%", $rep_cmd_disk);
+		$rep_cmd_disk = explode(" ", $rep_cmd_disk[0]);
+		$dernier = count($rep_cmd_disk) - 1;
+		$disk = $rep_cmd_disk[$dernier];
+		
 		
 		exec('uptime', $rep_cmd_uptime);
 		$rep_cmd_uptime = explode(" ", $rep_cmd_uptime[0]);
