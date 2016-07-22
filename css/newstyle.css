@@ -79,7 +79,6 @@ a
 	width: 1%;
 }
 
-/* -------------- Menu -------------- */
 .menu
 {
 	background-color: #151515;
@@ -123,7 +122,6 @@ a
 	background-color: #1C1C1C;
 }
 
-/* -------------- SubMenu -------------- */
 .submenu
 {
 	background-color: #424242;
@@ -167,7 +165,6 @@ a
 	background-color: #585858;
 }
 
-/* -------------- Contenu -------------- */
 .page
 {
 	margin: 1% 5% 1% 5%;
