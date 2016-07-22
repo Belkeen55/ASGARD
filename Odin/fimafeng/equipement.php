@@ -112,8 +112,8 @@
 			$Threshold[] = array("Min"=>75,"Max"=>100,"R"=>240,"G"=>191,"B"=>20,"Alpha"=>70); 		// Zone d'alerte 3
 			$myPicture->drawAreaChart(array("Threshold"=>$Threshold)); 		// Creation du graphique avec la zone d'alerte
 			// Tracé des lignes des zones d'alerte
-			$myPicture->drawThreshold(33,array("WriteCaption"=>TRUE,"Caption"=>"Warn Zone","Alpha"=>70,"Ticks"=>2,"R"=>0,"G"=>0,"B"=>255)); 
-			$myPicture->drawThreshold(66,array("WriteCaption"=>TRUE,"Caption"=>"Error Zone","Alpha"=>70,"Ticks"=>2,"R"=>0,"G"=>0,"B"=>255));  
+			$myPicture->drawThreshold(50,array("WriteCaption"=>TRUE,"Caption"=>"Warn Zone","Alpha"=>70,"Ticks"=>2,"R"=>0,"G"=>0,"B"=>255)); 
+			$myPicture->drawThreshold(75,array("WriteCaption"=>TRUE,"Caption"=>"Error Zone","Alpha"=>70,"Ticks"=>2,"R"=>0,"G"=>0,"B"=>255));  
 			$myPicture->render('ram' . $infos_equipement['Id'] . '.png');		// Creation de l'image du graphique
 			
 			//----------------------------------------------------------------------------------
@@ -182,7 +182,7 @@
 </div>
 <?php
 		}
-		else {
+		else {	// Si c'est un raspberry mais qu'il n'est pas connecté
 ?>
 <div class="line">
 	<div class="display_center">
@@ -210,7 +210,7 @@
 		}
 	}
 	else {
-		if($connec == 'on') {
+		if($connec == 'on') {	// Si c'est une sonde DHT22 et qu'elle est connectée
 			$infos_sonde = donnees_sonde_live($infos_equipement['Ip']);
 ?>
 <div class="line">
@@ -239,7 +239,7 @@
 </div>
 <?php
 		}
-		else {
+		else {	// Si c'est une sonde DHT22 mais qu'elle n'est pas connectée
 ?>
 <div class="line">
 	<div class="display_center">
@@ -284,6 +284,7 @@
 											FROM Logs, Equipements, Codes
 											WHERE Logs.Id_Codes = Codes.Id
 											AND Codes.Id_Equipements = Equipements.Id
+											AND Equipements.Id = ' . $infos_equipement['Id'] . '
 											AND ((Codes.Id > 0 AND Codes.Id < 100) OR (Codes.Id > 300 AND Codes.Id < 400))
 											ORDER BY Logs.Heurodatage');
 				while($infos_log = $logs_BDD->fetch()) {

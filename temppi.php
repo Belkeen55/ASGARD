@@ -17,21 +17,30 @@
 		$dernier = count($rep_cmd_disk) - 1;
 		$disk = $rep_cmd_disk[$dernier];
 		
-		
-		exec('uptime', $rep_cmd_uptime);
-		$rep_cmd_uptime = explode(",", $rep_cmd_uptime[0]);
-		$uptime_heure = $rep_cmd_uptime[1];
-		$rep_cmd_uptime = explode(" ", $rep_cmd_uptime[0]);
-		$uptime_jour = $rep_cmd_uptime[3];
-		$uptime_heure = str_replace(':', 'h', $uptime_heure);
-		$uptime_heure = str_replace('  ', ' ', $uptime_heure);
-		$uptime = $uptime_jour . ' jour(s),' . $uptime_heure;
-		
+		exec('uptime -p', $rep_cmd_uptime);
+		$rep_cmd_uptime = str_replace('up ', '', $rep_cmd_uptime);
+		$rep_cmd_uptime = str_replace('days', 'jours', $rep_cmd_uptime);
+		$rep_cmd_uptime = str_replace('day', 'jour', $rep_cmd_uptime);
+		$rep_cmd_uptime = str_replace('hours', 'heures', $rep_cmd_uptime);
+		$rep_cmd_uptime = str_replace('hour', 'heure', $rep_cmd_uptime);
+		$rep_cmd_uptime = str_replace('weeks', 'semaines', $rep_cmd_uptime);
+		$rep_cmd_uptime = str_replace('week', 'semaine', $rep_cmd_uptime);
+		$rep_cmd_uptime = explode(", ", $rep_cmd_uptime[0]);
+		$nb = count($rep_cmd_uptime);
+		$i = 1;
+		$uptime = $rep_cmd_uptime[0] . ', ';
+		while($i <= $nb) {
+			$uptime = $uptime . $rep_cmd_uptime[$i];
+			if($i < $nb-1) {
+				$uptime = $uptime . ', ';
+			}
+			$i++;
+		}
 ?>
 <form>
         <input type="text" name="temperature" value="<?php echo $temppi; ?>" />
 		<input type="text" name="disque" value="<?php echo $disk ?>" />
 		<input type="text" name="cpu" value="<?php echo round($cpu[0]*100, 2) ?>" />
 		<input type="text" name="ram" value="<?php echo round((1-($ram_libre/$ram_total))*100, 0) ?>" />
-		<input type="text" name="uptime" value="<?php echo $uptime ?>" />
+		<input type="text" name="uptime" value="<?php echo $uptime; ?>" />
 </form>
