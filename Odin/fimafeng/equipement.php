@@ -267,8 +267,6 @@
 			}
 			$equipements_BDD->closeCursor();
 		?>
-	</div>
-</div>
 <div class="liner"></div>
 <div class="line">
 	<div class="log">
