@@ -144,8 +144,12 @@
 		<div class="performances">
 			<img src="ram<?php echo $infos_equipement['Id']; ?>.png"></img>
 		</div>
-		<div class="left1pct"></div>
-		<div class="sonde">
+	</div>
+</div>
+<div class="liner"></div>
+<div class="line">
+	<div class="display_center">
+		<div class="performances">
 			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -158,16 +162,13 @@
 					<div class="colonne">
 						<div class="line">IP : <?php echo $infos_equipement['Ip']; ?></div>
 						<div class="line">Uptime : <?php echo $uptime; ?></div>
+						<div class="line">Temperature Proc : <?php echo $temperature; ?>°C</div>
 					</div>
 				<div class="lefttitre"></div>
 				<div class="liner"></div>
 			</div>
 		</div>
-	</div>
-</div>
-<div class="liner"></div>
-<div class="line">
-	<div class="display_center">
+		<div class="left1pct"></div>
 		<div class="sonde">
 			<div class="titre">
 				<div class="lefttitre"></div>
