@@ -107,9 +107,9 @@
 			$myPicture->drawScale($scaleSettings); 
 			$myPicture->Antialias = TRUE; 	// Réactivation de l'antialiasing
 			$Threshold = ""; 	// Initialisation du tableau de zone d'alerte
-			$Threshold[] = array("Min"=>0,"Max"=>33,"R"=>207,"G"=>240,"B"=>20,"Alpha"=>70); 		// Zone d'alerte 1
-			$Threshold[] = array("Min"=>33,"Max"=>66,"R"=>240,"G"=>232,"B"=>20,"Alpha"=>70); 		// Zone d'alerte 2
-			$Threshold[] = array("Min"=>66,"Max"=>100,"R"=>240,"G"=>191,"B"=>20,"Alpha"=>70); 		// Zone d'alerte 3
+			$Threshold[] = array("Min"=>0,"Max"=>50,"R"=>207,"G"=>240,"B"=>20,"Alpha"=>70); 		// Zone d'alerte 1
+			$Threshold[] = array("Min"=>50,"Max"=>75,"R"=>240,"G"=>232,"B"=>20,"Alpha"=>70); 		// Zone d'alerte 2
+			$Threshold[] = array("Min"=>75,"Max"=>100,"R"=>240,"G"=>191,"B"=>20,"Alpha"=>70); 		// Zone d'alerte 3
 			$myPicture->drawAreaChart(array("Threshold"=>$Threshold)); 		// Creation du graphique avec la zone d'alerte
 			// Tracé des lignes des zones d'alerte
 			$myPicture->drawThreshold(33,array("WriteCaption"=>TRUE,"Caption"=>"Warn Zone","Alpha"=>70,"Ticks"=>2,"R"=>0,"G"=>0,"B"=>255)); 
@@ -124,12 +124,12 @@
 			$MyData->setSerieDescription("ScoreA","Application A"); 
 			$MyData->addPoints(array("Free","Use"),"Labels");	// Abscisses
 			$MyData->setAbscissa("Labels");
-			$myPicture = new pImage(250,135,$MyData);	// Création de l'objet image
+			$myPicture = new pImage(250,150,$MyData);	// Création de l'objet image
 			//$myPicture->drawRectangle(0,0,249,259,array("R"=>0,"G"=>0,"B"=>0)); 
 			$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));	// Police par defaut
 			$myPicture->setShadow(TRUE,array("X"=>2,"Y"=>2,"R"=>0,"G"=>0,"B"=>0,"Alpha"=>50)); 
 			$PieChart = new pPie($myPicture,$MyData);	// Creation objet circulaire
-			$PieChart->draw2DRing(140,70,array("WriteValues"=>TRUE,"ValueR"=>0,"ValueG"=>0,"ValueB"=>0,"Border"=>TRUE));	// Implentation et taille du graphique
+			$PieChart->draw2DRing(140,75,array("WriteValues"=>TRUE,"ValueR"=>0,"ValueG"=>0,"ValueB"=>0,"Border"=>TRUE));	// Implentation et taille du graphique
 			// Gestion de la légende
 			$myPicture->setShadow(FALSE); 
 			$PieChart->drawPieLegend(5,5,array("Alpha"=>20)); 
@@ -146,20 +146,6 @@
 		</div>
 		<div class="left1pct"></div>
 		<div class="sonde">
-			<div class="titre">
-				<div class="lefttitre"></div>
-				Disque dur
-			</div>
-			<div class="cadre_left">
-				<img src="disk<?php echo $infos_equipement['Id']; ?>.png"></img>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="liner"></div>
-<div class="line">
-	<div class="display_center">
-		<div class="equipement">
 			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -177,6 +163,21 @@
 				<div class="liner"></div>
 			</div>
 		</div>
+	</div>
+</div>
+<div class="liner"></div>
+<div class="line">
+	<div class="display_center">
+		<div class="sonde">
+			<div class="titre">
+				<div class="lefttitre"></div>
+				Disque dur
+			</div>
+			<div class="cadre_left">
+				<img src="disk<?php echo $infos_equipement['Id']; ?>.png"></img>
+			</div>
+		</div>
+		
 	</div>
 </div>
 <?php

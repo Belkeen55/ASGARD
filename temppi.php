@@ -19,12 +19,13 @@
 		
 		
 		exec('uptime', $rep_cmd_uptime);
+		$rep_cmd_uptime = explode(",", $rep_cmd_uptime[0]);
+		$uptime_heure = $rep_cmd_uptime[1];
 		$rep_cmd_uptime = explode(" ", $rep_cmd_uptime[0]);
 		$uptime_jour = $rep_cmd_uptime[3];
-		$uptime_hrmin = explode(":", $rep_cmd_uptime[6]);
-		$uptime_heure = $uptime_hrmin[0];
-		$uptime_minute = $uptime_hrmin[1];
-		$uptime = $uptime_jour . ' jour(s), ' . $uptime_heure . 'h et ' . $uptime_minute . 'min';
+		$uptime_heure = str_replace(':', 'h', $uptime_heure);
+		$uptime_heure = str_replace('  ', ' ', $uptime_heure);
+		$uptime = $uptime_jour . ' jour(s),' . $uptime_heure;
 		
 ?>
 <form>
