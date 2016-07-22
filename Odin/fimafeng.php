@@ -5,7 +5,7 @@
 	
 	// ---- Debug
 	ini_set('display_errors', 1);
-	error_reporting(E_ALL);
+	error_reporting(E_ALL); 
 	
 	// ---- chargement des librairies
 	include('../lib/simple_html_dom.php');
@@ -19,7 +19,7 @@
  
 	
 	if (!$_SESSION['login']) {
-		// ---- Si l'utilisateur n'est pas loggé
+		// ---- Si l'utilisateur n'est pas loggÃ©
 		echo "<script type='text/javascript'>document.location.replace('../index.php');</script>";
 	}
 	else {
