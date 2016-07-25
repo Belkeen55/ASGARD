@@ -66,6 +66,13 @@ a
 	width: 45%;
 }
 
+.inline-25-Right
+{
+	display: inline-block;
+	text-align: right;
+	width: 25%;
+}
+
 .libelle
 {
 	display: inline-block;
@@ -197,6 +204,13 @@ a
 	width: 250px;	
 }
 
+.formations
+{
+	display: inline-block;
+	width: 189px;	
+	vertical-align: top;
+}
+
 .equipement
 {
 	display: inline-block;
@@ -268,6 +282,13 @@ a
 	width: 45%;
 }
 
+.inline-25-Left
+{
+	display: inline-block;
+	text-align: left;
+	width: 25%;
+}
+
 .inline-20-Left
 {
 	display: inline-block;
@@ -307,4 +328,10 @@ a
 {
 	display: inline-block;
 	width: 500px;	
+}
+
+.joueurs
+{
+	display: inline-block;
+	width: 505px;	
 }

@@ -5,46 +5,51 @@
 	
 	// ---- Debug
 	ini_set('display_errors', 1);
-	error_reporting(E_ALL); 
+	error_reporting(E_ALL);
 	
 	// ---- chargement des librairies
 	include('../lib/BDD.php');
 	
 	if (!$_SESSION['login']) {
-		// ---- Si l'utilisateur n'est pas loggÃ©
+		// ---- Si l'utilisateur n'est pas loggé
 		echo "<script type='text/javascript'>document.location.replace('../index.php');</script>";
 	}
 	else {
+		$page = 'odin';
+		if(isset($_GET['module'])) {
+			$module = $_GET['module'];
+		}			
+		else {				
+			$module = 'global';
+		}	
 ?>
 			<html>
 				<head>
 					<?php include('commun/head.php'); ?>
 				</head>
-				<body <?php if(isset($_GET['close'])) { echo 'onunload="window.opener.location.reload(true);"'; } ?>>
+				<body>
 					<div class="redline"></div>
 					<div class="header">
 						<?php include('commun/header.php'); ?>
 					</div>
+					<div class="menu">
+						<?php include('commun/menu.php'); ?>
+					</div>
+					<div class="submenu">
+						<?php include('commun/submenu.php'); ?>
+					</div>
 					<div class="page">
 						<?php
-							switch($_GET['action']) {
-								case 'edit':
-									switch($_GET['type']) {
-										case 'equipement':
-											include('popup/equipement.php');
-											break;
-										case 'joueur':
-											include('popup/joueur.php');
-											break;
-										case 'formation':
-											include('popup/formation.php');
-											break;
-										default:
-											echo 'Erreur 1';
-									}
+							switch ($module) {
+								case 'global':
+									include('odin/global.php');
 									break;
-								default:
-								   echo 'Erreur 2';
+								case 'smworld':
+									include('odin/smworld.php');
+									break;
+								case 'tickets':
+									include('odin/tickets.php');
+									break;
 							}
 						?>
 					</div>

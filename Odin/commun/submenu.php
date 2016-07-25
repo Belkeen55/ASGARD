@@ -1,5 +1,14 @@
 <div class="left1pct"></div>
 <?php
+	if($page == 'odin') {
+?>
+		<a href="/Odin/odin.php?module=global"><div class="ongletsubmenu<?php if($module == 'global') {echo 'selected';} ?>"><div class="textesubmenu">Global</div></div></a>
+		<a href="/Odin/odin.php?module=smworld"><div class="ongletsubmenu<?php if($module == 'smworld') {echo 'selected';} ?>"><div class="textesubmenu">SM World</div></div></a>
+		<a href="/Odin/odin.php?module=tickets"><div class="ongletsubmenu<?php if($module == 'tickets') {echo 'selected';} ?>"><div class="textesubmenu">Tickets</div></div></a>
+<?php
+	}
+?>
+<?php
 	if($page == 'sol') {
 ?>
 		<a href="/Odin/sol.php?module=global"><div class="ongletsubmenu<?php if($module == 'global') {echo 'selected';} ?>"><div class="textesubmenu">Global</div></div></a>
