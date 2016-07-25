@@ -1,16 +1,39 @@
 <?php
-
 	//----------------------------------------------------------------------------------
 	//			Recuperation des informations de l'equipement dispo en BDD
 	//----------------------------------------------------------------------------------
-	$equipements_BDD = $bdd->query('SELECT 	Equipements.Id, Equipements.Nom, Equipements.Ip, Equipements.Commentaires, 
-									Pieces.Nom AS Location, Type_Equip.Id AS Type, Type_Equip.Image
+	$equipements_BDD = $bdd->query('SELECT Equipements.Id, Equipements.Nom, Equipements.Ip, Equipements.Commentaires, 
+									Pieces.Nom AS Location, Type_Equip.Id AS Type, Type_Equip.Nom AS Equipement, Equipements.Clonage
 									FROM Equipements, Pieces, Type_Equip
 									WHERE Equipements.Id_Pieces = Pieces.Id
 									AND Equipements.Id_Type_Equip = Type_Equip.Id
 									AND Equipements.Id = ' . $module);
 	$infos_equipement = $equipements_BDD->fetch();
 	$connec = ping($infos_equipement['Ip']);
+	//----------------------------------------------------------------------------------
+	//					Script d'ouverture de popup pour edit des equipements
+	//----------------------------------------------------------------------------------
+	echo '<script type="text/javascript">
+				<!--
+					function open_infos()
+					{
+						width = 550;
+						height = 300;
+						if(window.innerWidth)
+						{
+							var left = (window.innerWidth-width)/2;
+							var top = (window.innerHeight-height)/2;
+						}
+						else
+						{
+							var left = (document.body.clientWidth-width)/2;
+							var top = (document.body.clientHeight-height)/2;
+						}
+							window.open(\'popup.php?action=edit&type=equipement&module=' . $infos_equipement['Id'] . '\',\'Modifier equipement\',\'menubar=no, scrollbars=no, top=\'+top+\', left=\'+left+\', width=\'+width+\', height=\'+height+\'\');
+					}
+				-->
+			</script>';
+	
 	if($infos_equipement['Type'] == 1) { 	// Si c'est un raspberry
 		if($connec == 'on') {				// Et qu'il est pingable
 			
@@ -150,19 +173,21 @@
 <div class="line">
 	<div class="display_center">
 		<div class="performances">
-			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
-				<div class="titre">
-					<div class="lefttitre"></div>
-					Informations
-				</div>
-			</a>
+			<div class="titre">
+				<div class="lefttitre"></div>
+				<div class="inline-45-Left">Informations</div>
+				<div class="inline-45-Right"><a href="#null" onclick="javascript:open_infos();"><img src="/img/edit.png" height="20"></img></a></div>
+			</div>			
 			<div class="cadre_left">
 				<div class="liner"></div>
 				<div class="lefttitre"></div>
 					<div class="colonne">
+						<div class="line">Nom : <?php echo $infos_equipement['Nom']; ?></div>
+						<div class="line">Type : <?php echo $infos_equipement['Equipement']; ?></div>
 						<div class="line">IP : <?php echo $infos_equipement['Ip']; ?></div>
 						<div class="line">Uptime : <?php echo $uptime; ?></div>
 						<div class="line">Temperature Proc : <?php echo $temperature; ?>°C</div>
+						<div class="line">P. Clonage : <?php echo $infos_equipement['Clonage']; ?></div>
 					</div>
 				<div class="lefttitre"></div>
 				<div class="liner"></div>
@@ -217,13 +242,11 @@
 <div class="line">
 	<div class="display_center">		
 		<div class="equipement">
-			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
-				<div class="titre">
-					<div class="lefttitre"></div>
-					<?php echo $infos_equipement['Nom']; ?> 
-					<img src="/img/log_OK.png" height=10></img>
-				</div>
-			</a>
+			<div class="titre">
+				<div class="lefttitre"></div>
+				<div class="inline-45-Left">Informations</div>
+				<div class="inline-45-Right"><a href="#null" onclick="javascript:open_infos();"><img src="/img/edit.png" height="20"></img></a></div>
+			</div>
 			<div class="cadre_left">
 				<div class="liner"></div>
 				<div class="lefttitre"></div>
