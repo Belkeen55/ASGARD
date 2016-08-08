@@ -49,7 +49,7 @@
 			<?php
 				if($_SESSION['login']) {
 					// ---- Si l'utilisateur est loggé
-					echo "<script type='text/javascript'>document.location.replace('web/home.php');</script>";
+					echo "<script type='text/javascript'>document.location.replace('Odin/odin.php');</script>";
 				}
 				else
 				{
