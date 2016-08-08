@@ -5,7 +5,12 @@
 				include('odin/ticketsview.php');
 			}
 			else {
-				include('odin/ticketslist.php');
+				if((isset($_GET['action'])) AND ($_GET['action'] == 'add')) {
+					include('odin/ticketsadd.php');
+				}
+				else {
+					include('odin/ticketslist.php');
+				}
 			}
 		?>
 	</div>

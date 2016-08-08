@@ -144,18 +144,29 @@
 				</div>
 			</div>
 			<div class="liner"></div>
-			<div class="line">
+			<div class="inline">
 				<input type="hidden" name="action" value="filter" />
 				<input type="hidden" name="module" value="tickets" />
 				<input type="submit" value="Filtrer" />
+				</form>
+			</div>
+			<div class="inline">
+				<form action="odin.php" method="get">
+					<input type="hidden" name="module" value="tickets" />
+					<input type="submit" value="Effacer" />
+				</form>
 			</div>
 		</div>
-	</form>
+	
 </div>
 <div class="left1pct"></div>
 <div class="inline">
 <?php
 	if(isset($_GET['action'])) {
+		if($_GET['action'] == 'addok') {
+			$bdd->exec('INSERT INTO Taches(Heurodatage, Titre, Commentaires, Id_Devs, Id_Etapes, Id_Modules) 
+						VALUES(NOW(), \'' . str_replace('\'', '\'\'', $_GET['titre']) . '\', \'' . str_replace('\'', '\'\'', $_GET['commentaire']) . '\', ' . $_GET['type'] . ', 1, ' . $_GET['devmodule'] . ')');
+		}
 		if($_GET['action'] == 'update') {
 			if(($_GET['etape'] == 6) OR ($_GET['etape'] == 7)) {
 				$bdd->exec('UPDATE Taches
@@ -322,4 +333,11 @@
 	}
 	$tickets_BDD->closeCursor();
 ?>
+</div>
+<div class="inline">
+	<form action="odin.php" method="get">
+		<input type="hidden" name="action" value="add" />
+		<input type="hidden" name="module" value="tickets" />
+		<input type="submit" value="Ajout ticket" />
+	</form>
 </div>
