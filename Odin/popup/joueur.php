@@ -197,7 +197,7 @@
 		$MD = $infos_joueur['MD'];
 		$MA = $infos_joueur['MA'];
 		$MG = $infos_joueur['MG'];
-		$MOD = $infos_joueur['MDD'];
+		$MOD = $infos_joueur['MOD'];
 		$MOA = $infos_joueur['MOA'];
 		$MOG = $infos_joueur['MOG'];
 		$AD = $infos_joueur['AD'];
