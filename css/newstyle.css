@@ -29,6 +29,13 @@ a
 	height: 2px;
 }
 
+.greyline
+{
+	display: block;
+	background-color: grey;
+	height: 1px;
+}
+
 /* -------------- Header -------------- */
 .header
 {
@@ -207,7 +214,7 @@ a
 .formations
 {
 	display: inline-block;
-	width: 189px;	
+	width: 200px;	
 	vertical-align: top;
 }
 
@@ -275,6 +282,12 @@ a
 	display: inline-block;
 }
 
+.inline-90px
+{
+	display: inline-block;
+	width: 90px;
+}
+
 .inline-45-Left
 {
 	display: inline-block;
@@ -312,6 +325,12 @@ a
 	text-align: center;	
 }
 
+.display_left
+{
+	text-align: left;
+}
+
+
 .colonne
 {
 	height: 100%;
@@ -334,4 +353,25 @@ a
 {
 	display: inline-block;
 	width: 505px;	
+}
+
+.feature
+{
+	color: #64992C;
+	background-color: #ebf4dd;
+	width: 20px;
+	text-align: center;
+}
+
+.bug
+{
+	color: #cc0000;
+	background-color: #ffe3e3;
+	width: 20px;
+	text-align: center;
+}
+
+.fini
+{
+	color: #6E6E6E;
 }
