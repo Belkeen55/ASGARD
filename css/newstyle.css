@@ -288,6 +288,18 @@ a
 	width: 90px;
 }
 
+.line-90px
+{
+	display: block;
+	width: 90px;
+}
+
+.inline-350px
+{
+	display: inline-block;
+	width: 350px;
+}
+
 .inline-45-Left
 {
 	display: inline-block;
