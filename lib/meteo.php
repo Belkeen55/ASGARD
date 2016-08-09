@@ -164,110 +164,125 @@
 		$donnees = $reponse->fetch();
 		$ip = $donnees['Ip'];
 		$reponse->closeCursor();
-		$infos_sonde = donnees_sonde_live($ip);
-		$reponse = $bdd->query('SELECT Radiateur 
-								FROM Radiateurs 
-								WHERE Id_Pieces = ' . $piece);
-		$donnees = $reponse->fetch();
-		$radiateur = $donnees['Radiateur'];
-		$reponse->closeCursor();
-		$reponse = $bdd->query('SELECT T_ideal, H_ideal 
-								FROM Pieces
-								WHERE Id = ' . $piece);
-		$donnees = $reponse->fetch();
-		$Tideal = $donnees['T_ideal'];
-		$Hideal = $donnees['H_ideal'];
-		$reponse->closeCursor();
-		$Tmin = $Tideal*0.9;
-		$Tmax = $Tideal*1.1;
-		$Hmin = $Hideal*0.8;
-		$Hmax = $Hideal*1.2;
-		if($infos_sonde['temperature'] < $Tmin) 
-		{
-			$Tetat = 'low';
-		}
-		else
-		{
-			if(($infos_sonde['temperature'] > $Tmin) AND ($infos_sonde['temperature'] < $Tmax))
-			{
-				$Tetat = 'ok';
-			}
-			else
-			{
-				if($infos_sonde['temperature'] >= $Tmax)
-				{
-					$Tetat = 'high';
-				}
-			}
-		}
-		if($infos_sonde['humidite'] < $Hmin) 
-		{
-			$Hetat = 'low';
-		}
-		else
-		{
-			if(($infos_sonde['humidite'] > $Hmin) AND ($infos_sonde['humidite'] < $Hmax))
-			{
-				$Hetat = 'ok';
-			}
-			else
-			{
-				if($infos_sonde['humidite'] > $Hmax)
-				{
-					$Hetat = 'high';
-				}
-			}
-		}
-		$TRmin = (int)$infos_sonde['temperature'];
-		$TRmax = (int)$infos_sonde['temperature']+1;
-		$TiRmin = (int)temperature_exterieure_BDD($bdd);
-		$TiRmax = (int)temperature_exterieure_BDD($bdd)+1;
-		$reponse = $bdd->query('SELECT Id_Pieces, AVG(Radiateur) as Reglage 
-								FROM Mesures
-								WHERE Id_Pieces = ' . $piece . ' 
-								AND Tempint > ' . $TRmin . '
-								AND Tempint < ' . $TRmax . '
-								AND Tempext > ' . $TiRmin . '
-								AND Tempext < ' . $TiRmax . '
-								GROUP BY Id_Pieces');
-		$lignes = $reponse->rowCount();
-		if($lignes == 0)
-		{
-			$reglage = 'NA';
-			$Retat = 'ok';
-		}
-		else
-		{
+		if(ping($ip) == 'on') {
+			$infos_sonde = donnees_sonde_live($ip);
+			$reponse = $bdd->query('SELECT Radiateur 
+									FROM Radiateurs 
+									WHERE Id_Pieces = ' . $piece);
 			$donnees = $reponse->fetch();
-			$reglage = (int)$donnees['Reglage'];
-			if($reglage-(int)$radiateur > 0)
+			$radiateur = $donnees['Radiateur'];
+			$reponse->closeCursor();
+			$reponse = $bdd->query('SELECT T_ideal, H_ideal 
+									FROM Pieces
+									WHERE Id = ' . $piece);
+			$donnees = $reponse->fetch();
+			$Tideal = $donnees['T_ideal'];
+			$Hideal = $donnees['H_ideal'];
+			$reponse->closeCursor();
+			$Tmin = $Tideal*0.9;
+			$Tmax = $Tideal*1.1;
+			$Hmin = $Hideal*0.8;
+			$Hmax = $Hideal*1.2;
+			if($infos_sonde['temperature'] < $Tmin) 
 			{
-				$Retat = 'low';
+				$Tetat = 'low';
 			}
 			else
 			{
-				if($reglage-(int)$radiateur < 0)
+				if(($infos_sonde['temperature'] > $Tmin) AND ($infos_sonde['temperature'] < $Tmax))
 				{
-					$Retat = 'high';
+					$Tetat = 'ok';
 				}
 				else
 				{
-					$Retat = 'ok';
+					if($infos_sonde['temperature'] >= $Tmax)
+					{
+						$Tetat = 'high';
+					}
 				}
 			}
+			if($infos_sonde['humidite'] < $Hmin) 
+			{
+				$Hetat = 'low';
+			}
+			else
+			{
+				if(($infos_sonde['humidite'] > $Hmin) AND ($infos_sonde['humidite'] < $Hmax))
+				{
+					$Hetat = 'ok';
+				}
+				else
+				{
+					if($infos_sonde['humidite'] > $Hmax)
+					{
+						$Hetat = 'high';
+					}
+				}
+			}
+			$TRmin = (int)$infos_sonde['temperature'];
+			$TRmax = (int)$infos_sonde['temperature']+1;
+			$TiRmin = (int)temperature_exterieure_BDD($bdd);
+			$TiRmax = (int)temperature_exterieure_BDD($bdd)+1;
+			$reponse = $bdd->query('SELECT Id_Pieces, AVG(Radiateur) as Reglage 
+									FROM Mesures
+									WHERE Id_Pieces = ' . $piece . ' 
+									AND Tempint > ' . $TRmin . '
+									AND Tempint < ' . $TRmax . '
+									AND Tempext > ' . $TiRmin . '
+									AND Tempext < ' . $TiRmax . '
+									GROUP BY Id_Pieces');
+			$lignes = $reponse->rowCount();
+			if($lignes == 0)
+			{
+				$reglage = 'NA';
+				$Retat = 'ok';
+			}
+			else
+			{
+				$donnees = $reponse->fetch();
+				$reglage = (int)$donnees['Reglage'];
+				if($reglage-(int)$radiateur > 0)
+				{
+					$Retat = 'low';
+				}
+				else
+				{
+					if($reglage-(int)$radiateur < 0)
+					{
+						$Retat = 'high';
+					}
+					else
+					{
+						$Retat = 'ok';
+					}
+				}
+			}
+			$reponse->closeCursor();
+			$infos = [
+				'Tetat' => $Tetat,
+				'temperature' => $infos_sonde['temperature'],
+				'Tideal' => $Tideal,
+				'Hetat' => $Hetat,
+				'humidite' => $infos_sonde['humidite'],
+				'Hideal' => $Hideal,
+				'Retat' => $Retat,
+				'radiateur' => $radiateur,
+				'reglage' => $reglage
+			];
 		}
-		$reponse->closeCursor();
-		$infos = [
-			'Tetat' => $Tetat,
-			'temperature' => $infos_sonde['temperature'],
-			'Tideal' => $Tideal,
-			'Hetat' => $Hetat,
-			'humidite' => $infos_sonde['humidite'],
-			'Hideal' => $Hideal,
-			'Retat' => $Retat,
-			'radiateur' => $radiateur,
-			'reglage' => $reglage
-		];
+		else {
+			$infos = [
+				'Tetat' => -1,
+				'temperature' => -1,
+				'Tideal' => -1,
+				'Hetat' => -1,
+				'humidite' => -1,
+				'Hideal' => -1,
+				'Retat' => -1,
+				'radiateur' => -1,
+				'reglage' => -1
+			];
+		}
 		return $infos;
 	}
 	

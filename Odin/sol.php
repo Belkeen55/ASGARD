@@ -11,6 +11,7 @@
 	include('../lib/simple_html_dom.php');
 	include('../lib/BDD.php');
 	include('../lib/meteo.php');
+	include('../lib/network.php');
 	include("../lib/Pchart/class/pData.class.php"); 
 	include("../lib/Pchart/class/pDraw.class.php"); 
 	include("../lib/Pchart/class/pImage.class.php"); 

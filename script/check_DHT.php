@@ -6,6 +6,7 @@
 	// ---- Chargement des modules
 	include('/var/www/html/modules/BDD.php');
 	include('/var/www/html/modules/meteo.php');
+	include('/var/www/html/modules/network.php');
 	
 	// ---- On teste la présence de mesure de moins d'une heure
 	$mesures_BDD = $bdd->query('	SELECT Id 
@@ -25,23 +26,25 @@
 										FROM Equipements
 										WHERE Id_Type_Equip = 2');
 			while($sonde = $sondes_BDD->fetch()) {
-				$donnees_sonde = donnees_sonde_live($sonde['Ip']);
-				if(($donnees_sonde['temperature'] > 0) AND ($donnees_sonde['humidite'] > 0)) {
-					$radiateur_BDD = $bdd->query('	SELECT Radiateur 
-													FROM Radiateurs 
-													WHERE Id_Pieces = ' . $sonde['Id_Pieces']);
-					$donnees_radiateur = $radiateur_BDD->fetch();
-					$radiateur = $donnees_radiateur['Radiateur'];
-					$radiateur_BDD->closeCursor();
-					$bdd->exec('INSERT INTO Mesures(Heurodatage, Tempint, Tempext, Radiateur, Humidite, Id_Pieces) 
-								VALUES(NOW(), ' . $donnees_sonde['temperature'] . ', '. $meteo['temperature'] . ', ' . $radiateur . ', '. $donnees_sonde['humidite'] . ', ' . $sonde['Id_Pieces'] . ')');
-					echo 'INSERT INTO Mesures(Heurodatage, Tempint, Tempext, Radiateur, Humidite, Id_Pieces) 
-								VALUES(NOW(), ' . $donnees_sonde['temperature'] . ', '. $meteo['temperature'] . ', ' . $radiateur . ', '. $donnees_sonde['humidite'] . ', ' . $sonde['Id_Pieces'] . ')';
-					echo '<br />';
-					add_log($bdd, 400 + $sonde['Id'], 100 + $sonde['Id']);
-				}
-				else {
-					add_log($bdd, 100 + $sonde['Id'], 400 + $sonde['Id']);
+				if(ping($sonde['Ip']) == 'on') {
+					$donnees_sonde = donnees_sonde_live($sonde['Ip']);
+					if(($donnees_sonde['temperature'] > 0) AND ($donnees_sonde['humidite'] > 0)) {
+						$radiateur_BDD = $bdd->query('	SELECT Radiateur 
+														FROM Radiateurs 
+														WHERE Id_Pieces = ' . $sonde['Id_Pieces']);
+						$donnees_radiateur = $radiateur_BDD->fetch();
+						$radiateur = $donnees_radiateur['Radiateur'];
+						$radiateur_BDD->closeCursor();
+						$bdd->exec('INSERT INTO Mesures(Heurodatage, Tempint, Tempext, Radiateur, Humidite, Id_Pieces) 
+									VALUES(NOW(), ' . $donnees_sonde['temperature'] . ', '. $meteo['temperature'] . ', ' . $radiateur . ', '. $donnees_sonde['humidite'] . ', ' . $sonde['Id_Pieces'] . ')');
+						echo 'INSERT INTO Mesures(Heurodatage, Tempint, Tempext, Radiateur, Humidite, Id_Pieces) 
+									VALUES(NOW(), ' . $donnees_sonde['temperature'] . ', '. $meteo['temperature'] . ', ' . $radiateur . ', '. $donnees_sonde['humidite'] . ', ' . $sonde['Id_Pieces'] . ')';
+						echo '<br />';
+						add_log($bdd, 400 + $sonde['Id'], 100 + $sonde['Id']);
+					}
+					else {
+						add_log($bdd, 100 + $sonde['Id'], 400 + $sonde['Id']);
+					}
 				}
 			}
 			$sondes_BDD->closeCursor();

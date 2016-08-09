@@ -8,6 +8,7 @@
 			while($infos_piece = $pieces_BDD->fetch()) {
 				$infos_sonde = donnees_piece_live($bdd, $infos_piece['Id']);
 			//$infos = ['Tetat', 'temperature', 'Tideal', 'Hetat', 'humidite', 'Hideal', 'Retat', 'radiateur', 'reglage']
+				if($infos_sonde['temperature'] <> -1) {
 		?>
 		<div class="sonde">
 			<a href="/Odin/sol.php?module=<?php echo strtolower($infos_piece['Nom']); ?>" class="black">
@@ -40,6 +41,28 @@
 		</div>
 		<div class="left1pct"></div>
 		<?php
+				}
+				else {
+		?>
+		<div class="sonde">
+			<a href="/Odin/sol.php?module=<?php echo strtolower($infos_piece['Nom']); ?>" class="black">
+				<div class="titre">
+					<div class="lefttitre"></div>
+					<?php echo $infos_piece['Nom']; ?>
+				</div>
+			</a>
+			<div class="cadre_center">
+				<div class="liner"></div>
+				<div class="colonne">
+					<div class="line">Equipement déconnecté</div>
+					<div class="liner"></div>
+				</div>
+				<div class="liner"></div>
+			</div>
+		</div>
+		<div class="left1pct"></div>
+		<?php
+				}
 			}
 			$pieces_BDD->closeCursor();
 		?>

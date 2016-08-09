@@ -21,6 +21,11 @@ a
 	text-decoration: none;
 }
 
+@font-face {
+    font-family: Mafont;
+    src: url('fonts/coolvetica-rg.ttf');
+}
+
 /* -------------- Ligne rouge en haut de la page -------------- */
 .redline
 {
