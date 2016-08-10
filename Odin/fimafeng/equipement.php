@@ -56,7 +56,7 @@
 			$uptime = -1;
 			foreach($html->find('input[name=uptime]') as $element) 
 			$uptime=$element->value;
-			$uptime = -1;
+			$update = -1;
 			foreach($html->find('input[name=update]') as $element) 
 			$update=$element->value;
 			
