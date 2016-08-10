@@ -1,7 +1,9 @@
 <!/usr/bin/php>
 <?php
 	// ---- Chargement des modules
-	include('/var/www/html/modules/BDD.php');
+	include('/var/www/html/lib/simple_html_dom.php');
+	include('/var/www/html/lib/BDD.php');
+	
 	
 	// ---- On teste la présence d'equipements qui n'ont pas eu de clonage
 	$equipements_BDD = $bdd->query('SELECT Id 
@@ -14,6 +16,23 @@
 		// ---- On insert l'information dans la table warning
 		while($infos_equipement = $equipements_BDD->fetch()) {
 			add_log($bdd, $infos_equipement['Id'], $infos_equipement['Id'] + 300);
+		}
+	}
+	$equipements_BDD->closeCursor();
+	
+	// ---- On test le contenu de ligne update du dashboard de chaque raspberry
+	$equipements_BDD = $bdd->query('SELECT Id, Ip 
+									FROM Equipements
+									WHERE Id_Type_Equip = 1');
+	while($infos_equipement = $equipements_BDD->fetch()) {
+		$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
+		foreach($html->find('input[name=update]') as $element) 
+		$update=$element->value;
+		if($update == 'Le système est à jour') {
+			add_log($bdd, 500 + $infos_equipement['Id'], 600 + $infos_equipement['Id']);
+		}
+		else {
+			add_log($bdd, 600 + $infos_equipement['Id'], 500 + $infos_equipement['Id']);
 		}
 	}
 	$equipements_BDD->closeCursor();

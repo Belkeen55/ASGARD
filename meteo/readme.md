@@ -44,6 +44,7 @@ Installation station meteo sur écran
 	sudo crontab -e 
 	0 1 * * * /opt/vc/bin/tvservice -o >/dev/null 2>&1 
 	0 6   *   *   *    /sbin/shutdown -r now 
+	1 7 * * * php /var/www/html/daily.php >/dev/null 2>&1 
 	
 	
 #### Installation outils de clonage

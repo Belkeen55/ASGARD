@@ -56,6 +56,9 @@
 			$uptime = -1;
 			foreach($html->find('input[name=uptime]') as $element) 
 			$uptime=$element->value;
+			$uptime = -1;
+			foreach($html->find('input[name=update]') as $element) 
+			$update=$element->value;
 			
 			//----------------------------------------------------------------------------------
 			//		Recuperation des données BDD de performances 10 dernieres minutes
@@ -187,6 +190,7 @@
 						<div class="line">IP : <?php echo $infos_equipement['Ip']; ?></div>
 						<div class="line">Uptime : <?php echo $uptime; ?></div>
 						<div class="line">Temperature Proc : <?php echo $temperature; ?>°C</div>
+						<div class="line">Update : <?php echo $update; ?></div>
 						<div class="line">P. Clonage : <?php echo $infos_equipement['Clonage']; ?></div>
 					</div>
 				<div class="lefttitre"></div>

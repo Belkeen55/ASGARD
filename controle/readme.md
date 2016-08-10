@@ -1,4 +1,4 @@
-Installation station meteo sur écran
+Installation dashbord systeme sur écran
 ==
 #### Installation du systeme (Fait sur Raspbian jessie PiTFT 2016 05 10) 
 	sudo raspi-config 
@@ -42,10 +42,9 @@ Installation station meteo sur écran
 	Rechercher le block [SeatDefaults] 
 	mettre cette ligne : xserver-command=X -s 0 dpms 
 	
-#### Extinction et reboot pour la nuit
-	sudo crontab -e 
-	0 1 * * * /opt/vc/bin/tvservice -o >/dev/null 2>&1 
-	0 6   *   *   *    /sbin/shutdown -r now 
+#### Mise en place des cron
+	crontab -e 
+	1 7 * * * php /var/www/html/daily.php >/dev/null 2>&1 
 	
 #### Installation outils de clonage
 	git clone https://github.com/billw2/rpi-clone.git 

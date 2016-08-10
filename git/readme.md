@@ -76,3 +76,7 @@ Installation serveur Mimir et environnement de test
 	sudo cp rpi-clone /usr/local/sbin 
 	sudo blkid 
 	sudo rpi-clone "sdX" 
+
+#### mise en place des Cron	
+	crontab -e 
+	1 7 * * * php /var/www/html/daily.php >/dev/null 2>&1 

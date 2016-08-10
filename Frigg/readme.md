@@ -49,3 +49,7 @@ Installation Frigg (serveur Visio)
 	sudo cp rpi-clone /usr/local/sbin 
 	sudo blkid 
 	sudo rpi-clone "sdX" 
+	
+#### Mise en place des cron
+	crontab -e 
+	1 7 * * * php /var/www/html/daily.php >/dev/null 2>&1 
