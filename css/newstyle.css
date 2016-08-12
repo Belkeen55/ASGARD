@@ -1,4 +1,4 @@
-/* -------------- Class Body -------------- */
+/* -------------- Body -------------- */
 .ecran_blanc
 {
 	margin: 0 0 0 0;
@@ -12,38 +12,7 @@
 	margin: 0 0 0 0;
 }
 
-/* -------------- Class Font -------------- */
-.font_15px
-{
-	font-size: 15px;
-}
-
-.font_45px
-{
-	font-size: 45px;
-}
-
-.font_45px_center
-{
-	font-size: 45px;
-	text-align: center;
-}
-
-.font_70px
-{
-	font-size: 70px;
-}
-
-.font_70px_right
-{
-	font-size: 70px;
-	text-align: right;
-}
-
-
-	
-
-/* -------------- Class Div -------------- */
+/* -------------- Div -------------- */
 div
 {
 	vertical-align: middle;
@@ -60,113 +29,11 @@ div
 	height: 10px;
 }
 
-.line_H75px
-{
-	display: block;
-	height: 75px;
-}
-
-/* -------------- Class Spécifiques -------------- */
-
-.Heure_Fimafeng
-{
-	width: 320px;
-	line-height: 240px;
-	vertical-align: middle;
-	text-align: center;
-	font-size: 45px;
-}
-
-.Piece_Meteo
-{
-	width: 100%;
-	vertical-align: middle;
-	text-align: center;
-	font-size: 70px;
-}
-
-.Donnees_Meteo
-{
-	width: 100%;
-	vertical-align: middle;
-	text-align: left;
-	font-size: 70px;
-}
-
-a
-{
-	color: #D8D8D8;
-	text-decoration: none;
-}
-
-.black
-{
-	color: black;
-	text-decoration: none;
-}
-
-@font-face {
-    font-family: Mafont;
-    src: url('fonts/coolvetica-rg.ttf');
-}
-
-/* -------------- Ligne rouge en haut de la page -------------- */
-.redline
-{
-	display: block;
-	background-color: red;
-	height: 2px;
-}
-
-.greyline
-{
-	display: block;
-	background-color: grey;
-	height: 1px;
-}
-
-/* -------------- Header -------------- */
-.header
-{
-	background-color: black;
-	color: white;
-	width: 100%;
-	height: 30px;
-}
-
-.left1pct
-{
-	display: inline-block;
-	width: 1%;
-	height: 100%;
-}
-
-.logo
-{
-	display: inline-block;
-	width: 5%;
-	text-align: left;
-}
-
-.utilisateur
-{
-	display: inline-block;
-	text-align: right;
-	width: 92%;
-}
-
 .inline-45-Right
 {
 	display: inline-block;
 	text-align: right;
 	width: 45%;
-}
-
-.inline-25-Right
-{
-	display: inline-block;
-	text-align: right;
-	width: 25%;
 }
 
 .libelle
@@ -183,10 +50,273 @@ a
 	width: 80%;
 }
 
+.page
+{
+	width: 100%;
+}
+
+.main
+{
+	margin: 1% 5% 1% 5%;
+	height: 100%;
+}
+
+.meteo
+{
+	display: inline-block;
+	width: 200px;
+	height: 146px;
+}
+
+.previsions
+{
+	display: inline-block;
+	height: 146px;
+}
+
+.sonde
+{
+	display: inline-block;
+	width: 250px;	
+}
+
+.formations
+{
+	display: inline-block;
+	width: 200px;	
+	vertical-align: top;
+}
+
+.equipement
+{
+	display: inline-block;
+	width: 350px;	
+}
+
+.logs
+{
+	display: block;
+	width: 100%;
+}
+
+.cadre_center
+{
+	display: inline-block;
+	border: 1px solid #BDBDBD;
+	width: 100%;
+	text-align: center; 	
+}
+
+.cadre_left
+{
+	display: inline-block;
+	border: 1px solid #BDBDBD;
+	width: 100%; 	
+	text-align: left;
+}
+
+.inline-90px
+{
+	display: inline-block;
+	width: 90px;
+}
+
+.inline-350px
+{
+	display: inline-block;
+	width: 350px;
+}
+
+.inline-45-Left
+{
+	display: inline-block;
+	text-align: left;
+	width: 45%;
+}
+
+.inline-20-Left
+{
+	display: inline-block;
+	text-align: left;
+	width: 20%;
+}
+
+.line
+{
+	display: block;
+}
+
+.t1
+{
+	font-size: 30px;
+	display: inline-block;	
+}
+
+.display_center
+{
+	text-align: center;	
+}
+
+.display_left
+{
+	text-align: left;
+}
+
+.colonne
+{
+	height: 100%;
+	display: inline-block;
+}
+
+.graphique
+{
+	display: inline-block;
+	vertical-align: -40%;
+}
+
+.performances
+{
+	display: inline-block;
+	width: 500px;	
+}
+
+.joueurs
+{
+	display: inline-block;
+	width: 505px;	
+}
+
+/* -------------- Font -------------- */
+@font-face {
+    font-family: Mafont;
+    src: url('fonts/coolvetica-rg.ttf');
+}
+
+.font_15px
+{
+	font-size: 15px;
+}
+
+.taille1
+{
+	font-size: 70px;
+}
+
+.taille2
+{
+	font-size: 45px;
+}
+
+.taille3
+{
+	font-size: 35px;
+}
+
+.feature
+{
+	color: #64992C;
+	background-color: #ebf4dd;
+	width: 20px;
+	text-align: center;
+}
+
+.bug
+{
+	color: #cc0000;
+	background-color: #ffe3e3;
+	width: 20px;
+	text-align: center;
+}
+
+.fini
+{
+	color: #6E6E6E;
+}
+
+/* -------------- Link -------------- */
+a
+{
+	color: #D8D8D8;
+	text-decoration: none;
+}
+
+.black
+{
+	color: black;
+	text-decoration: none;
+}
+
+/* -------------- Spacer -------------- */
+.left1pct
+{
+	display: inline-block;
+	width: 1%;
+	height: 100%;
+}
+
 .right1pct
 {
 	display: inline-block;
 	width: 1%;
+}
+
+.lefttitre
+{
+	display: inline-block;
+	width: 20px;
+	height: 100%;
+}
+
+.liner
+{
+	display: block;
+	height: 10px;
+}
+
+/* -------------- Spec -------------- */
+.Heure_Fimafeng
+{
+	width: 320px;
+	line-height: 240px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 45px;
+}
+
+.redline
+{
+	display: block;
+	background-color: red;
+	height: 2px;
+}
+
+.greyline
+{
+	display: block;
+	background-color: grey;
+	height: 1px;
+}
+
+.header
+{
+	background-color: black;
+	color: white;
+	width: 100%;
+	height: 30px;
+}
+
+.logo
+{
+	display: inline-block;
+	width: 5%;
+	text-align: left;
+}
+
+.utilisateur
+{
+	display: inline-block;
+	text-align: right;
+	width: 92%;
 }
 
 .menu
@@ -275,75 +405,6 @@ a
 	background-color: #585858;
 }
 
-.page
-{
-	width: 100%;
-}
-
-.main
-{
-	margin: 1% 5% 1% 5%;
-	height: 100%;
-}
-
-.meteo
-{
-	display: inline-block;
-	width: 200px;
-	height: 146px;
-}
-
-.previsions
-{
-	display: inline-block;
-	height: 146px;
-}
-
-.sonde
-{
-	display: inline-block;
-	width: 250px;	
-}
-
-.formations
-{
-	display: inline-block;
-	width: 200px;	
-	vertical-align: top;
-}
-
-.equipement
-{
-	display: inline-block;
-	width: 350px;	
-}
-
-.logs
-{
-	display: block;
-	width: 100%;
-}
-
-.lefttitre
-{
-	display: inline-block;
-	width: 20px;
-	height: 100%;
-}
-
-.spacer
-{
-	display: inline-block;
-	width: 5%;
-}
-
-.liner
-{
-	display: block;
-	height: 10px;
-}
-
-
 .titre
 {
 	display: block;
@@ -353,177 +414,4 @@ a
 	height: 40px;
 	vertical-align: -10%;
 	text-align: left;		
-}
-
-.cadre_center
-{
-	display: inline-block;
-	border: 1px solid #BDBDBD;
-	width: 100%;
-	text-align: center; 	
-}
-
-.cadre
-{
-	border-width: 1px; 
-	border-style: solid; 
-	border-color: white;
-}
-
-.titremenu
-{
-	font-size: 20px;
-}
-
-.taillemenu
-{
-	width: 15%;
-}
-
-.tableau
-{
-	border-width: 1px; 
-	border-style: solid; 
-	border-color: white;
-}
-
-.taille1
-{
-	font-size: 70px;
-}
-
-.taille2
-{
-	font-size: 45px;
-}
-
-.taille3
-{
-	font-size: 35px;
-}
-
-.taille4
-{
-	font-size: 25px;
-}
-
-.taille5
-{
-	font-size: 15px;
-}
-
-.cadre_left
-{
-	display: inline-block;
-	border: 1px solid #BDBDBD;
-	width: 100%; 	
-	text-align: left;
-}
-
-
-
-.inline-90px
-{
-	display: inline-block;
-	width: 90px;
-}
-
-.line-90px
-{
-	display: block;
-	width: 90px;
-}
-
-.inline-350px
-{
-	display: inline-block;
-	width: 350px;
-}
-
-.inline-45-Left
-{
-	display: inline-block;
-	text-align: left;
-	width: 45%;
-}
-
-.inline-25-Left
-{
-	display: inline-block;
-	text-align: left;
-	width: 25%;
-}
-
-.inline-20-Left
-{
-	display: inline-block;
-	text-align: left;
-	width: 20%;
-}
-
-.line
-{
-	display: block;
-}
-
-.t1
-{
-	font-size: 30px;
-	display: inline-block;	
-}
-
-.display_center
-{
-	text-align: center;	
-}
-
-.display_left
-{
-	text-align: left;
-}
-
-
-.colonne
-{
-	height: 100%;
-	display: inline-block;
-}
-
-.graphique
-{
-	display: inline-block;
-	vertical-align: -40%;
-}
-
-.performances
-{
-	display: inline-block;
-	width: 500px;	
-}
-
-.joueurs
-{
-	display: inline-block;
-	width: 505px;	
-}
-
-.feature
-{
-	color: #64992C;
-	background-color: #ebf4dd;
-	width: 20px;
-	text-align: center;
-}
-
-.bug
-{
-	color: #cc0000;
-	background-color: #ffe3e3;
-	width: 20px;
-	text-align: center;
-}
-
-.fini
-{
-	color: #6E6E6E;
 }
