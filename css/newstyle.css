@@ -1,12 +1,95 @@
-/* -------------- Aucune marge sur le navigateur -------------- */
-body
+/* -------------- Class Body -------------- */
+.ecran_blanc
 {
 	margin: 0 0 0 0;
 }
 
+.ecran_noir
+{
+	background-color: black;
+	color: white;
+	width: 100%;
+}
+
+/* -------------- Class Font -------------- */
+.font_15px
+{
+	font-size: 15px;
+}
+
+.font_45px
+{
+	font-size: 45px;
+}
+
+.font_45px_center
+{
+	font-size: 45px;
+	text-align: center;
+}
+
+.font_70px
+{
+	font-size: 70px;
+}
+
+.font_70px_right
+{
+	font-size: 70px;
+	text-align: right;
+}
+
+
+	
+
+/* -------------- Class Div -------------- */
 div
 {
 	vertical-align: middle;
+}
+
+.inline
+{
+	display: inline-block;
+}
+
+.line_H10px
+{
+	display: block;
+	height: 10px;
+}
+
+.line_H75px
+{
+	display: block;
+	height: 75px;
+}
+
+/* -------------- Class Spécifiques -------------- */
+
+.Heure_Fimafeng
+{
+	width: 320px;
+	line-height: 240px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 45px;
+}
+
+.Piece_Meteo
+{
+	width: 100%;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 70px;
+}
+
+.Donnees_Meteo
+{
+	width: 100%;
+	vertical-align: middle;
+	text-align: left;
+	font-size: 70px;
 }
 
 a
@@ -282,10 +365,7 @@ a
 	text-align: left;
 }
 
-.inline
-{
-	display: inline-block;
-}
+
 
 .inline-90px
 {

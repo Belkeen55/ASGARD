@@ -21,27 +21,20 @@
 	else {
 ?>
 <head>
-	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/newstyle.css" />
 </head>	
-<table class="page">
-	<tr>
-		<td>
-			<img src="/img/vide.png" height="10">
-		</td>
-	</tr>
-	<?php
-		while($infos_log = $logs_BDD->fetch()) {
-	?>
-	<tr>
-		<td align="left" class="taille5">
+<body class="ecran_noir">
+	<div class="line_H10px"></div>
+	<table>
+		<?php
+			while($infos_log = $logs_BDD->fetch()) {
+		?>
+		<div class="font_15px">
 			<?php echo $infos_log['Nom'] . ' >> ' . $infos_log['Commentaire'] ?>
-		</td>
-	</tr>
-	<?php
-		}
-	?>
-</table>
-<?php
+		</div>
+		<?php
+			}
 	}
 	$logs_BDD->closeCursor();
 ?>
+</body>

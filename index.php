@@ -37,7 +37,7 @@
 		<link rel="stylesheet" href="/css/style.css" />
         <title>ASGARD - Connexion</title>
     </head>
-    <body>
+    <body class="ecran_noir">
 	
 		<!-- Tableau de page -->
 		<table class="page">
