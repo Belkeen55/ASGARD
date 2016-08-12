@@ -44,7 +44,7 @@ Installation dashbord systeme sur écran
 	
 #### Mise en place des cron
 	crontab -e 
-	1 7 * * * php /var/www/html/daily.php >/dev/null 2>&1 
+	1 7 * * * php /var/www/local/daily.php >/dev/null 2>&1 
 	
 #### Installation outils de clonage
 	git clone https://github.com/billw2/rpi-clone.git 

@@ -10,8 +10,8 @@
 	include('../lib/simple_html_dom.php');
 	
 	// ---- Chargement des modules
-	include('../modules/BDD.php');
-	include('../modules/meteo.php');
+	include('../lib/BDD.php');
+	include('../lib/meteo.php');
 	
 	$infos = donnees_piece_BDD($bdd, 1);
 

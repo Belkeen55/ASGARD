@@ -4,9 +4,9 @@
 	include('/var/www/html/lib/simple_html_dom.php');
 	
 	// ---- Chargement des modules
-	include('/var/www/html/modules/BDD.php');
-	include('/var/www/html/modules/meteo.php');
-	include('/var/www/html/modules/network.php');
+	include('/var/www/html/lib/BDD.php');
+	include('/var/www/html/lib/meteo.php');
+	include('/var/www/html/lib/network.php');
 	
 	// ---- On teste la présence de mesure de moins d'une heure
 	$mesures_BDD = $bdd->query('	SELECT Id 

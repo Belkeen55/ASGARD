@@ -4,7 +4,7 @@
 	include('/var/www/html/lib/simple_html_dom.php');
 	
 	// ---- Chargement des modules
-	include('/var/www/html/modules/BDD.php');
+	include('/var/www/html/lib/BDD.php');
 	
 	$equipements_BDD = $bdd->query('SELECT Id, Ip 
 									FROM Equipements

@@ -7,7 +7,7 @@
 	error_reporting(E_ALL);
 	
 	// ---- Chargement des modules
-	include('/var/www/html/modules/BDD.php');
+	include('/var/www/html/lib/BDD.php');
 	
 	$logs_BDD = $bdd->query('SELECT Logs.Heurodatage, Codes.Commentaire, Equipements.Nom
 							 FROM Logs, Codes, Equipements

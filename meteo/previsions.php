@@ -7,8 +7,8 @@
 	//error_reporting(E_ALL);
 	
 	// ---- Chargement des modules
-	include('../modules/BDD.php');
-	include('../modules/meteo.php');
+	include('../lib/BDD.php');
+	include('../lib/meteo.php');
 	
 	// ---- Test de présence de données
 	$meteo_BDD = $bdd->query('	SELECT Id 
