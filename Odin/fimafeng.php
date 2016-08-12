@@ -46,7 +46,7 @@
 					<div class="submenu">
 						<?php include('commun/submenu.php'); ?>
 					</div>
-					<div class="main">
+					<div class="contenu">
 						<?php
 							switch ($module) {
 								case 'global':

@@ -44,7 +44,7 @@
 					<div class="submenu">
 						<?php include('commun/submenu.php'); ?>
 					</div>
-					<div class="main">
+					<div class="contenu">
 						<?php
 							if($module == 'global') {
 								include('sol/global.php');

@@ -1,10 +1,10 @@
 /* -------------- Body -------------- */
-.ecran_blanc
+.ecran_blanc /* OK */
 {
 	margin: 0 0 0 0;
 }
 
-.ecran_noir
+.ecran_noir /* OK */
 {
 	background-color: black;
 	color: white;
@@ -13,125 +13,83 @@
 }
 
 /* -------------- Div -------------- */
-div
+.contenu /* OK */
+{
+	margin: 1% 5% 1% 5%;
+	height: 100%;
+}
+
+div /* OK */
 {
 	vertical-align: middle;
 }
 
-.inline
+.full-screen /* OK */
+{
+	width: 100%;
+}
+
+.inline /* OK */
 {
 	display: inline-block;
 }
 
-.line_H10px
+.inline-H146px /* OK */
 {
-	display: block;
-	height: 10px;
+	display: inline-block;
+	height: 146px;
 }
 
-.inline-45-Right
+.inline-W17pct-left /* OK */
+{
+	display: inline-block;
+	width: 17%;
+	text-align: left;
+}
+
+.inline-W45pct-right /* OK */
 {
 	display: inline-block;
 	text-align: right;
 	width: 45%;
 }
 
-.libelle
+.inline-45pct-left /* OK */
 {
 	display: inline-block;
-	width: 19%;
 	text-align: left;
+	width: 45%;
 }
 
-.bar
+.inline-W80pct-right /* OK */
 {
 	display: inline-block;
 	text-align: right;
 	width: 80%;
 }
 
-.page
-{
-	width: 100%;
-}
-
-.main
-{
-	margin: 1% 5% 1% 5%;
-	height: 100%;
-}
-
-.meteo
-{
-	display: inline-block;
-	width: 200px;
-	height: 146px;
-}
-
-.previsions
-{
-	display: inline-block;
-	height: 146px;
-}
-
-.sonde
-{
-	display: inline-block;
-	width: 250px;	
-}
-
-.formations
-{
-	display: inline-block;
-	width: 200px;	
-	vertical-align: top;
-}
-
-.equipement
-{
-	display: inline-block;
-	width: 350px;	
-}
-
-.logs
-{
-	display: block;
-	width: 100%;
-}
-
-.cadre_center
-{
-	display: inline-block;
-	border: 1px solid #BDBDBD;
-	width: 100%;
-	text-align: center; 	
-}
-
-.cadre_left
-{
-	display: inline-block;
-	border: 1px solid #BDBDBD;
-	width: 100%; 	
-	text-align: left;
-}
-
-.inline-90px
+.inline-W90px /* OK */
 {
 	display: inline-block;
 	width: 90px;
 }
 
-.inline-350px
+.inline-W200px /* OK */
 {
 	display: inline-block;
-	width: 350px;
+	width: 250px;	
 }
 
-.inline-45-Left
+.inline-W350px /* OK */
 {
 	display: inline-block;
-	text-align: left;
-	width: 45%;
+	width: 350px;	
+}
+
+.line-H10px /* OK */
+{
+	display: block;
+	height: 10px;
 }
 
 .inline-20-Left
@@ -414,4 +372,20 @@ a
 	height: 40px;
 	vertical-align: -10%;
 	text-align: left;		
+}
+
+.cadre_center
+{
+	display: inline-block;
+	border: 1px solid #BDBDBD;
+	width: 100%;
+	text-align: center; 	
+}
+
+.cadre_left
+{
+	display: inline-block;
+	border: 1px solid #BDBDBD;
+	width: 100%; 	
+	text-align: left;
 }

@@ -18,7 +18,7 @@
 ?>
 <link rel="stylesheet" href="/css/newstyle.css" />
 <body class="ecran_noir">		
-	<table class="page">
+	<table class="full-screen">
 		<tr>
 			<td align="center">
 				<table>

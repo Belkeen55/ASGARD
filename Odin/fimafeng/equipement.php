@@ -178,8 +178,8 @@
 		<div class="performances">
 			<div class="titre">
 				<div class="lefttitre"></div>
-				<div class="inline-45-Left">Informations</div>
-				<div class="inline-45-Right"><a href="#null" onclick="javascript:open_infos();"><img src="/img/edit.png" height="20"></img></a></div>
+				<div class="inline-45pct-left">Informations</div>
+				<div class="inline-W45pct-right"><a href="#null" onclick="javascript:open_infos();"><img src="/img/edit.png" height="20"></img></a></div>
 			</div>			
 			<div class="cadre_left">
 				<div class="liner"></div>
@@ -198,7 +198,7 @@
 			</div>
 		</div>
 		<div class="left1pct"></div>
-		<div class="sonde">
+		<div class="inline-W200px">
 			<div class="titre">
 				<div class="lefttitre"></div>
 				Disque dur
@@ -216,7 +216,7 @@
 ?>
 <div class="line">
 	<div class="display_center">
-		<div class="equipement">
+		<div class="inline-W350px">
 			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -245,11 +245,11 @@
 ?>
 <div class="line">
 	<div class="display_center">		
-		<div class="equipement">
+		<div class="inline-W350px">
 			<div class="titre">
 				<div class="lefttitre"></div>
-				<div class="inline-45-Left">Informations</div>
-				<div class="inline-45-Right"><a href="#null" onclick="javascript:open_infos();"><img src="/img/edit.png" height="20"></img></a></div>
+				<div class="inline-45pct-left">Informations</div>
+				<div class="inline-W45pct-right"><a href="#null" onclick="javascript:open_infos();"><img src="/img/edit.png" height="20"></img></a></div>
 			</div>
 			<div class="cadre_left">
 				<div class="liner"></div>
@@ -271,7 +271,7 @@
 ?>
 <div class="line">
 	<div class="display_center">
-		<div class="equipement">
+		<div class="inline-W350px">
 			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -298,7 +298,7 @@
 		?>
 <div class="liner"></div>
 <div class="line">
-	<div class="log">
+	<div class="full-screen">
 		<a href="/Odin/fimafeng.php?module=sol" class="black">
 			<div class="titre">
 				<div class="lefttitre"></div>

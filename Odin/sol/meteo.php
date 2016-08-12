@@ -3,7 +3,7 @@
 		<?php
 			$result = meteo_act_BDD($bdd);
 		?>		
-		<div class="meteo">
+		<div class="inline-H146px">
 			<a href="/Odin/sol.php?module=meteo" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -12,7 +12,7 @@
 			</a>
 			<div class="cadre_center">
 				<div class="liner"></div>
-				<div class="liner"></div>	
+				<div class="lefttitre"></div>	
 				<div class="inline">
 					<img src="/img/<?php echo $result['code']; ?>.png" height=78></img>
 				</div>
@@ -22,7 +22,7 @@
 						<?php echo (int)$result['temperature'] . '&deg;C'; ?>
 					</div>
 				</div>
-				<div class="liner"></div>
+				<div class="lefttitre"></div>
 				<div class="liner"></div>	
 			</div>
 		</div>
@@ -89,7 +89,7 @@
 				$temperature2 = '--';
 			}
 		?>
-		<div class="previsions">
+		<div class="inline-H146px">
 			<a href="/Odin/sol.php?module=meteo" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -121,7 +121,7 @@
 <div class="liner"></div>
 <div class="line">
 	<div class="display_center">
-		<div class="previsions">
+		<div class="inline-H146px">
 			<a href="/Odin/sol.php?module=meteo" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -198,7 +198,7 @@
 <div class="liner"></div>
 <div class="liner"></div>
 <div class="line">
-	<div class="log">
+	<div class="full-screen">
 		<a href="/Odin/fimafeng.php?module=sol" class="black">
 			<div class="titre">
 				<div class="lefttitre"></div>

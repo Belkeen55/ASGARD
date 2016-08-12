@@ -2,12 +2,12 @@
 	<form action="odin.php" method="get">
 		<div class="colonne">
 			<div class="line">
-				<div class="inline-90px">Filtres</div>
+				<div class="inline-W90px">Filtres</div>
 			</div>
 			<div class="liner"></div>
 			<div class="line">
-				<div class="inline-90px">Modules</div>
-				<div class="inline-90px">
+				<div class="inline-W90px">Modules</div>
+				<div class="inline-W90px">
 					<select name="devmodule">
 						<option value="0">Module</option>
 						<?php
@@ -27,8 +27,8 @@
 				</div>
 			</div>
 			<div class="line">
-				<div class="inline-90px">Type</div>
-				<div class="inline-90px">
+				<div class="inline-W90px">Type</div>
+				<div class="inline-W90px">
 					<select name="type">
 						<option value="0">Type</option>
 						<?php
@@ -48,8 +48,8 @@
 				</div>
 			</div>
 			<div class="line">
-				<div class="inline-90px">Besoin</div>
-				<div class="inline-90px">
+				<div class="inline-W90px">Besoin</div>
+				<div class="inline-W90px">
 					<input type="checkbox" name="besoin" value="1" 
 						<?php
 							if((isset($_GET['action'])) AND ($_GET['action'] == 'filter')) {
@@ -64,8 +64,8 @@
 				</div>
 			</div>
 			<div class="line">
-				<div class="inline-90px">Analyse</div>
-				<div class="inline-90px">
+				<div class="inline-W90px">Analyse</div>
+				<div class="inline-W90px">
 					<input type="checkbox" name="analyse" value="2" 
 					<?php
 						if((isset($_GET['action'])) AND ($_GET['action'] == 'filter')) {
@@ -80,8 +80,8 @@
 				</div>
 			</div>
 			<div class="line">
-				<div class="inline-90px">Conception</div>
-				<div class="inline-90px">
+				<div class="inline-W90px">Conception</div>
+				<div class="inline-W90px">
 					<input type="checkbox" name="conception" value="3" 
 						<?php
 							if((isset($_GET['action'])) AND ($_GET['action'] == 'filter')) {
@@ -96,8 +96,8 @@
 				</div>
 			</div>
 			<div class="line">
-				<div class="inline-90px">Codage</div>
-				<div class="inline-90px">
+				<div class="inline-W90px">Codage</div>
+				<div class="inline-W90px">
 					<input type="checkbox" name="codage" value="4" 
 						<?php
 							if((isset($_GET['action'])) AND ($_GET['action'] == 'filter')) {
@@ -112,8 +112,8 @@
 				</div>	
 			</div>
 			<div class="line">
-				<div class="inline-90px">Tests</div>
-				<div class="inline-90px">
+				<div class="inline-W90px">Tests</div>
+				<div class="inline-W90px">
 					<input type="checkbox" name="tests" value="5" 
 						<?php
 							if((isset($_GET['action'])) AND ($_GET['action'] == 'filter')) {
@@ -128,8 +128,8 @@
 				</div>
 			</div>
 			<div class="line">
-				<div class="inline-90px">Deploye</div>
-				<div class="inline-90px">
+				<div class="inline-W90px">Deploye</div>
+				<div class="inline-W90px">
 					<input type="checkbox" name="deploye" value="6" 
 						<?php
 							if((isset($_GET['action'])) AND ($_GET['action'] == 'filter')) {
@@ -321,9 +321,9 @@
 		<div class="inline"><div class="<?php echo $type; ?>"><?php echo $infos_ticket['Type'][0]; ?></div></div>
 		<div class="lefttitre"></div>
 		<a href="/Odin/odin.php?module=tickets&id=<?php echo $infos_ticket['Id']; ?>" class="<?php echo $etat; ?>">
-			<div class="inline-90px"><?php echo $infos_ticket['Module']; ?>-<?php echo $infos_ticket['Id']; ?></div>
+			<div class="inline-W90px"><?php echo $infos_ticket['Module']; ?>-<?php echo $infos_ticket['Id']; ?></div>
 			<div class="lefttitre"></div>
-			<div class="inline-350px"><?php echo $infos_ticket['Titre']; ?></div>
+			<div class="inline-W350px"><?php echo $infos_ticket['Titre']; ?></div>
 			<div class="lefttitre"></div>
 			<div class="inline"><?php echo $infos_ticket['Etape']; ?></div>
 		</a>

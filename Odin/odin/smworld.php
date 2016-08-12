@@ -81,8 +81,8 @@
 			<div class="joueurs">
 				<div class="titre">
 					<div class="lefttitre"></div>
-					<div class="inline-45-Left">Liste des joueurs</div>
-					<div class="inline-45-Right"><a href="#null" onclick="javascript:create_infos();" class="black">Ajouter</a></div>
+					<div class="inline-45pct-left">Liste des joueurs</div>
+					<div class="inline-W45pct-right"><a href="#null" onclick="javascript:create_infos();" class="black">Ajouter</a></div>
 				</div>
 				<div class="cadre_left">
 					<div class="colonne">
@@ -165,7 +165,7 @@
 			<form action="odin.php" method="get">
 			<input type="hidden" name="calcul" value="TRUE">
 			<input type="hidden" name="module" value="smworld">
-			<div class="formations">
+			<div class="inline-W200px">
 				<div class="titre">
 					<div class="lefttitre"></div>
 					<input type="submit" value="Calculer les formations">

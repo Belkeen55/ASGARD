@@ -28,13 +28,14 @@
 ?>
 	<div class="line">
 		<div class="display_center">
-			<div class="meteo">
+			<div class="inline-H146px">
 				<div class="titre">
 					<div class="lefttitre"></div>
 					Temperature
 				</div>
 				<div class="cadre_center">
 					<div class="liner"></div>
+					<div class="lefttitre"></div>
 					<div class="colonne">
 						<div class="line">Actuel</div>
 						<div class="liner"></div>
@@ -50,17 +51,19 @@
 						<div class="liner"></div>
 						<div class="line"><?php echo (int)$infos_sonde['Tideal']; ?>&deg;C</div>
 					</div>
+					<div class="lefttitre"></div>
 					<div class="liner"></div>
 				</div>
 			</div>
 			<div class="left1pct"></div>
-			<div class="meteo">
+			<div class="inline-H146px">
 				<div class="titre">
 					<div class="lefttitre"></div>
 					Humidité
 				</div>
 				<div class="cadre_center">
 					<div class="liner"></div>
+					<div class="lefttitre"></div>
 					<div class="colonne">
 						<div class="line">Actuel</div>
 						<div class="liner"></div>
@@ -76,17 +79,19 @@
 						<div class="liner"></div>
 						<div class="line"><?php echo (int)$infos_sonde['Hideal']; ?>%</div>
 					</div>
+					<div class="lefttitre"></div>
 					<div class="liner"></div>
 				</div>
 			</div>
 			<div class="left1pct"></div>
-			<div class="meteo">
+			<div class="inline-H146px">
 				<div class="titre">
 					<div class="lefttitre"></div>
 					Radiateur
 				</div>
 				<div class="cadre_center">
 					<div class="liner"></div>
+					<div class="lefttitre"></div>
 					<div class="colonne">
 						<div class="line">Actuel</div>
 						<div class="liner"></div>
@@ -102,18 +107,20 @@
 						<div class="liner"></div>
 						<div class="line"><?php echo (int)$infos_sonde['reglage']; ?></div>
 					</div>
+					<div class="lefttitre"></div>
 					<div class="liner"></div>
 				</div>
 			</div>
 			<div class="left1pct"></div>
-			<div class="meteo">
+			<div class="inline-H146px">
 				<div class="titre">
 					<div class="lefttitre"></div>
 					Reglage radiateur
 				</div>
 				<div class="cadre_center">
 					<div class="liner"></div>
-					<div class="liner"></div>
+					<div class="lefttitre"></div>
+					<div class="colonne">
 						<form action="sol.php" method="get">
 							<div class="line">
 								<input type="range" name="radiateur" value="<?php echo $infos_radiateur; ?>" max="5" min="0" step="1" oninput="document.getElementById('AfficheRange').textContent=value" />
@@ -128,7 +135,8 @@
 							<input type="hidden" name="module" value="<?php echo $module; ?>" />
 							<input type="hidden" name="action" value="update_radiateur" />
 						</form>
-					<div class="liner"></div>
+					</div>
+					<div class="lefttitre"></div>
 					<div class="liner"></div>
 				</div>
 			</div>
@@ -262,7 +270,7 @@
 	}
 	else {
 ?>
-		<div class="sonde">
+		<div class="inline-W200px">
 			<a href="/Odin/sol.php?module=<?php echo strtolower($infos_piece['Nom']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -284,7 +292,7 @@
 ?>
 <div class="liner"></div>
 <div class="line">
-	<div class="log">
+	<div class="full-screen">
 		<a href="/Odin/fimafeng.php?module=sol" class="black">
 			<div class="titre">
 				<div class="lefttitre"></div>

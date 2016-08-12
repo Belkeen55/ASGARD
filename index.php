@@ -40,7 +40,7 @@
     <body class="ecran_noir">
 	
 		<!-- Tableau de page -->
-		<table class="page">
+		<table class="full-screen">
 			<tr>
 				<td align="center" colspan="3">
 					<img src="/img/banniere.png">

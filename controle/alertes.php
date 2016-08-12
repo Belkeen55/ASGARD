@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="/css/newstyle.css" />
 </head>	
 <body class="ecran_noir">
-	<div class="line_H10px"></div>
+	<div class="line-H10px"></div>
 	<table>
 		<?php
 			while($infos_log = $logs_BDD->fetch()) {

@@ -55,7 +55,7 @@
  					$myPicture->render('progressrom' . $infos_equipement['Id'] . '.png');
 				}
 		?>
-		<div class="equipement">
+		<div class="inline-W350px">
 			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -70,10 +70,10 @@
 				<div class="lefttitre"></div>
 					<div class="colonne">
 						<div class="line">IP : <?php echo $infos_equipement['Ip']; ?></div>
-						<div class="line"><div class="libelle">Temp : </div><div class="bar"><img src="progresstemp<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
-						<div class="line"><div class="libelle">CPU : </div><div class="bar"><img src="progresscpu<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
-						<div class="line"><div class="libelle">RAM : </div><div class="bar"><img src="progressram<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
-						<div class="line"><div class="libelle">ROM : </div><div class="bar"><img src="progressrom<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
+						<div class="line"><div class="inline-W17pct-left">Temp : </div><div class="inline-W80pct-right"><img src="progresstemp<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
+						<div class="line"><div class="inline-W17pct-left">CPU : </div><div class="inline-W80pct-right"><img src="progresscpu<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
+						<div class="line"><div class="inline-W17pct-left">RAM : </div><div class="inline-W80pct-right"><img src="progressram<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
+						<div class="line"><div class="inline-W17pct-left">ROM : </div><div class="inline-W80pct-right"><img src="progressrom<?php echo $infos_equipement['Id']; ?>.png" /></div></div>
 					</div>
 				<div class="lefttitre"></div>
 				<div class="liner"></div>
@@ -121,7 +121,7 @@
 					$infos_sonde = donnees_sonde_live($infos_equipement['Ip']);
 				}
 		?>
-		<div class="equipement">
+		<div class="inline-W350px">
 			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -171,7 +171,7 @@
 </div>
 <div class="liner"></div>
 <div class="line">
-	<div class="log">
+	<div class="full-screen">
 		<a href="/Odin/fimafeng.php?module=sol" class="black">
 			<div class="titre">
 				<div class="lefttitre"></div>

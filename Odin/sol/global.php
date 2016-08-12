@@ -10,7 +10,7 @@
 			//$infos = ['Tetat', 'temperature', 'Tideal', 'Hetat', 'humidite', 'Hideal', 'Retat', 'radiateur', 'reglage']
 				if($infos_sonde['temperature'] <> -1) {
 		?>
-		<div class="sonde">
+		<div class="inline-W200px">
 			<a href="/Odin/sol.php?module=<?php echo strtolower($infos_piece['Nom']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -44,7 +44,7 @@
 				}
 				else {
 		?>
-		<div class="sonde">
+		<div class="inline-W200px">
 			<a href="/Odin/sol.php?module=<?php echo strtolower($infos_piece['Nom']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -74,7 +74,7 @@
 		<?php
 			$result = meteo_act_BDD($bdd);
 		?>		
-		<div class="meteo">
+		<div class="inline-H146px">
 			<a href="/Odin/sol.php?module=meteo" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -83,7 +83,7 @@
 			</a>
 			<div class="cadre_center">
 				<div class="liner"></div>
-				<div class="liner"></div>
+				<div class="lefttitre"></div>
 				<div class="inline">
 					<img src="/img/<?php echo $result['code']; ?>.png" height=78></img>
 				</div>
@@ -93,7 +93,7 @@
 						<?php echo (int)$result['temperature'] . '&deg;C'; ?>
 					</div>
 				</div>
-				<div class="liner"></div>
+				<div class="lefttitre"></div>
 				<div class="liner"></div>
 			</div>
 		</div>
@@ -160,7 +160,7 @@
 				$temperature2 = '--';
 			}
 		?>
-		<div class="previsions">
+		<div class="inline-H146px">
 			<a href="/Odin/sol.php?module=meteo" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -191,7 +191,7 @@
 <div class="liner"></div>
 <div class="liner"></div>
 <div class="line">
-	<div class="log">
+	<div class="full-screen">
 		<a href="/Odin/fimafeng.php?module=sol" class="black">
 			<div class="titre">
 				<div class="lefttitre"></div>
