@@ -9,6 +9,7 @@
 	background-color: black;
 	color: white;
 	width: 100%;
+	margin: 0 0 0 0;
 }
 
 /* -------------- Class Font -------------- */
@@ -276,6 +277,11 @@ a
 
 .page
 {
+	width: 100%;
+}
+
+.main
+{
 	margin: 1% 5% 1% 5%;
 	height: 100%;
 }
@@ -355,6 +361,55 @@ a
 	border: 1px solid #BDBDBD;
 	width: 100%;
 	text-align: center; 	
+}
+
+.cadre
+{
+	border-width: 1px; 
+	border-style: solid; 
+	border-color: white;
+}
+
+.titremenu
+{
+	font-size: 20px;
+}
+
+.taillemenu
+{
+	width: 15%;
+}
+
+.tableau
+{
+	border-width: 1px; 
+	border-style: solid; 
+	border-color: white;
+}
+
+.taille1
+{
+	font-size: 70px;
+}
+
+.taille2
+{
+	font-size: 45px;
+}
+
+.taille3
+{
+	font-size: 35px;
+}
+
+.taille4
+{
+	font-size: 25px;
+}
+
+.taille5
+{
+	font-size: 15px;
 }
 
 .cadre_left

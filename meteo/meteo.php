@@ -24,39 +24,41 @@
 	}
 ?>
 <head>
-	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/newstyle.css" />
 </head>	
-<table class="page">
-	<tr>
-		<td align="center">
-			<table>
-				<tr>
-					<td colspan="5" align="center" class="taille1">
-						Meteo
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<img src="/img/vide.png" height="40">
-					</td>
-				</tr>
-				<tr>
-					<td rowspan="4"><img src="/img/<?php echo $result['code']; ?>.png" height=200></td>
-					<td rowspan="4">
-						<img src="/img/vide.png" height="40">
-					</td>
-				</tr>
-				<tr>
-					<td align="left" class="taille3">
-						<h2><?php echo (int)$result['temperature'] . ' C'; ?></h2>
-					</td>
-				</tr>
-				<tr>
-					<td align="left" class="taille3">
-						<h2><?php echo (int)$result['humidite'] . '%'; ?></h2>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
+<body class="ecran_noir">
+	<table class="page">
+		<tr>
+			<td align="center">
+				<table>
+					<tr>
+						<td colspan="5" align="center" class="taille1">
+							Meteo
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="/img/vide.png" height="40">
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="4"><img src="/img/<?php echo $result['code']; ?>.png" height=200></td>
+						<td rowspan="4">
+							<img src="/img/vide.png" height="40">
+						</td>
+					</tr>
+					<tr>
+						<td align="left" class="taille3">
+							<h2><?php echo (int)$result['temperature'] . ' C'; ?></h2>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" class="taille3">
+							<h2><?php echo (int)$result['humidite'] . '%'; ?></h2>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>

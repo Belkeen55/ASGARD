@@ -25,7 +25,7 @@
 					<div class="header">
 						<?php include('commun/header.php'); ?>
 					</div>
-					<div class="page">
+					<div class="main">
 						<?php
 							switch($_GET['action']) {
 								case 'edit':
