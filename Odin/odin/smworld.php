@@ -2,7 +2,7 @@
 <!--
 	function open_joueur(id)
 	{
-		width = 570;
+		width = 620;
 		height = 300;
 		if(window.innerWidth)
 		{
@@ -36,7 +36,7 @@
 	
 	function create_infos()
 	{
-		width = 570;
+		width = 620;
 		height = 300;
 		if(window.innerWidth)
 		{
