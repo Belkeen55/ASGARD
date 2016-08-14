@@ -22,5 +22,10 @@
 					WHERE Id_Codes = ' . $code);
 	}
 	
+	function logs($bdd, $code) {
+		$bdd->exec('INSERT INTO Logs(Heurodatage, Id_Codes) 
+						VALUES(NOW(), ' . $code . ')');
+	}
+	
 	$bdd = connect_bdd($loginSQL, $passwordSQL);
 ?>

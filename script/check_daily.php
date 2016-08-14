@@ -14,10 +14,10 @@
 		foreach($html->find('input[name=update]') as $element) 
 		$update=$element->value;
 		if($update == 'Le système est à jour') {
-			add_log($bdd, 500 + $infos_equipement['Id'], 600 + $infos_equipement['Id']);
+			logs($bdd, 500 + $infos_equipement['Id']);
 		}
 		else {
-			add_log($bdd, 600 + $infos_equipement['Id'], 500 + $infos_equipement['Id']);
+			logs($bdd, 600 + $infos_equipement['Id']);
 		}
 	}
 	$equipements_BDD->closeCursor();

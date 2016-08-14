@@ -1,14 +1,197 @@
-/* -------------- Aucune marge sur le navigateur -------------- */
-body
+/* -------------- Body -------------- */
+.ecran_blanc /* OK */
 {
 	margin: 0 0 0 0;
 }
 
-div
+.ecran_noir /* OK */
+{
+	background-color: black;
+	color: white;
+	width: 100%;
+	margin: 0 0 0 0;
+}
+
+/* -------------- Div -------------- */
+.contenu /* OK */
+{
+	margin: 1% 5% 1% 5%;
+	height: 100%;
+}
+
+div /* OK */
 {
 	vertical-align: middle;
 }
 
+.full-screen /* OK */
+{
+	width: 100%;
+}
+
+.inline /* OK */
+{
+	display: inline-block;
+}
+
+.inline-H146px /* OK */
+{
+	display: inline-block;
+	height: 146px;
+}
+
+.inline-W17pct-left /* OK */
+{
+	display: inline-block;
+	width: 17%;
+	text-align: left;
+}
+
+.inline-W45pct-right /* OK */
+{
+	display: inline-block;
+	text-align: right;
+	width: 45%;
+}
+
+.inline-45pct-left /* OK */
+{
+	display: inline-block;
+	text-align: left;
+	width: 45%;
+}
+
+.inline-W80pct-right /* OK */
+{
+	display: inline-block;
+	text-align: right;
+	width: 80%;
+}
+
+.inline-W90px /* OK */
+{
+	display: inline-block;
+	width: 90px;
+}
+
+.inline-W200px /* OK */
+{
+	display: inline-block;
+	width: 250px;	
+}
+
+.inline-W350px /* OK */
+{
+	display: inline-block;
+	width: 350px;	
+}
+
+.line-H10px /* OK */
+{
+	display: block;
+	height: 10px;
+}
+
+.inline-20-Left
+{
+	display: inline-block;
+	text-align: left;
+	width: 20%;
+}
+
+.line
+{
+	display: block;
+}
+
+.t1
+{
+	font-size: 30px;
+	display: inline-block;	
+}
+
+.display_center
+{
+	text-align: center;	
+}
+
+.display_left
+{
+	text-align: left;
+}
+
+.colonne
+{
+	height: 100%;
+	display: inline-block;
+}
+
+.graphique
+{
+	display: inline-block;
+	vertical-align: -40%;
+}
+
+.performances
+{
+	display: inline-block;
+	width: 500px;	
+}
+
+.joueurs
+{
+	display: inline-block;
+	width: 505px;	
+}
+
+/* -------------- Font -------------- */
+@font-face {
+    font-family: Mafont;
+    src: url('fonts/coolvetica-rg.ttf');
+}
+
+.font_15px
+{
+	font-size: 15px;
+}
+
+.taille1
+{
+	font-size: 70px;
+}
+
+.taille2
+{
+	font-size: 45px;
+}
+
+.taille3
+{
+	font-size: 35px;
+}
+
+.feature
+{
+	color: #64992C;
+	background-color: #ebf4dd;
+	width: 20px;
+	text-align: center;
+}
+
+.bug
+{
+	color: #cc0000;
+	background-color: #ffe3e3;
+	width: 20px;
+	text-align: center;
+}
+
+.fini
+{
+	color: #6E6E6E;
+}
+
+/* -------------- Link -------------- */
 a
 {
 	color: #D8D8D8;
@@ -21,7 +204,43 @@ a
 	text-decoration: none;
 }
 
-/* -------------- Ligne rouge en haut de la page -------------- */
+/* -------------- Spacer -------------- */
+.left1pct
+{
+	display: inline-block;
+	width: 1%;
+	height: 100%;
+}
+
+.right1pct
+{
+	display: inline-block;
+	width: 1%;
+}
+
+.lefttitre
+{
+	display: inline-block;
+	width: 20px;
+	height: 100%;
+}
+
+.liner
+{
+	display: block;
+	height: 10px;
+}
+
+/* -------------- Spec -------------- */
+.Heure_Fimafeng
+{
+	width: 320px;
+	line-height: 240px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 45px;
+}
+
 .redline
 {
 	display: block;
@@ -29,20 +248,35 @@ a
 	height: 2px;
 }
 
-/* -------------- Header -------------- */
+.greyline
+{
+	display: block;
+	background-color: grey;
+	height: 1px;
+}
+
+.OK
+{
+	display: inline-block;
+	background-color: green;
+	height: 15px;
+	width: 15px;
+}
+
+.KO
+{
+	display: inline-block;
+	background-color: red;
+	height: 15px;
+	width: 15px;
+}
+
 .header
 {
 	background-color: black;
 	color: white;
 	width: 100%;
 	height: 30px;
-}
-
-.left1pct
-{
-	display: inline-block;
-	width: 1%;
-	height: 100%;
 }
 
 .logo
@@ -57,33 +291,6 @@ a
 	display: inline-block;
 	text-align: right;
 	width: 92%;
-}
-
-.inline-45-Right
-{
-	display: inline-block;
-	text-align: right;
-	width: 45%;
-}
-
-.libelle
-{
-	display: inline-block;
-	width: 19%;
-	text-align: left;
-}
-
-.bar
-{
-	display: inline-block;
-	text-align: right;
-	width: 80%;
-}
-
-.right1pct
-{
-	display: inline-block;
-	width: 1%;
 }
 
 .menu
@@ -172,63 +379,6 @@ a
 	background-color: #585858;
 }
 
-.page
-{
-	margin: 1% 5% 1% 5%;
-	height: 100%;
-}
-
-.meteo
-{
-	display: inline-block;
-	width: 200px;
-	height: 146px;
-}
-
-.previsions
-{
-	display: inline-block;
-	height: 146px;
-}
-
-.sonde
-{
-	display: inline-block;
-	width: 250px;	
-}
-
-.equipement
-{
-	display: inline-block;
-	width: 350px;	
-}
-
-.logs
-{
-	display: block;
-	width: 100%;
-}
-
-.lefttitre
-{
-	display: inline-block;
-	width: 20px;
-	height: 100%;
-}
-
-.spacer
-{
-	display: inline-block;
-	width: 5%;
-}
-
-.liner
-{
-	display: block;
-	height: 10px;
-}
-
-
 .titre
 {
 	display: block;
@@ -254,50 +404,4 @@ a
 	border: 1px solid #BDBDBD;
 	width: 100%; 	
 	text-align: left;
-}
-
-.inline
-{
-	display: inline-block;
-}
-
-.inline-45-Left
-{
-	display: inline-block;
-	text-align: left;
-	width: 45%;
-}
-
-.line
-{
-	display: block;
-}
-
-.t1
-{
-	font-size: 30px;
-	display: inline-block;	
-}
-
-.display_center
-{
-	text-align: center;	
-}
-
-.colonne
-{
-	height: 100%;
-	display: inline-block;
-}
-
-.graphique
-{
-	display: inline-block;
-	vertical-align: -40%;
-}
-
-.performances
-{
-	display: inline-block;
-	width: 500px;	
 }

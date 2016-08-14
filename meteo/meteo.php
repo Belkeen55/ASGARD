@@ -14,7 +14,7 @@
 	
 	// Gestion de l'absence d'informations dans la BDD et tentative de refresh
 	if(!isset($result['temperature'])) {
-		add_log($bdd, 204, 203);
+		logs($bdd, 204);
 		$meteo = meteo_act_live();
 		if(isset($meteo)) {
 			$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 

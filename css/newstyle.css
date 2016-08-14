@@ -255,6 +255,22 @@ a
 	height: 1px;
 }
 
+.OK
+{
+	display: inline-block;
+	background-color: green;
+	height: 10px;
+	width: 15px;
+}
+
+.KO
+{
+	display: inline-block;
+	background-color: red;
+	height: 10px;
+	width: 15px;
+}
+
 .header
 {
 	background-color: black;

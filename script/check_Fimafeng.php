@@ -15,7 +15,7 @@
 	if($nb_equipements > 0) {
 		// ---- On insert l'information dans la table warning
 		while($infos_equipement = $equipements_BDD->fetch()) {
-			add_log($bdd, $infos_equipement['Id'], $infos_equipement['Id'] + 300);
+			logs($bdd, $infos_equipement['Id']);
 		}
 	}
 	$equipements_BDD->closeCursor();
@@ -29,10 +29,10 @@
 		foreach($html->find('input[name=update]') as $element) 
 		$update=$element->value;
 		if($update == 'Le système est à jour') {
-			add_log($bdd, 500 + $infos_equipement['Id'], 600 + $infos_equipement['Id']);
+			logs($bdd, 500 + $infos_equipement['Id']);
 		}
 		else {
-			add_log($bdd, 600 + $infos_equipement['Id'], 500 + $infos_equipement['Id']);
+			logs($bdd, 600 + $infos_equipement['Id']);
 		}
 	}
 	$equipements_BDD->closeCursor();

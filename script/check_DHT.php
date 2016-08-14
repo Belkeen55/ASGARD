@@ -40,10 +40,10 @@
 						echo 'INSERT INTO Mesures(Heurodatage, Tempint, Tempext, Radiateur, Humidite, Id_Pieces) 
 									VALUES(NOW(), ' . $donnees_sonde['temperature'] . ', '. $meteo['temperature'] . ', ' . $radiateur . ', '. $donnees_sonde['humidite'] . ', ' . $sonde['Id_Pieces'] . ')';
 						echo '<br />';
-						add_log($bdd, 400 + $sonde['Id'], 100 + $sonde['Id']);
+						logs($bdd, 400 + $sonde['Id']);
 					}
 					else {
-						add_log($bdd, 100 + $sonde['Id'], 400 + $sonde['Id']);
+						logs($bdd, 100 + $sonde['Id']);
 					}
 				}
 			}
@@ -52,7 +52,7 @@
 			$bdd->exec('DELETE FROM Meteo WHERE Id = 1');
 			$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
 						VALUES(1, NOW(), \'' . $meteo['code'] . '\', '. $meteo['temperature'] . ', ' . $meteo['humidite'] . ')');
-			add_log($bdd, 203, 204);
+			logs($bdd, 203);
 		}
 		// ---- Recuperation des prévisions méteo
 		add_previsions_BDD($bdd);
