@@ -9,23 +9,33 @@
 	include('/var/www/html/lib/network.php');
 	
 	// ---- On teste la présence de mesure de moins d'une heure
-	$mesures_BDD = $bdd->query('	SELECT Id 
+	$meteo = meteo_act_live();
+	echo $meteo['temperature'];
+	$sondes_BDD = $bdd->query('	SELECT Id, Id_Pieces, Ip 
+								FROM Equipements
+								WHERE Id_Type_Equip = 2');
+	while($sonde = $sondes_BDD->fetch()) {
+		$mesures_BDD = $bdd->query('SELECT YEAR(Heurodatage), MONTH(Heurodatage), DAY(Heurodatage), HOUR(Heurodatage), Id_PIeces
 									FROM Mesures 
-									WHERE YEAR(Heurodatage) = YEAR(NOW())
-									AND MONTH(Heurodatage) = MONTH(NOW())
-									AND DAY(Heurodatage) = DAY(NOW())
-									AND HOUR(Heurodatage) = HOUR(NOW())');
-	$nb_mesures = $mesures_BDD->rowCount();
-	if($nb_mesures<3) {
+									WHERE Id_Pieces = ' . $sonde['Id_Pieces'] . ' 
+									AND YEAR(NOW()) = YEAR(Heurodatage)
+									AND MONTH(NOW()) = MONTH(Heurodatage)
+									AND DAY(NOW()) = DAY(Heurodatage)
+									AND HOUR(NOW()) = HOUR(Heurodatage)');
+		echo 'SELECT YEAR(Heurodatage), MONTH(Heurodatage), DAY(Heurodatage), HOUR(Heurodatage), Id_PIeces
+									FROM Mesures 
+									WHERE Id_Pieces = ' . $sonde['Id_Pieces'] . ' 
+									AND YEAR(NOW()) = YEAR(Heurodatage)
+									AND MONTH(NOW()) = MONTH(Heurodatage)
+									AND DAY(NOW()) = DAY(Heurodatage)
+									AND HOUR(NOW()) = HOUR(Heurodatage)';
+		$nb_mesures = $mesures_BDD->rowCount();
+		echo 'Piece ' . $sonde['Id_Pieces'] . ' Nb Resultat ' . $nb_mesures;
+		if($nb_mesures<1) {
 		// ---- Recuperation de la méteo
-		$meteo = meteo_act_live();
-		
-		if(isset($meteo['temperature'])) {
-			// ---- Recuperation des données de chacune des sondes
-			$sondes_BDD = $bdd->query('	SELECT Id, Id_Pieces, Ip 
-										FROM Equipements
-										WHERE Id_Type_Equip = 2');
-			while($sonde = $sondes_BDD->fetch()) {
+			echo 'essai ajout';
+			if(isset($meteo['temperature'])) {
+				// ---- Recuperation des données de chacune des sondes
 				if(ping($sonde['Ip']) == 'on') {
 					$donnees_sonde = donnees_sonde_live($sonde['Ip']);
 					if(($donnees_sonde['temperature'] > 0) AND ($donnees_sonde['humidite'] > 0)) {
@@ -47,15 +57,15 @@
 					}
 				}
 			}
-			$sondes_BDD->closeCursor();
-			// ---- Envoi des données de la méteo actuelle
-			$bdd->exec('DELETE FROM Meteo WHERE Id = 1');
-			$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
-						VALUES(1, NOW(), \'' . $meteo['code'] . '\', '. $meteo['temperature'] . ', ' . $meteo['humidite'] . ')');
-			logs($bdd, 203);
 		}
-		// ---- Recuperation des prévisions méteo
-		add_previsions_BDD($bdd);
+		// ---- Recuperation des prévisions méteo	
 	}
+	$sondes_BDD->closeCursor();
+	// ---- Envoi des données de la méteo actuelle
+	$bdd->exec('DELETE FROM Meteo WHERE Id = 1');
+	$bdd->exec('INSERT INTO Meteo(Id, Heurodatage, Code, Temperature, Humidite) 
+				VALUES(1, NOW(), \'' . $meteo['code'] . '\', '. $meteo['temperature'] . ', ' . $meteo['humidite'] . ')');
+	logs($bdd, 203);
 	$mesures_BDD->closeCursor();
+	add_previsions_BDD($bdd);
 ?>
