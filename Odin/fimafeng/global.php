@@ -186,7 +186,7 @@
 											WHERE Logs.Id_Codes = Codes.Id
 											AND Codes.Id_Equipements = Equipements.Id
 											AND ((Codes.Id > 0 AND Codes.Id < 100) OR (Codes.Id > 300 AND Codes.Id < 400) OR (Codes.Id > 500 AND Codes.Id < 600))
-											ORDER BY Logs.Heurodatage');
+											ORDER BY Logs.Heurodatage DESC');
 				while($infos_log = $logs_BDD->fetch()) {
 					if($infos_log['Warning']) {
 						$warning = 'KO';
