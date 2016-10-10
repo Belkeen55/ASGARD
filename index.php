@@ -8,7 +8,7 @@
 	error_reporting(E_ALL);
 	
 	// ---- Chargement des modules
-	include('modules/BDD.php');
+	include('lib/BDD.php');
 
 	// ---- Tentative de connexion et génération du cookie
 	$_SESSION['login'] = False;
