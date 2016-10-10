@@ -17,9 +17,11 @@
 		$bdd->exec('INSERT INTO Logs(Heurodatage, Id_Codes) 
 		VALUES(NOW(), ' . $code_add . ')');
 	}
-	function suppr_log($bdd, $code) {
+	function suppr_log($bdd) {
+		$heurodatage = date('Y-m-d H:i:s');
+		$heurodatageold = date('Y-m-d H:i:s', mktime(date('H')-24, date('i'), date('s'), date('m'), date('d'), date('Y')));
 		$bdd->exec('DELETE FROM Logs 
-					WHERE Id_Codes = ' . $code);
+					WHERE Heurodatage < \'' . $heurodatageold . '\'');
 	}
 	
 	function logs($bdd, $code) {
