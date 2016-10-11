@@ -14,8 +14,10 @@
 		$cpu=$element->value;
 		foreach($html->find('input[name=ram]') as $element) 
 		$ram=$element->value;
-		$bdd->exec('INSERT INTO Performances(Heurodatage, Cpu, Ram, Id_Equipements) 
-					VALUES(NOW(), ' . $cpu . ', '. $ram . ', '. $infos_equipement['Id'] . ')');
+		foreach($html->find('input[name=temperature]') as $element) 
+		$temperature=$element->value;
+		$bdd->exec('INSERT INTO Performances(Heurodatage, Cpu, Ram, Temperature, Id_Equipements) 
+					VALUES(NOW(), ' . $cpu . ', ' . $ram . ', ' . $temperature . ', ' . $infos_equipement['Id'] . ')');
 	}
 	$equipements_BDD->closeCursor();
 ?>
