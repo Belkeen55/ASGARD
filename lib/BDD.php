@@ -2,7 +2,7 @@
 	include('SQL.php');
 	
 	function connect_bdd($login, $password) {
-		$bdd = new PDO('mysql:host=localhost;dbname=ASGARD;charset=utf8', $login, $password);
+		$bdd = new PDO('mysql:host=192.168.1.29;dbname=ASGARDTEST;charset=utf8', $login, $password);
 		return $bdd;
 	}
 	
