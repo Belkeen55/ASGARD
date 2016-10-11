@@ -1,11 +1,6 @@
 <?php
 	include('SQL.php');
 	
-	function connect_bdd($login, $password) {
-		$bdd = new PDO('mysql:host=192.168.1.29;dbname=ASGARDTEST;charset=utf8', $login, $password);
-		return $bdd;
-	}
-	
 	function cryptage($passwd){
 		return 'PASSWORD(\'rudy' . sha1($passwd) . 'laura\')';
 	}
@@ -18,9 +13,11 @@
 		VALUES(NOW(), ' . $code_add . ')');
 	}
 	function suppr_log($bdd) {
-		$heurodatage = date('Y-m-d H:i:s');
 		$heurodatageold = date('Y-m-d H:i:s', mktime(date('H')-24, date('i'), date('s'), date('m'), date('d'), date('Y')));
 		$bdd->exec('DELETE FROM Logs 
+					WHERE Heurodatage < \'' . $heurodatageold . '\'');
+		$heurodatageold = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')-1, date('d'), date('Y')));
+		$bdd->exec('DELETE FROM Performances 
 					WHERE Heurodatage < \'' . $heurodatageold . '\'');
 	}
 	
