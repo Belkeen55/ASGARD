@@ -25,16 +25,6 @@ Installation serveur Mimir et environnement de test
 #### Installation des packages 
 	sudo apt install git 
 	sudo apt install apache2 
-	Créer un dossier par futur GIT dans /var/www 
-	Créer un fichier .conf par futur GIT dans /etc/apache2/sites-available/ 
-	<VirtualHost *:"PORT_ECOUTE"> 
-		ServerAdmin webmaster@localhost 
-		DocumentRoot /var/www/"GIT_Deposit" 
-		ServerName "GIT_Deposit" 
-		ErrorLog ${APACHE_LOG_DIR}/error.log 
-        CustomLog ${APACHE_LOG_DIR}/access.log combined 
-	</VirtualHost> 
-	Rajouter dans /etc/apache2/ports.conf les nouveaux ports utilisés 
 	sudo chown -R www-data:"utilisateur" /var/www 
 	sudo chmod -R 770 /var/www/html 
 	sudo apt install php5 
