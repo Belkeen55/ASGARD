@@ -25,6 +25,13 @@ Installation serveur Mimir et environnement de test
 #### Installation des packages 
 	sudo apt install git 
 	sudo apt install apache2 
+	copier la conf 000-default.conf 
+	Changer le port et le dossier du nouveau site dans /etc/apache2/sites-available/ 
+	Ajouter le port dans /etc/apache2/ports.conf 
+	taper sudo a2ensite nouveau_dossier.conf 
+	sudo git clone https://github.com/Codiad/Codiad /var/www/nouveau_dossier/ 
+	sudo touch /var/www/nouveau_dossier/config.php 
+	sudo chown www-data:www-data -R /var/www/nouveau_dossier/ 
 	sudo chown -R www-data:"utilisateur" /var/www 
 	sudo chmod -R 770 /var/www/html 
 	sudo apt install php5 
