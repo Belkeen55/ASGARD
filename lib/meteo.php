@@ -183,7 +183,7 @@
 			$Tmax = $Tideal*1.1;
 			$Hmin = $Hideal*0.8;
 			$Hmax = $Hideal*1.2;
-			if($infos_sonde['temperature'] < $Tmin) 
+			if($infos_sonde['temperature'] <= $Tmin) 
 			{
 				$Tetat = 'low';
 			}
