@@ -35,7 +35,7 @@ Installation serveur
 	sudo passwd 
 	
 #### Mise à jour du systeme
-	sudo apt updade 
+	sudo apt update 
 	sudo apt upgrade 
 	
 #### Installation des packages
