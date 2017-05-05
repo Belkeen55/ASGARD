@@ -1,4 +1,4 @@
-Installation Odin (serveur principal)
+Installation serveur 
 ==
 #### Installation du systeme (Fait sur Raspbian jessie lite 2016 05 10) 
 	sudo raspi-config 
@@ -23,7 +23,7 @@ Installation Odin (serveur principal)
 		net.ipv4.ip_forward=1 
 
 #### Securisation de connexion
-	sudo adduser belkeen 
+	sudo adduser "utilisateur" 
 	sudo visudo 
 	Ajouter "utilisateur" ALL=(ALL) NOPASSWD: ALL 
 	logout 
