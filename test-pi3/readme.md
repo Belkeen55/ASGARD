@@ -4,7 +4,7 @@ Installation serveur test-pi3
 	sudo raspi-config 
 		Expand SD card 
 		Internationalisation 
-		HostName Mimir 
+		HostName test-pi3 
 
 #### Mise à jour du systeme 
 	sudo apt update 
