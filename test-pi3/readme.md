@@ -24,18 +24,9 @@ Installation serveur test-pi3
 #### Installation des packages 
 	sudo apt install git 
 	sudo apt install apache2 
-	copier la conf 000-default.conf 
-	Changer le port et le dossier du nouveau site dans /etc/apache2/sites-available/ 
-	Ajouter le port dans /etc/apache2/ports.conf 
-	taper sudo a2ensite nouveau_dossier.conf 
-	sudo git clone https://github.com/Codiad/Codiad /var/www/nouveau_dossier/ 
-	sudo touch /var/www/nouveau_dossier/config.php 
-	sudo chown www-data:www-data -R /var/www/nouveau_dossier/ 
-	sudo chown -R www-data:"utilisateur" /var/www 
-	sudo chmod -R 770 /var/www/html 
 	sudo apt install php5 
-	sudo apt install mysql-server php5-mysql 
-	sudo apt install phpmyadmin 
+	sudo apt install php5-mysql 
+	sudo apt install php5-imagick 
 
 #### Creation Key SSH 
 	ssh-keygen -t rsa -b 4096 -C "adresse_mail" 
@@ -48,23 +39,24 @@ Installation serveur test-pi3
 
 #### Mise en place des gits 
 	création des git (un par un) 
-	sudo git remote add deploy ssh://user@monserveur.fr/home/user/MonProjet 
+	faire un pull de github 
+	sudo git clone https://github.com/Codiad/Codiad /var/www/html/ 
+	sudo touch /var/www/nouveau_dossier/config.php 
+	sudo nano /etc/php5/apache2/php.ini 
+	ajouter extension=imagick.so 
+	sudo chown www-data:www-data -R /var/www/html/ 
+	sudo chown -R www-data:"utilisateur" /var/www/html 
+	sudo chmod -R 770 /var/www/html 
 	sudo git remote add hub git@github.com:Belkeen55/"deposit".git 
+	git remote set-url --add --push origin git@github.com:Belkeen55/"deposit".git 
+	git remote set-url --add --push origin ssh://belkeen@raspberry/home/belkeen/asgard.git 
 
 #### Configuration réseau
-	sudo nano /etc/network/interfaces 
-	auto lo 
-	iface lo inet loopback 
-	auto eth0 
-	iface eth0 inet dhcp 
-        up route add -host 192.168.1.15 gw 192.168.1.16 
-        up route add -host 192.168.1.21 gw 192.168.1.16 
 	allow-hotplug wlan0 
-	iface wlan0 inet manual 
-		wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf 
-	allow-hotplug wlan1 
-	iface wlan1 inet manual 
-		wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf 
+	auto wlan0 
+	iface wlan0 inet dhcp 
+	wpa-ssid "" 
+	wpa-psk "" 
 	
 #### Installation outils de clonage
 	git clone https://github.com/billw2/rpi-clone.git 

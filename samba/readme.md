@@ -50,7 +50,22 @@ Installation serveur Samba
 	directory mode = 0777 
 	share modes = yes 
 	sudo reboot 
-	
+
+#### Mise en place du git de déploiement
+        mkdir /home/belkeen/asgard.git 
+        git init 
+        git config receive.denyCurrentBranch ignore 
+        faire un push de test-pi3 
+        git clone /home/belkeen/asgard.git /var/www/html 
+        sudo nano /home/belkeen/asgard.git/.git/hooks/post-update 
+        coller 
+	        #!/bin/bash 
+			echo "********** mise en production *********" 
+			cd /var/www/html 
+			unset GIT_DIR 
+			git pull origin master 
+		sudo chmod +x /home/belkeen/asgard.git/.git/hooks/post-update 
+
 #### Installation outils de clonage
 	git clone https://github.com/billw2/rpi-clone.git 
 	cd rpi-clone 
