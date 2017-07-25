@@ -1,6 +1,6 @@
 Installation serveur MySQL 
 ==
-#### Installation du systeme (Fait sur Raspbian jessie lite 2016 05 10) 
+#### Installation du systeme (Fait sur Raspbian jessie lite 2017 07 05) 
 	sudo raspi-config 
 		Internationalisation 
 		HostName mysql 

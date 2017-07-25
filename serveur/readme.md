@@ -1,6 +1,6 @@
 Installation du serveur principal
 ==
-#### Installation du systeme (Fait sur Raspbian jessie lite 2017 07 03) 
+#### Installation du systeme (Fait sur Raspbian jessie lite 2017 07 05) 
 	sudo raspi-config 
 		Internationalisation 
 		HostName serveur 
