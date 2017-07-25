@@ -1,4 +1,4 @@
-Installation serveur Mimir et environnement de test
+Installation serveur test-pi3
 ==
 #### Installation du systeme (Fait sur Raspbian jessie lite 2016 05 10) 
 	sudo raspi-config 
