@@ -6,7 +6,9 @@
 	// ---- Debug
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL);
-	
+	//if(!file_exists('../lib/SQL.php')) {
+	//	echo "<script type='text/javascript'>document.location.replace('installation/installation.php');</script>";
+	//}
 	// ---- Chargement des modules
 	include('lib/BDD.php');
 

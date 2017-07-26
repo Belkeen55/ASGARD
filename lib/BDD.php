@@ -26,5 +26,10 @@
 						VALUES(NOW(), ' . $code . ')');
 	}
 	
+	function connect_bdd($login, $password) {
+		$bdd = new PDO('mysql:host=mysql;dbname=ASGARD;charset=utf8', $login, $password);
+		return $bdd;
+	}
+	
 	$bdd = connect_bdd($loginSQL, $passwordSQL);
 ?>
