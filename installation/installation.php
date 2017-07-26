@@ -17,6 +17,13 @@
 			    		include('../lib/BDD.php');
 			    		$req = $dbh->exec('INSERT INTO utilisateurs VALUES (NULL , \'' . $_POST['login'] . '\', ' . cryptage($_POST['password']) . ')');
 			    	}
+			    	else
+			    	{
+			    		$fichier_sql = fopen('../lib/SQL.php', 'w+'); // Creation du fichier php d'information de login
+				    	fwrite($fichier_sql,	'<?php $loginSQL = \'' . $_POST['user_SQL'] . '\'; $passwordSQL = \'' . $_POST['password_SQL'] . '\'; 
+						$baseSQL = \'' . $_POST['base_SQL'] . '\'; $serveurSQL = \'' . $_POST['serveur_SQL'] . '\'; ?>');
+						fclose($fichier_sql);
+			    	}
 			    	echo "<script type='text/javascript'>document.location.replace('../index.php');</script>"; // Redirection vers l'index
 				}
 			}
