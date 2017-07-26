@@ -26,10 +26,18 @@
 						VALUES(NOW(), ' . $code . ')');
 	}
 	
-	function connect_bdd($login, $password) {
-		$bdd = new PDO('mysql:host=mysql;dbname=ASGARD;charset=utf8', $login, $password);
+	function connect_bdd($serveur, $base, $login, $password) {
+		$bdd = new PDO('mysql:host=' . $serveur . ';dbname='. $base . ';charset=utf8', $login, $password);
 		return $bdd;
 	}
 	
-	$bdd = connect_bdd($loginSQL, $passwordSQL);
+	function structure_SQL($dbh) {
+		// Création de table des utilisateurs
+		$req = $dbh->exec(	"CREATE TABLE `utilisateurs` (
+		    				`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+							`login` VARCHAR(255) UNIQUE NOT NULL ,
+							`password` VARCHAR(255) NOT NULL)");
+	}
+	
+	$bdd = connect_bdd($serveurSQL, $baseSQL, $loginSQL, $passwordSQL);
 ?>

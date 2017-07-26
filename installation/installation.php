@@ -5,17 +5,18 @@
 		if(isset($_POST['base_SQL'])) { // Si l'utilisateur a rempli les infos de connexion de la BDD
 			try {
 				if(isset($_POST['new_base_SQL'])) { // Si l'utilisateur a demandé la creation d'une nouvelle base
-					$dbh = new PDO('mysql:host=' . $_POST['serveur_SQL'], $_POST['user_SQL'], $_POST['password_SQL']);
+					$bdd = new PDO('mysql:host=' . $_POST['serveur_SQL'], $_POST['user_SQL'], $_POST['password_SQL']);
 				}
 				else {
-			    	$dbh = new PDO('mysql:host=' . $_POST['serveur_SQL'] . ';dbname=' . $_POST['base_SQL'], $_POST['user_SQL'], $_POST['password_SQL']);
+			    	$bdd = new PDO('mysql:host=' . $_POST['serveur_SQL'] . ';dbname=' . $_POST['base_SQL'], $_POST['user_SQL'], $_POST['password_SQL']);
 			    	if(isset($_POST['login'])) { // Si l'utilisateur à rempli le formulaire de création de compte
 			    		$fichier_sql = fopen('../lib/SQL.php', 'w+'); // Creation du fichier php d'information de login
 				    	fwrite($fichier_sql,	'<?php $loginSQL = \'' . $_POST['user_SQL'] . '\'; $passwordSQL = \'' . $_POST['password_SQL'] . '\'; 
 						$baseSQL = \'' . $_POST['base_SQL'] . '\'; $serveurSQL = \'' . $_POST['serveur_SQL'] . '\'; ?>');
 						fclose($fichier_sql);
 			    		include('../lib/BDD.php');
-			    		$req = $dbh->exec('INSERT INTO utilisateurs VALUES (NULL , \'' . $_POST['login'] . '\', ' . cryptage($_POST['password']) . ')');
+			    		structure_SQL($bdd);
+			    		$req = $bdd->exec('INSERT INTO utilisateurs VALUES (NULL , \'' . $_POST['login'] . '\', ' . cryptage($_POST['password']) . ')');
 			    	}
 			    	else
 			    	{
@@ -77,14 +78,8 @@
 					}
 					else {
 						if(isset($_POST['new_base_SQL'])) { // Creation de la nouvelle base
-							$dbh->exec('CREATE DATABASE ' . $_POST['base_SQL']);
-							print 'CREATE DATABASE ' . $_POST['base_SQL'] . ', ';
-							print $_POST['serveur_SQL'] . ', ';
-						    print $_POST['base_SQL'] . ', ';
-						    print $_POST['user_SQL'] . ', ';
-						    print $_POST['password_SQL'] . ', ';
-						    print $_POST['new_base_SQL'];
-							$dbh = new PDO('mysql:host=' . $_POST['serveur_SQL'] . ';dbname=' . $_POST['base_SQL'], $_POST['user_SQL'], $_POST['password_SQL']);
+							$bdd->exec('CREATE DATABASE ' . $_POST['base_SQL']);
+							$bdd = new PDO('mysql:host=' . $_POST['serveur_SQL'] . ';dbname=' . $_POST['base_SQL'], $_POST['user_SQL'], $_POST['password_SQL']);
 						// Formulaire de creation du login et password de l'utilisateur
 				?>
 							<div align="center"><b><font size="4"> Installation RONIN </font></b>

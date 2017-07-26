@@ -15,17 +15,16 @@
 	// ---- Tentative de connexion et génération du cookie
 	$_SESSION['login'] = False;
 	if((isset($_POST['mot_de_passe'])) AND (isset($_POST['identifiant']))) {
-		$reponse = $bdd->query('SELECT Id 
-								FROM Utilisateurs 
-								WHERE Login = \'' . $_POST['identifiant'] . '\'
-								AND Password = ' . cryptage($_POST['mot_de_passe']));
-		
+		$reponse = $bdd->query('SELECT id 
+								FROM utilisateurs 
+								WHERE login = \'' . $_POST['identifiant'] . '\'
+								AND password = ' . cryptage($_POST['mot_de_passe']));
 		$donnees = $reponse->rowCount();
 		if($donnees!=0) {
 			setcookie('infos', 'BelkhomeLogin', time() + 365*24*3600, null, null, false, true);
 			$login = True;
+			$_SESSION['login'] = True;
 		}
-		$_SESSION['login'] = True;
 	}
 	if((isset($_COOKIE['infos'])) AND ($_SESSION['login'] == False)) {
 		if($_COOKIE['infos'] == 'BelkhomeLogin') {
