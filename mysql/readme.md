@@ -71,5 +71,4 @@ Installation serveur MySQL
 	
 #### Mise en place des crontab
 	crontab -e 
-	*/15 * * * * php /var/www/html/script/check_DHT.php > /var/www/html/script/log_DHT.txt 
-	1 7 * * * php /var/www/html/daily.php >/dev/null 2>&1 
+	0 2 * * * php /var/www/html/mysql/mysqldump.php >/dev/null 2>&1 
