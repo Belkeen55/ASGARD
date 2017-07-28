@@ -39,6 +39,12 @@
 										case 'formation':
 											include('popup/formation.php');
 											break;
+										case 'piece':
+											include('popup/piece.php');
+											break;
+										case 'type':
+											include('popup/type.php');
+											break;
 										default:
 											echo 'Erreur 1';
 									}

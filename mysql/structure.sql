@@ -138,6 +138,18 @@ CREATE TABLE Taches(
         PRIMARY KEY (Id )
 )ENGINE=InnoDB;
 
+#------------------------------------------------------------
+# Table: Performances
+#------------------------------------------------------------
+
+CREATE TABLE Performances(
+        Id          	int (11) Auto_increment  NOT NULL ,
+        Heurodatage 	Datetime NOT NULL ,
+        Cpu     		Int NOT NULL ,
+        Ram     		Int NOT NULL ,
+        Id_Equipements  Int NOT NULL ,
+        PRIMARY KEY (Id )
+)ENGINE=InnoDB;
 
 #------------------------------------------------------------
 # Table: Devs
@@ -179,3 +191,4 @@ ALTER TABLE Logs ADD CONSTRAINT FK_Logs_Id_Codes FOREIGN KEY (Id_Codes) REFERENC
 ALTER TABLE Taches ADD CONSTRAINT FK_Taches_Id_Devs FOREIGN KEY (Id_Devs) REFERENCES Devs(Id);
 ALTER TABLE Taches ADD CONSTRAINT FK_Taches_Id_Etapes FOREIGN KEY (Id_Etapes) REFERENCES Etapes(Id);
 ALTER TABLE Taches ADD CONSTRAINT FK_Taches_Id_Modules FOREIGN KEY (Id_Modules) REFERENCES Modules(Id);
+ALTER TABLE Performances ADD CONSTRAINT FK_Performances_Id_Equipements FOREIGN KEY (Id_Equipements) REFERENCES Equipements(Id);

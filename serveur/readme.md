@@ -35,6 +35,7 @@ Installation du serveur principal
 	sudo apt install phpmyadmin 
 	sudo apt install git 
 	sudo apt install php5-imagick 
+	sudo apt install php5-gd 
 
 #### Preparation des dossiers
 	sudo nano /etc/php5/apache2/php.ini 

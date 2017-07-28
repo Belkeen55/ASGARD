@@ -52,6 +52,15 @@
 								case 'global':
 									include('fimafeng/global.php');
 									break;
+								case 'piece':
+									include('fimafeng/piece.php');
+									break;
+								case 'type':
+									include('fimafeng/type.php');
+									break;
+								case 'detail':
+									include('fimafeng/detail.php');
+									break;
 								default:
 								   include('fimafeng/equipement.php');
 							}

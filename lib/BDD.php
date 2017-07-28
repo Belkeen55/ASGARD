@@ -37,6 +37,29 @@
 		    				`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 							`login` VARCHAR(255) UNIQUE NOT NULL ,
 							`password` VARCHAR(255) NOT NULL)");
+							
+		$req = $dbh->exec(	"CREATE TABLE Typ_Equip(
+					        `Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+					        `Nom` VARCHAR(255) UNIQUE NOT NULL ,
+					        `Image` VARCHAR(255))");
+					        
+		$req = $dbh->exec(	"CREATE TABLE Pieces(
+        					`Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+        					`Nom` VARCHAR(255) UNIQUE NOT NULL ,
+        					`T_ideal` DECIMAL(25,2) ,
+        					`H_ideal` DECIMAL(25,2))");
+        					
+        $req = $dbh->exec(	"CREATE TABLE Equipements(
+						    `Id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+						    `Nom` VARCHAR(255) UNIQUE NOT NULL ,
+						    `Ip` VARCHAR(255) UNIQUE NOT NULL ,
+						    `Commentaires` TEXT ,
+						    `Id_Pieces` INT ,
+						    `Id_Typ_Equip` INT NOT NULL)");
+
+		$req = $dbh->exec(	"ALTER TABLE Equipements ADD CONSTRAINT FK_Equipements_Id_Pieces FOREIGN KEY (Id_Pieces) REFERENCES Pieces(Id)");
+		$req = $dbh->exec(	"ALTER TABLE Equipements ADD CONSTRAINT FK_Equipements_Id_Typ_Equip FOREIGN KEY (Id_Typ_Equip) REFERENCES Typ_Equip(Id)");
+		
 	}
 	
 	$bdd = connect_bdd($serveurSQL, $baseSQL, $loginSQL, $passwordSQL);

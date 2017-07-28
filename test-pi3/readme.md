@@ -27,6 +27,7 @@ Installation serveur test-pi3
 	sudo apt install php5 
 	sudo apt install php5-mysql 
 	sudo apt install php5-imagick 
+	sudo apt install php5-gd 
 
 #### Creation Key SSH 
 	ssh-keygen -t rsa -b 4096 -C "adresse_mail" 
