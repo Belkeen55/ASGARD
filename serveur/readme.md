@@ -69,3 +69,4 @@ Installation du serveur principal
 #### Mise en place des crontab
 	crontab -e 
 	0 1 * * * php /var/www/html/script/daily.php >/dev/null 2>&1 
+	* * * * * php /var/www/html/script/minutly.php >/dev/null 2>&1 
