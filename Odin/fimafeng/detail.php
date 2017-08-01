@@ -16,7 +16,7 @@
 	//				Recuperation des informations live de la machine
 	//----------------------------------------------------------------------------------
 	$temperature = -1;
-	$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
+	$html = file_get_html('http://' . $infos_equipement['Ip'] . '/script/systeme.php');
 	foreach($html->find('input[name=temperature]') as $element) 
 	$temperature=$element->value;
 	$disque = -1;

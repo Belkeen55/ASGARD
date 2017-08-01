@@ -9,7 +9,7 @@
 									FROM Equipements 
 									WHERE Id_Type_Equip = 1');
 	while($infos_equipement = $equipements_BDD->fetch()) {
-		$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
+		$html = file_get_html('http://' . $infos_equipement['Ip'] . '/script/systeme.php');
 		foreach($html->find('input[name=cpu]') as $element) 
 		$cpu=$element->value;
 		foreach($html->find('input[name=ram]') as $element) 

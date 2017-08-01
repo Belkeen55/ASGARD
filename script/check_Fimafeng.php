@@ -25,7 +25,7 @@
 									FROM Equipements
 									WHERE Id_Type_Equip = 1');
 	while($infos_equipement = $equipements_BDD->fetch()) {
-		$html = file_get_html('http://' . $infos_equipement['Ip'] . '/temppi.php');
+		$html = file_get_html('http://' . $infos_equipement['Ip'] . '/script/systeme.php');
 		foreach($html->find('input[name=update]') as $element) 
 		$update=$element->value;
 		if($update == 'Le système est à jour') {
