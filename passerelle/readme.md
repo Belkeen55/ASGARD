@@ -51,3 +51,7 @@ Installation la passerelle SSH
         cd rpi-clone 
         sudo cp rpi-clone /usr/local/sbin 
         sudo blkid 
+
+#### Mise en place des crontab
+	crontab -e 
+	0 1 * * * php /var/www/html/script/daily.php >/dev/null 2>&1 

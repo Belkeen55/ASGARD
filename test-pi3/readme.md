@@ -66,6 +66,6 @@ Installation serveur test-pi3
 	sudo blkid 
 	sudo rpi-clone "sdX" 
 
-#### mise en place des Cron	
+#### Mise en place des crontab
 	crontab -e 
-	1 7 * * * php /var/www/html/daily.php >/dev/null 2>&1 
+	0 1 * * * php /var/www/html/script/daily.php >/dev/null 2>&1 
