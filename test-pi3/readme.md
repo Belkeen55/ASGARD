@@ -28,6 +28,7 @@ Installation serveur test-pi3
 	sudo apt install php5-mysql 
 	sudo apt install php5-imagick 
 	sudo apt install php5-gd 
+	sudo apt-get install python-dev 
 
 #### Creation Key SSH 
 	ssh-keygen -t rsa -b 4096 -C "adresse_mail" 
@@ -58,6 +59,14 @@ Installation serveur test-pi3
 	iface wlan0 inet dhcp 
 	wpa-ssid "" 
 	wpa-psk "" 
+	
+#### Installation driver/soft DHT 22
+	git clone https://github.com/adafruit/Adafruit_Python_DHT.git 
+	cd Adafruit_Python_DHT 
+	sudo python setup.py install 
+	cd examples 
+	sudo ./AdafruitDHT.py 22 17 
+	17 étant le GPIO de données 
 	
 #### Installation outils de clonage
 	git clone https://github.com/billw2/rpi-clone.git 
