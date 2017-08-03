@@ -37,6 +37,15 @@
 			$i++;
 		}
 		
+		if(file_exists("/home/belkeen/Adafruit_Python_DHT/examples/AdafruitDHT.py")) {
+			exec('sudo /home/belkeen/Adafruit_Python_DHT/examples/./AdafruitDHT.py 22 17', $rep_cmd_DHT22);
+			$DHT22 = substr($rep_cmd_DHT22[0], 0);
+			$DHT22Temp = explode("*", $DHT22);
+			$DHT22Temp = str_replace('Temp=', '', $DHT22Temp[0]);
+			$DHT22Hum = explode("Humidity=", $DHT22);
+			$DHT22Hum = str_replace('%', '', $DHT22Hum[1]);
+		}
+		
 		$rep_cmd_update = file("/var/www/html/update.txt");
 		$rep_cmd_update = str_replace('. Run \'apt list --upgradable\' to see them.', '', $rep_cmd_update);
 		$rep_cmd_update = str_replace('can be upgraded', 'peuvent être mis à jour', $rep_cmd_update);
@@ -49,4 +58,12 @@
 		<input type="text" name="ram" value="<?php echo round((1-($ram_libre/$ram_total))*100, 0) ?>" />
 		<input type="text" name="uptime" value="<?php echo $uptime; ?>" />
 		<input type="text" name="update" value="<?php echo end($rep_cmd_update); ?>" />
+		<?php 
+			if(file_exists("/home/belkeen/Adafruit_Python_DHT/examples/AdafruitDHT.py")) {
+		?>
+				<input type="text" name="DHT22Temp" value="<?php echo $DHT22Temp; ?>" />	
+				<input type="text" name="DHT22Hum" value="<?php echo $DHT22Hum; ?>" />
+		<?php
+			}
+		?>
 </form>

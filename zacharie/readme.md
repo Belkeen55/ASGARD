@@ -17,7 +17,7 @@ Installation du serveur principal
 	sudo adduser "utilisateur" 
 	sudo visudo 
 	Ajouter "utilisateur" ALL=(ALL) NOPASSWD: ALL 
-	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp,/usr/bin/apt update 
+	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp,/usr/bin/apt update,/var/www/html/Adafruit_Python_DHT/examples/./AdafruitDHT.py 
 	logout 
 	login avec "utilisateur" 
 	sudo deluser --remove-home pi 
@@ -43,7 +43,8 @@ Installation du serveur principal
         git init 
         git config receive.denyCurrentBranch ignore 
         faire un push de test-pi3 
-        git clone /home/belkeen/asgard.git /var/www/html 
+        sudo rm -r /var/www/html/ 
+        sudo git clone /home/belkeen/asgard.git /var/www/html 
         sudo chown -R www-data:"Utilisateur" /var/www/html/ 
 		sudo chmod -R 770 /var/www/html 
         sudo nano /home/belkeen/asgard.git/.git/hooks/post-update 

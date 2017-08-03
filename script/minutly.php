@@ -5,7 +5,7 @@
 	include('/var/www/html/lib/BDD.php');
 	
 	// ---- On teste la présence de mesure de moins d'une heure
-	$equipements_BDD = $bdd->query('SELECT Id, Ip 
+	$equipements_BDD = $bdd->query('SELECT Id, Ip, DHT22, Id_Pieces 
 									FROM Equipements');
 	while($infos_equipement = $equipements_BDD->fetch()) {
 		$html = file_get_html('http://' . $infos_equipement['Ip'] . '/script/systeme.php');
@@ -15,10 +15,17 @@
 		$ram=$element->value;
 		foreach($html->find('input[name=temperature]') as $element) 
 		$temperature=$element->value;
+		if($infos_equipement['DHT22'] == 1) {
+			foreach($html->find('input[name=DHT22Temp]') as $element) 
+			$DHT22Temp=$element->value;
+			foreach($html->find('input[name=DHT22Hum]') as $element) 
+			$DHT22Hum=$element->value;
+			$heurodatage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')+1, date('d'), date('Y')));
+			$bdd->exec('INSERT INTO `Mesures`(`Id`, `Heurodatage`, `Tempint`, `Humidite`, `Id_Pieces`) 
+						VALUES (null,\'' . $heurodatage . '\',' . $DHT22Temp . ',' . $DHT22Hum . ',' . $infos_equipement['Id_Pieces'] . ')');
+		}
 		$bdd->exec('INSERT INTO Performances(Heurodatage, Cpu, Ram, Temperature, Id_Equipements) 
 					VALUES(NOW(), ' . $cpu . ', ' . $ram . ', ' . $temperature . ', ' . $infos_equipement['Id'] . ')');
-		echo 'INSERT INTO Performances(Heurodatage, Cpu, Ram, Temperature, Id_Equipements) 
-					VALUES(NOW(), ' . $cpu . ', ' . $ram . ', ' . $temperature . ', ' . $infos_equipement['Id'] . ')';
 	}
 	$equipements_BDD->closeCursor();
 ?>
