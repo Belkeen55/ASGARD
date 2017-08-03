@@ -1,31 +1,18 @@
 <?php
 	if(isset($_GET['update'])) {
-		if(isset($_GET['DHT22'])) {
-			$DHT22 = 1;
-		}
-		else {
-			$DHT22 = 0;
-		}
 		$bdd->exec('UPDATE Equipements
 					SET Nom = \'' . str_replace('\'', '\'\'', $_GET['nom']) . '\', 
 					Ip = \'' . $_GET['ip'] . '\', 
 					Commentaires = \'' . str_replace('\'', '\'\'', $_GET['commentaire']) . '\', 
 					Id_Pieces = ' . $_GET['location'] . ', 
-					Id_Typ_Equip = ' . $_GET['equip'] . ',
-					DHT22 = ' . $DHT22 . '
+					Id_Typ_Equip = ' . $_GET['equip'] . '
 					WHERE Id = ' . $_GET['module']);
 		echo "<script type='text/javascript'>window.close();</script>";
 	}
 	if(isset($_GET['creation'])) {
 		$clonage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')));
-		if(isset($_GET['DHT22'])) {
-			$DHT22 = 1;
-		}
-		else {
-			$DHT22 = 0;
-		}
 		$bdd->exec('INSERT INTO Equipements(Id, Nom, Ip, Commentaires, Id_Pieces, Id_Typ_Equip, Clonage, DHT22) 
-					VALUES(NULL, \'' . $_GET['nom'] . '\', \'' . $_GET['ip'] . '\', \'' . $_GET['commentaire'] . '\', ' . $_GET['location'] . ', ' . $_GET['equip'] . ', \'' . $clonage . '\', ' . $DHT22 . ')');
+					VALUES(NULL, \'' . $_GET['nom'] . '\', \'' . $_GET['ip'] . '\', \'' . $_GET['commentaire'] . '\', ' . $_GET['location'] . ', ' . $_GET['equip'] . ', \'' . $clonage . '\', 0)');
 		echo "<script type='text/javascript'>window.close();</script>";	
 	}
 	if(isset($_GET['delete'])) {
@@ -210,13 +197,6 @@
 				$typ_equip_BDD->closeCursor();				
 			?>
 		</select>
-	</div>
-</div>
-<div class="liner"></div>
-<div class="line">
-	<div class="inline-20-Left">Periphériques</div>
-	<div class="inline-20-Left">
-		<input type="checkbox" name="DHT22" value="1"> DHT22<br>
 	</div>
 </div>
 <div class="liner"></div>
