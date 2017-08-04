@@ -61,6 +61,9 @@
 								case 'detail':
 									include('fimafeng/detail.php');
 									break;
+								case 'maintenance':
+									include('fimafeng/maintenance.php');
+									break;
 								default:
 								   include('fimafeng/equipement.php');
 							}

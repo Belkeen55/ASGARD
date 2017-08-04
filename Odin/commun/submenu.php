@@ -23,6 +23,7 @@
 	<a href="/Odin/fimafeng.php?module=equipement"><div class="ongletsubmenu<?php if($module == 'equipements') {echo 'selected';} ?>"><div class="textesubmenu">Equipements</div></div></a>
 	<a href="/Odin/fimafeng.php?module=piece"><div class="ongletsubmenu<?php if($module == 'pieces') {echo 'selected';} ?>"><div class="textesubmenu">Pieces</div></div></a>
 	<a href="/Odin/fimafeng.php?module=type"><div class="ongletsubmenu<?php if($module == 'type') {echo 'selected';} ?>"><div class="textesubmenu">Types</div></div></a>
+	<a href="/Odin/fimafeng.php?module=maintenance"><div class="ongletsubmenu<?php if($module == 'maintenance') {echo 'selected';} ?>"><div class="textesubmenu">Maintenance</div></div></a>
 <?php
 	}
 ?>
