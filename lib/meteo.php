@@ -1,7 +1,7 @@
 <?php
 	function add_previsions_BDD($bdd) {
 		$dom = new DomDocument();
-		if($dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric')) {
+		if($dom->load('http://api.openweathermap.org/data/2.5/forecast?id=2972253&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric')) {
 			$prevision = $dom->getElementsByTagName("time");
 			if($prevision->length != 0){
 				$bdd->exec('DELETE FROM Meteo WHERE Id <> 1');
@@ -41,10 +41,10 @@
 	}
 	
 	function donnees_sonde_live($ip) {
-		$html = file_get_html('http://' . $ip);
-		foreach($html->find('input[name=temperature]') as $element) 
+		$html = file_get_html('http://' . $ip . '/script/systeme.php');
+		foreach($html->find('input[name=DHT22Temp]') as $element) 
 		$temperature=$element->value;
-		foreach($html->find('input[name=humidite]') as $element) 
+		foreach($html->find('input[name=DHT22Hum]') as $element) 
 		$humidite=$element->value;
 		$donnees = [
 			'temperature' => $temperature,
@@ -71,7 +71,7 @@
 	
 	function meteo_act_live() {
 		$dom = new DomDocument();
-		$dom->load('http://api.openweathermap.org/data/2.5/weather?id=2972444&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
+		$dom->load('http://api.openweathermap.org/data/2.5/weather?id=2972253&APPID=f2b5d95b18acabcaf7284639eb989fb8&mode=xml&units=metric');
 		$balise = $dom->getElementsByTagName("temperature");
 		foreach($balise as $valeur)
 			$tempext=$valeur->getAttribute("value");
@@ -159,19 +159,13 @@
 	function donnees_piece_live($bdd, $piece) {
 		$reponse = $bdd->query('SELECT Ip 
 								FROM Equipements 
-								WHERE Id_Type_Equip = 2
+								WHERE DHT22 = 1
 								AND Id_Pieces = ' . $piece);
 		$donnees = $reponse->fetch();
 		$ip = $donnees['Ip'];
 		$reponse->closeCursor();
 		if(ping($ip) == 'on') {
 			$infos_sonde = donnees_sonde_live($ip);
-			$reponse = $bdd->query('SELECT Radiateur 
-									FROM Radiateurs 
-									WHERE Id_Pieces = ' . $piece);
-			$donnees = $reponse->fetch();
-			$radiateur = $donnees['Radiateur'];
-			$reponse->closeCursor();
 			$reponse = $bdd->query('SELECT T_ideal, H_ideal 
 									FROM Pieces
 									WHERE Id = ' . $piece);
@@ -219,44 +213,6 @@
 					}
 				}
 			}
-			$TRmin = (int)$infos_sonde['temperature'];
-			$TRmax = (int)$infos_sonde['temperature']+1;
-			$TiRmin = (int)temperature_exterieure_BDD($bdd);
-			$TiRmax = (int)temperature_exterieure_BDD($bdd)+1;
-			$reponse = $bdd->query('SELECT Id_Pieces, AVG(Radiateur) as Reglage 
-									FROM Mesures
-									WHERE Id_Pieces = ' . $piece . ' 
-									AND Tempint > ' . $TRmin . '
-									AND Tempint < ' . $TRmax . '
-									AND Tempext > ' . $TiRmin . '
-									AND Tempext < ' . $TiRmax . '
-									GROUP BY Id_Pieces');
-			$lignes = $reponse->rowCount();
-			if($lignes == 0)
-			{
-				$reglage = 'NA';
-				$Retat = 'ok';
-			}
-			else
-			{
-				$donnees = $reponse->fetch();
-				$reglage = (int)$donnees['Reglage'];
-				if($reglage-(int)$radiateur > 0)
-				{
-					$Retat = 'low';
-				}
-				else
-				{
-					if($reglage-(int)$radiateur < 0)
-					{
-						$Retat = 'high';
-					}
-					else
-					{
-						$Retat = 'ok';
-					}
-				}
-			}
 			$reponse->closeCursor();
 			$infos = [
 				'Tetat' => $Tetat,
@@ -264,10 +220,7 @@
 				'Tideal' => $Tideal,
 				'Hetat' => $Hetat,
 				'humidite' => $infos_sonde['humidite'],
-				'Hideal' => $Hideal,
-				'Retat' => $Retat,
-				'radiateur' => $radiateur,
-				'reglage' => $reglage
+				'Hideal' => $Hideal
 			];
 		}
 		else {
@@ -277,10 +230,7 @@
 				'Tideal' => -1,
 				'Hetat' => -1,
 				'humidite' => -1,
-				'Hideal' => -1,
-				'Retat' => -1,
-				'radiateur' => -1,
-				'reglage' => -1
+				'Hideal' => -1
 			];
 		}
 		return $infos;
@@ -289,7 +239,7 @@
 	function donnees_piece_BDD($bdd, $piece) {
 		$reponse = $bdd->query('SELECT Ip 
 								FROM Equipements 
-								WHERE Id_Type_Equip = 2
+								WHERE DHT22 = 1
 								AND Id_Pieces = ' . $piece);
 		$donnees = $reponse->fetch();
 		$ip = $donnees['Ip'];

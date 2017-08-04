@@ -3,7 +3,7 @@
 		<?php
 			$pieces_BDD = $bdd->query('SELECT Pieces.Id, Pieces.Nom 
 												FROM Pieces, Equipements 
-												WHERE Id_Type_Equip = 2
+												WHERE DHT22 = 1
 												AND Equipements.Id_Pieces = Pieces.Id');
 			while($infos_piece = $pieces_BDD->fetch()) {
 				$infos_sonde = donnees_piece_live($bdd, $infos_piece['Id']);
@@ -31,11 +31,6 @@
 					<div class="line"><?php echo $infos_sonde['humidite']; ?>%</div>
 				</div>
 				<div class="lefttitre"></div>	
-				<div class="colonne">
-					<div class="line"><img src="/img/black/heater<?php echo $infos_sonde['Retat']; ?>.png" height="40"></img></div>
-					<div class="liner"></div>
-					<div class="line"><?php echo (int)$infos_sonde['radiateur']; ?></div>
-				</div>
 				<div class="liner"></div>
 			</div>
 		</div>
@@ -184,47 +179,6 @@
 				<div class="lefttitre"></div>
 				<div class="liner"></div>						
 			</div>
-		</div>
-	</div>
-</div>
-<div class="liner"></div>
-<div class="liner"></div>
-<div class="liner"></div>
-<div class="line">
-	<div class="full-screen">
-		<a href="/Odin/fimafeng.php?module=sol" class="black">
-			<div class="titre">
-				<div class="lefttitre"></div>
-				Logs
-			</div>
-		</a>
-		<div class="cadre_left">
-			<div class="liner"></div>
-			<?php
-				$logs_BDD = $bdd->query('	SELECT Logs.Heurodatage, Codes.Commentaire, Codes.Warning, Equipements.Nom 
-											FROM Logs, Equipements, Codes
-											WHERE Logs.Id_Codes = Codes.Id
-											AND Codes.Id_Equipements = Equipements.Id
-											AND ((Codes.Id > 100 AND Codes.Id < 300) OR (Codes.Id > 400 AND Codes.Id < 500))
-											ORDER BY Logs.Heurodatage DESC
-											LIMIT 10');
-				while($infos_log = $logs_BDD->fetch()) {
-					if($infos_log['Warning']) {
-						$warning = 'KO';
-					}
-					else {
-						$warning = 'OK';
-					}
-			?>
-					<div class="line">
-						<img src="/img/log_<?php echo $warning; ?>.png" height=10></img>
-						<?php echo $infos_log['Heurodatage']; ?> : <?php echo $infos_log['Nom']; ?> >> <?php echo $infos_log['Commentaire']; ?>
-					</div>
-			<?php
-				}
-				$logs_BDD->closeCursor();
-			?>
-			<div class="liner"></div>
 		</div>
 	</div>
 </div>
