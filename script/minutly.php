@@ -18,7 +18,7 @@
 		$temperature=$element->value;
 		foreach($html->find('input[name=DHT22Temp]') as $element) 
 		$DHT22Temp=$element->value;
-		if(isset($DHT22Temp)) {
+		if($DHT22Temp != '') {
 			foreach($html->find('input[name=DHT22Hum]') as $element) 
 			$DHT22Hum=$element->value;
 			$heurodatage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')+1, date('d'), date('Y')));
@@ -26,12 +26,12 @@
 						VALUES (null,\'' . $heurodatage . '\',' . $DHT22Temp . ',' . $DHT22Hum . ',' . $infos_equipement['Id_Pieces'] . ')');
 			$bdd->exec('UPDATE Equipements
 						SET DHT22 = 1
-						WHERE Id = ' . $infos_equipement['Ip']);
+						WHERE Id = ' . $infos_equipement['Id']);
 		} 
 		else {
 			$bdd->exec('UPDATE Equipements
 						SET DHT22 = 0
-						WHERE Id = ' . $infos_equipement['Ip']);
+						WHERE Id = ' . $infos_equipement['Id']);
 		}
 		$bdd->exec('INSERT INTO Performances(Heurodatage, Cpu, Ram, Temperature, Id_Equipements) 
 					VALUES(NOW(), ' . $cpu . ', ' . $ram . ', ' . $temperature . ', ' . $infos_equipement['Id'] . ')');
