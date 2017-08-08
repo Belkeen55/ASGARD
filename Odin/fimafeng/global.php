@@ -11,7 +11,7 @@
 			$progressOptions = array("Width"=>165, "Height"=>15, "R"=>134, "G"=>209, "B"=>27, "Surrounding"=>20, "BoxBorderR"=>0, "BoxBorderG"=>0, "BoxBorderB"=>0, "BoxBackR"=>255, "BoxBackG"=>255, "BoxBackB"=>255, "RFade"=>255, "GFade"=>0, "BFade"=>0, "ShowLabel"=>TRUE, "LabelPos"=>LABEL_POS_LEFT);
 			while($infos_equipement = $equipements_BDD->fetch()) {
 				$connec = ping($infos_equipement['Ip']);
-				if($connec == 'on') {
+				if($connec == 1) {
 					$temperature = -1;
 					$html = file_get_html('http://' . $infos_equipement['Ip'] . '/script/systeme.php');
 					foreach($html->find('input[name=temperature]') as $element) 

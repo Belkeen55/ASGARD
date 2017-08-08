@@ -164,7 +164,7 @@
 		$donnees = $reponse->fetch();
 		$ip = $donnees['Ip'];
 		$reponse->closeCursor();
-		if(ping($ip) == 'on') {
+		if(ping($ip) == 1) {
 			$infos_sonde = donnees_sonde_live($ip);
 			$reponse = $bdd->query('SELECT T_ideal, H_ideal 
 									FROM Pieces
