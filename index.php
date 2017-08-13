@@ -41,12 +41,19 @@
     <body class="ecran_noir">
 	
 		<!-- Tableau de page -->
-		<table class="full-screen">
-			<tr>
-				<td align="center" colspan="3">
-					<img src="/img/banniere.png">
-				</td>
-			</tr>
+		<div class="contenu">
+			<div class="line">
+				<div class="display_center">
+					<div style="height:325px">
+						<img style="height:325px" src="/img/giphy.gif">
+					</div>
+				<div>
+			</div>
+			<div class="line"
+				<div class="display_center">
+					<div class="taille1">ASGARD</div>
+				</div>
+			</div>
 			<?php
 				if($_SESSION['login']) {
 					// ---- Si l'utilisateur est loggé
@@ -56,50 +63,38 @@
 				{
 				// ---- Si l'utilisateur n'est pas loggé
 			?>
-			<tr align="center">
-				<td style="widht:30%">
-					<img src="/img/vide.png" height="200">
-				</td>
-				<td>
+			<div class="liner"></div>
+			<div class="line">
+				<div class="display_center">
 					<!-- On renvoit vers la même page avec des POST -->
 					<form action="index.php" method="post">
-					<table>
-						<tr>
-							<td>
-								Identifiant :
-							</td>
-							<td>
-								<input type="text" name="identifiant" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								Mot de passe :
-							</td>
-							<td>
-								<input type="password" name="mot_de_passe" />
-							</td>
-						</tr>
-						<tr align="center">
-							<td colspan="2">
-								<input type="submit" value="Connexion" />
-							</td>
-						</tr>
-					</table>
+						<div class="line">
+							Identifiant :
+						</div>
+						<div class="line">
+							<input type="text" name="identifiant" />
+						</div>
+						<div class="liner"></div>
+						<div class="line">
+							Mot de passe :
+						</div>
+						<div class="line">
+							<input type="password" name="mot_de_passe" />
+						</div>
+						<div class="liner"></div>
+						<div class="line">
+							<input type="submit" value="Connexion" />
+						</div>
 					</form>
-				</td>
-				<td style="widht:30%">
-					<img src="/img/vide.png" height="200">
-				</td>
-			</tr>
-			<tr>
-				<td align="right" colspan="3">
-					<img src="/img/Cc-by-nc-sa_icon.png">
-				</td>
-			</tr>
+				</div>
+			</div>
+			<div class="liner"></div>
+			<div class="line">
+				<div class="display_right"><img src="/img/Cc-by-nc-sa_icon.png"></div>
+			</div>
 			<?php
 				}
 			?>
-		</table>
+		</div>
     </body>
 </html>
