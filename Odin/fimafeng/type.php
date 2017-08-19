@@ -48,24 +48,24 @@
 </div>
 <div class="liner"></div>
 <div class="liner"></div>
+<div class="display_center">
 <?php
 	if($nombre_types != 0) { // Si il existe des pièces
 		while($infos_type = $types_BDD->fetch()) {
 ?>
-<div class="line">
-	<div class="display_center">
-		<div class="performances">
+	
+		<div class="inline-W350px">
 			<div class="titre">
 				<div class="lefttitre"></div>
 				<div class="inline-45pct-left"><?php echo $infos_type['Nom']; ?></div>
 				<div class="inline-W45pct-right"><a href="#null" onclick="javascript:open_infos(<?php echo $infos_type['Id']; ?>);"><img src="/img/edit.png" height="20"></img></a></div>
 			</div>			
 		</div>
-	</div>
-</div>
+	
 
 <?php
 		}
 		$types_BDD->closeCursor();
 	}
 ?>
+</div>

@@ -12,7 +12,7 @@
 <div class="liner"></div>
 <div class="line">
 	<div class="display_center">
-		<div class="performances">
+		<div class="inline-W350px">
 			<div class="titre">
 				<div class="lefttitre"></div>
 				<div class="inline-45pct-left">Mise à jour à faire</div>
@@ -66,7 +66,7 @@
 				<div class="liner"></div>
 			</div>
 		</div>
-		<div class="performances">
+		<div class="inline-W250px">
 			<div class="titre">
 				<div class="lefttitre"></div>
 				<div class="inline-45pct-left">Surcharge CPU</div>
@@ -106,7 +106,7 @@
 				<div class="liner"></div>
 			</div>
 		</div>
-		<div class="performances">
+		<div class="inline-W250px">
 			<div class="titre">
 				<div class="lefttitre"></div>
 				<div class="inline-45pct-left">Surcharge RAM</div>

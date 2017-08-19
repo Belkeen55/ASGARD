@@ -48,13 +48,14 @@
 </div>
 <div class="liner"></div>
 <div class="liner"></div>
+<div class="display_center">
 <?php
 	if($nombre_pieces != 0) { // Si il existe des pièces
 		while($infos_pieces = $pieces_BDD->fetch()) {
 ?>
-<div class="line">
-	<div class="display_center">
-		<div class="performances">
+
+	
+		<div class="inline-W300px">
 			<div class="titre">
 				<div class="lefttitre"></div>
 				<div class="inline-45pct-left"><?php echo $infos_pieces['Nom']; ?></div>
@@ -71,11 +72,11 @@
 				<div class="liner"></div>
 			</div>
 		</div>
-	</div>
-</div>
+	
 
 <?php
 		}
 		$pieces_BDD->closeCursor();
 	}
 ?>
+</div>

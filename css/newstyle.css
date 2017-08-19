@@ -77,13 +77,31 @@ div /* OK */
 .inline-W200px /* OK */
 {
 	display: inline-block;
+	width: 200px;	
+}
+
+.inline-W250px /* OK */
+{
+	display: inline-block;
 	width: 250px;	
+}
+
+.inline-W300px /* OK */
+{
+	display: inline-block;
+	width: 300px;	
 }
 
 .inline-W350px /* OK */
 {
 	display: inline-block;
 	width: 350px;	
+}
+
+.inline-W400px /* OK */
+{
+	display: inline-block;
+	width: 400px;	
 }
 
 .line-H10px /* OK */
@@ -226,7 +244,7 @@ a
 .lefttitre
 {
 	display: inline-block;
-	width: 20px;
+	width: 5%;
 	height: 100%;
 }
 

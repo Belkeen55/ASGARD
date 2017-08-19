@@ -53,6 +53,7 @@
 </div>
 <div class="liner"></div>
 <div class="liner"></div>
+<div class="display_center">
 <?php
 	if($nombre_equipements != 0) {
 		while($infos_equipement = $equipements_BDD->fetch()) {
@@ -84,10 +85,9 @@
 				foreach($html->find('input[name=update]') as $element) 
 				$update=$element->value;
 ?>
-<div class="liner"></div>
-<div class="line">
-	<div class="display_center">
-		<div class="performances">
+
+	
+		<div class="inline-W400px">
 			<div class="titre">
 				<div class="lefttitre"></div>
 				<div class="inline-45pct-left"><?php echo $infos_equipement['Nom']; ?></div>
@@ -108,15 +108,14 @@
 				<div class="liner"></div>
 			</div>
 		</div>
-	</div>
-</div>
+	
+
 <?php
 		}
 		else {	// Si il n'est pas connecté
 ?>
 <div class="line">
-	<div class="display_center">
-		<div class="inline-W350px">
+		<div class="inline-W300px">
 			<a href="/Odin/fimafeng.php?module=<?php echo strtolower($infos_equipement['Id']); ?>" class="black">
 				<div class="titre">
 					<div class="lefttitre"></div>
@@ -136,10 +135,10 @@
 				<div class="liner"></div>
 			</div>
 		</div>
-	</div>
 </div>
 <?php
 			}
 		}
 	}
 ?>
+</div>
