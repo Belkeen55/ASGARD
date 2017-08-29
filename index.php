@@ -35,23 +35,32 @@
 <html>
     <head>
         <meta charset="utf-8" />
-		<link rel="stylesheet" href="/css/newstyle.css" />
+        <?php
+        	$ua = $_SERVER['HTTP_USER_AGENT'];
+			if (preg_match('/iphone/i',$ua) || preg_match('/android/i',$ua) || preg_match('/blackberry/i',$ua) || preg_match('/symb/i',$ua) || preg_match('/ipad/i',$ua) || preg_match('/ipod/i',$ua) || preg_match('/phone/i',$ua) ) {
+				//echo "<LINK rel="stylesheet" type="text/css" href="smartphones.css">";
+				echo '<link rel="stylesheet" href="/css/mobile.css" />';
+			}
+			else {
+				echo '<link rel="stylesheet" href="/css/newstyle.css" />';
+			}
+		?>
         <title>ASGARD - Connexion</title>
     </head>
-    <body class="ecran_noir">
+    <body class="ecran_sombre">
 	
 		<!-- Tableau de page -->
 		<div class="contenu">
 			<div class="line">
 				<div class="display_center">
-					<div style="height:325px">
-						<img style="height:325px" src="/img/giphy.gif">
+					<div class="logo-big">
+						<img class="logo-big" src="/img/giphy.gif">
 					</div>
 				<div>
 			</div>
 			<div class="line"
 				<div class="display_center">
-					<div class="taille1">ASGARD</div>
+					<div class="policetitre">ASGARD</div>
 				</div>
 			</div>
 			<?php
@@ -69,28 +78,31 @@
 					<!-- On renvoit vers la même page avec des POST -->
 					<form action="index.php" method="post">
 						<div class="line">
-							Identifiant :
+							<div class="policetexte">Identifiant :</div>
 						</div>
 						<div class="line">
-							<input type="text" name="identifiant" />
-						</div>
-						<div class="liner"></div>
-						<div class="line">
-							Mot de passe :
-						</div>
-						<div class="line">
-							<input type="password" name="mot_de_passe" />
+							<input class="champ" type="text" name="identifiant" />
 						</div>
 						<div class="liner"></div>
 						<div class="line">
-							<input type="submit" value="Connexion" />
+							<div class="policetexte">Mot de passe :</div>
+						</div>
+						<div class="line">
+							<input class="champ" type="password" name="mot_de_passe" />
+						</div>
+						<div class="liner"></div>
+						<div class="liner"></div>
+						<div class="line">
+							<input class="boutonConnexion" type="submit" value="Connexion" />
 						</div>
 					</form>
 				</div>
 			</div>
 			<div class="liner"></div>
 			<div class="line">
-				<div class="display_right"><img src="/img/Cc-by-nc-sa_icon.png"></div>
+				<div class="display_right">
+					<img class="ccbyncsa" src="/img/Cc-by-nc-sa_icon.png">
+				</div>
 			</div>
 			<?php
 				}

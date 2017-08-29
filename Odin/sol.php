@@ -33,7 +33,7 @@
 				<head>
 					<?php include('commun/head.php'); ?>
 				</head>
-				<body class="ecran_blanc">
+				<body class="ecran_clair">
 					<div class="redline"></div>
 					<div class="header">
 						<?php include('commun/header.php'); ?>

@@ -2,6 +2,7 @@
 .ecran_clair
 {
 	margin: 0 0 0 0;
+	width: 100%;
 }
 
 .ecran_sombre
@@ -16,12 +17,12 @@
 
 .logo-big
 {
-	height:400px;
+	height:600px;
 }
 
 .ccbyncsa
 {
-	height:42px;
+	height:63px;
 }
 
 /* -------------- Structure de la page -------------- */
@@ -57,50 +58,52 @@ div
 
 .policetitre
 {
-	font-size: 70px;
+	font-size: 105px;
 }
 
 .policetexte
 {
-	font-size: 16px;
+	font-size: 24px;
 }
 
 /* -------------- Elements Form -------------- */
 
 .champ
 {
-	height:20px;
-	width: 150px;
+	height:30px;
+	width: 225px;
 }
 
 .boutonConnexion
 {
-	height:22px;
-	width: 100px;
-	font-size: 16px;
+	height:33px;
+	width: 150px;
+	font-size: 24px;
 }
 
-/* -------------- Elements Page -------------- */
+/* -------------- Elements Form -------------- */
 
 .redline
 {
 	display: block;
 	background-color: red;
-	height: 2px;
+	height: 8px;
 }
 
 .logo
 {
 	display: inline-block;
-	width: 80px;
-	text-align: left;
+	width: 98%;
+	text-align: center;	
+	font-size: 100px;
 }
 
 .utilisateur
 {
 	display: inline-block;
 	text-align: right;
-	width: 92%;
+	width: 0%;
+	visibility: hidden;
 }
 
 .header
@@ -108,7 +111,6 @@ div
 	background-color: black;
 	color: white;
 	width: 100%;
-	height: 30px;
 }
 
 .menu
@@ -116,7 +118,7 @@ div
 	background-color: #151515;
 	color: #D8D8D8;
 	width: 100%;
-	height: 50px;
+	height: 85px;
 	text-align: center;
 }
 
@@ -124,15 +126,16 @@ div
 {
 	display: inline-block;
 	height: 100%;
-	vertical-align: -75%;
+	vertical-align: -50%;
 	text-align: center;
+	font-size: 55px;
 }
 
 .ongletmenu
 {
 	display: inline-block;
 	height: 96%;
-	width: 100px;
+	width: 30%;
 	text-align: center;
 }
 
@@ -140,7 +143,7 @@ div
 {
 	display: inline-block;
 	height: 96%;
-	width: 100px;
+	width: 30%;
 	text-align: center;
 	background-color: #2E2E2E;
 }
@@ -149,7 +152,7 @@ div
 {
 	display: inline-block;
 	height: 96%;
-	width: 100px;
+	width: 30%;
 	text-align: center;
 	background-color: #1C1C1C;
 }
@@ -159,7 +162,7 @@ div
 	background-color: #424242;
 	color: #D8D8D8;
 	width: 100%;
-	height: 30px;
+	height: 55px;
 	text-align: center;
 }
 
@@ -169,13 +172,14 @@ div
 	height: 100%;
 	vertical-align: -35%;
 	text-align: center;
+	font-size: 40px;
 }
 
 .ongletsubmenu
 {
 	display: inline-block;
 	height: 96%;
-	width: 90px;
+	width: 16%;
 	text-align: center;
 }
 
@@ -183,7 +187,7 @@ div
 {
 	display: inline-block;
 	height: 96%;
-	width: 90px;
+	width: 16%;
 	text-align: center;
 	background-color: #6E6E6E;
 }
@@ -192,10 +196,15 @@ div
 {
 	display: inline-block;
 	height: 96%;
-	width: 90px;
+	width: 16%;
 	text-align: center;
 	background-color: #585858;
 }
+
+
+
+
+
 
 
 

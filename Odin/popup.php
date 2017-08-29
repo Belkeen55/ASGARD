@@ -20,7 +20,7 @@
 				<head>
 					<?php include('commun/head.php'); ?>
 				</head>
-				<body class="ecran_blanc" <?php if(isset($_GET['close'])) { echo 'onunload="window.opener.location.reload(true);"'; } ?>>
+				<body class="ecran_clair" <?php if(isset($_GET['close'])) { echo 'onunload="window.opener.location.reload(true);"'; } ?>>
 					<div class="redline"></div>
 					<div class="header">
 						<?php include('commun/header.php'); ?>
