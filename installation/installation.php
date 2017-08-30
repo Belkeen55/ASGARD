@@ -16,7 +16,7 @@
 						fclose($fichier_sql);
 			    		include('../lib/BDD.php');
 			    		structure_SQL($bdd);
-			    		$req = $bdd->exec('INSERT INTO Utilisateurs VALUES (NULL , \'' . $_POST['login'] . '\', ' . cryptage($_POST['password']) . ')');
+			    		$req = $bdd->exec('INSERT INTO Utilisateurs VALUES (NULL , \'' . $_POST['login'] . '\', ' . cryptage($_POST['password']) . ', 1)');
 			    	}
 			    	else
 			    	{

@@ -45,6 +45,9 @@
 										case 'type':
 											include('popup/type.php');
 											break;
+										case 'utilisateurs':
+											include('popup/utilisateurs.php');
+											break;
 										default:
 											echo 'Erreur 1';
 									}

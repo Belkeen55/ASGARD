@@ -24,6 +24,7 @@
 	<a href="/Odin/fimafeng.php?module=piece"><div class="ongletsubmenu<?php if($module == 'piece') {echo 'selected';} ?>"><div class="textesubmenu">Pieces</div></div></a>
 	<a href="/Odin/fimafeng.php?module=type"><div class="ongletsubmenu<?php if($module == 'type') {echo 'selected';} ?>"><div class="textesubmenu">Types</div></div></a>
 	<a href="/Odin/fimafeng.php?module=maintenance"><div class="ongletsubmenu<?php if($module == 'maintenance') {echo 'selected';} ?>"><div class="textesubmenu">Etat</div></div></a>
+	<a href="/Odin/fimafeng.php?module=utilisateurs"><div class="ongletsubmenu<?php if($module == 'utilisateurs') {echo 'selected';} ?>"><div class="textesubmenu">Utilisateurs</div></div></a>
 <?php
 	}
 ?>
