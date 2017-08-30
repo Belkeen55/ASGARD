@@ -28,6 +28,7 @@ Installation serveur test-pi3
 	sudo apt install php5-mysql 
 	sudo apt install php5-imagick 
 	sudo apt install php5-gd 
+	sudo apt install php5-curl 
 	sudo apt-get install python-dev 
 
 #### Creation Key SSH 

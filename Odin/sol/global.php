@@ -66,6 +66,30 @@
 <div class="liner"></div>
 <div class="line">
 	<div class="display_center">
+		<div class="inline-W200px">
+			<div class="titre">
+				<div class="lefttitre"></div>
+				Veilleuse Zacharie
+			</div>
+			<div class="cadre_center">
+				<div class="liner"></div>
+				<div class="colonne">
+					<div class="line">Etat : </div>
+					<div class="liner"></div>
+					<div class="line">Allumer</div>
+					<div class="liner"></div>
+					<div class="line">Eteindre</div>
+				</div>
+				<div class="lefttitre"></div>	
+				<div class="liner"></div>
+			</div>
+		</div>
+		<div class="left1pct"></div>
+	</div>
+</div>
+<div class="liner"></div>
+<div class="line">
+	<div class="display_center">
 		<?php
 			$result = meteo_act_BDD($bdd);
 		?>		

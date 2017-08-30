@@ -36,6 +36,7 @@ Installation du serveur principal
 	sudo apt install git 
 	sudo apt install php5-imagick 
 	sudo apt install php5-gd 
+	sudo apt install php5-curl 
 
 #### Preparation des dossiers
 	sudo nano /etc/php5/apache2/php.ini 
