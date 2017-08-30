@@ -9,6 +9,7 @@
 	background-color: #36353d;
 	color: white;
 	width: 100%;
+	height: 100%;
 	margin: 0 0 0 0;
 }
 
@@ -36,15 +37,74 @@ div
 	vertical-align: middle;
 }
 
-.line
+.ligneLogo
+{
+	text-align: center;	
+}
+
+.titreConnexion
+{
+	display: block;
+	font-size: 70px;
+	text-align: center;
+	height: 90px;
+}
+
+.formualaireConnexion
+{
+	display: block;
+	text-align: center;
+}
+
+.ligneConnexion
 {
 	display: block;
 }
 
-.display_center
+.libelleConnexion
 {
-	text-align: center;	
+	display: block;
+	text-align: center;
+	font-size: 16px;
 }
+
+.ligneChampConnexion
+{
+	display: block;
+	text-align: center;
+	height: 36px;
+}
+
+.champConnexion
+{
+	height:20px;
+	width: 150px;
+}
+
+.ligneBoutonConnexion
+{
+	display: block;
+	text-align: center;
+	height: 36px;
+}
+
+.boutonConnexion
+{
+	height:22px;
+	width: 100px;
+	font-size: 16px;
+}
+
+.ligneLicence
+{
+	display: block;
+	text-align: right;
+}
+
+
+
+
+
 
 .left1pct
 {
@@ -67,18 +127,12 @@ div
 
 /* -------------- Elements Form -------------- */
 
-.champ
+.line
 {
-	height:20px;
-	width: 150px;
+	display: block;
 }
 
-.boutonConnexion
-{
-	height:22px;
-	width: 100px;
-	font-size: 16px;
-}
+
 
 /* -------------- Elements Page -------------- */
 
@@ -197,7 +251,10 @@ div
 	background-color: #585858;
 }
 
-
+.display_center
+{
+	text-align: center;	
+}
 
 
 

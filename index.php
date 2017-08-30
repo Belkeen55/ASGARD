@@ -48,21 +48,11 @@
         <title>ASGARD - Connexion</title>
     </head>
     <body class="ecran_sombre">
-	
-		<!-- Tableau de page -->
 		<div class="contenu">
-			<div class="line">
-				<div class="display_center">
-					<div class="logo-big">
-						<img class="logo-big" src="/img/giphy.gif">
-					</div>
-				<div>
+			<div class="ligneLogo">
+				<img class="logo-big" src="/img/giphy.gif">
 			</div>
-			<div class="line"
-				<div class="display_center">
-					<div class="policetitre">ASGARD</div>
-				</div>
-			</div>
+			<div class="titreConnexion">ASGARD</div>
 			<?php
 				if($_SESSION['login']) {
 					// ---- Si l'utilisateur est loggé
@@ -72,37 +62,28 @@
 				{
 				// ---- Si l'utilisateur n'est pas loggé
 			?>
-			<div class="liner"></div>
-			<div class="line">
-				<div class="display_center">
-					<!-- On renvoit vers la même page avec des POST -->
-					<form action="index.php" method="post">
-						<div class="line">
-							<div class="policetexte">Identifiant :</div>
+			<div class="formulaireConnexion">
+				<!-- On renvoit vers la même page avec des POST -->
+				<form action="index.php" method="post">
+					<div class="ligneConnexion">
+						<div class="libelleConnexion">Identifiant :</div>
+						<div class="ligneChampConnexion">
+							<input class="champConnexion" type="text" name="identifiant" />
 						</div>
-						<div class="line">
-							<input class="champ" type="text" name="identifiant" />
+					</div>
+					<div class="ligneConnexion">
+						<div class="libelleConnexion">Mot de passe :</div>
+						<div class="ligneChampConnexion">
+							<input class="champConnexion" type="password" name="mot_de_passe" />
 						</div>
-						<div class="liner"></div>
-						<div class="line">
-							<div class="policetexte">Mot de passe :</div>
-						</div>
-						<div class="line">
-							<input class="champ" type="password" name="mot_de_passe" />
-						</div>
-						<div class="liner"></div>
-						<div class="liner"></div>
-						<div class="line">
-							<input class="boutonConnexion" type="submit" value="Connexion" />
-						</div>
-					</form>
-				</div>
+					</div>
+					<div class="ligneBoutonConnexion">
+						<input class="boutonConnexion" type="submit" value="Connexion" />
+					</div>
+				</form>
 			</div>
-			<div class="liner"></div>
-			<div class="line">
-				<div class="display_right">
-					<img class="ccbyncsa" src="/img/Cc-by-nc-sa_icon.png">
-				</div>
+			<div class="ligneLicence">
+				<img class="ccbyncsa" src="/img/Cc-by-nc-sa_icon.png">
 			</div>
 			<?php
 				}
