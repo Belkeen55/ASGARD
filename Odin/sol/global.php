@@ -1,3 +1,15 @@
+<?php
+	if(isset($_POST['action'])) {
+		switch($_POST['action']) {
+			case 'allumer'	:
+				exec('/usr/bin/php /var/www/html/script/ledzacharieallumer.php');
+				break;
+			case 'eteindre' :
+				exec('/usr/bin/php /var/www/html/script/ledzacharieeteindre.php');
+				break;
+		}
+	}
+?>
 <div class="line">
 	<div class="display_center">
 		<?php
@@ -76,9 +88,17 @@
 				<div class="colonne">
 					<div class="line">Etat : </div>
 					<div class="liner"></div>
-					<div class="line">Allumer</div>
+					<div class="line">
+						<form action="/Odin/sol.php" method="post">
+							<input type="submit" value="Allumer"/>
+							<input type="hidden" name="action" value="allumer">
+						</form>
+					</div>
 					<div class="liner"></div>
-					<div class="line">Eteindre</div>
+					<form action="/Odin/sol.php" method="post">
+							<input type="submit" value="Eteindre"/>
+							<input type="hidden" name="action" value="eteindre">
+						</form>
 				</div>
 				<div class="lefttitre"></div>	
 				<div class="liner"></div>

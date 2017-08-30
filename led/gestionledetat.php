@@ -1,4 +1,4 @@
 <?php
-	exec('/var/www/html/led/etat.py', $rep_cmd_etat);
-	echo $rep_cmd_etat;
+	exec('sudo /usr/bin/python /var/www/html/led/etat.py', $rep_cmd_etat);
+	var_dump($rep_cmd_etat);
 ?>

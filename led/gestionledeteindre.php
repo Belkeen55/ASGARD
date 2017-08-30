@@ -1,3 +1,3 @@
 <?php
-	exec('/var/www/html/led/eteindre.py', $rep_cmd_eteindre);
+	exec('sudo /usr/bin/python /var/www/html/led/eteindre.py', $rep_cmd_eteindre);
 ?>

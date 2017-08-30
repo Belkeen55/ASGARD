@@ -17,7 +17,7 @@ Installation du serveur principal
 	sudo adduser "utilisateur" 
 	sudo visudo 
 	Ajouter "utilisateur" ALL=(ALL) NOPASSWD: ALL 
-	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp,/usr/bin/apt update,/home/belkeen/Adafruit_Python_DHT/examples/./AdafruitDHT.py 
+	ajouter la ligne www-data ALL=(ALL) NOPASSWD:/opt/vc/bin/vcgencmd measure_temp,/usr/bin/apt update,/home/belkeen/Adafruit_Python_DHT/examples/./AdafruitDHT.py , /usr/bin/python /var/www/html/led/allumer.py, /usr/bin/python /var/www/html/led/eteindre.py 
 	logout 
 	login avec "utilisateur" 
 	sudo deluser --remove-home pi 
