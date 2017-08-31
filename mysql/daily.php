@@ -1,5 +1,6 @@
-!/usr/bin/php>
+<!/usr/bin/php>
 <?php
+	exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
 	exec('sudo mount -a');
 	exec('mysqldump --user=root --password=shiva77680 --databases ASGARD > asgard.sql');
 	exec('cp asgard.sql /media/docs/mysql/');
