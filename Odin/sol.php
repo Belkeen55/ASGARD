@@ -52,6 +52,9 @@
 							if(($module == 'chambre') or ($module == 'cuisine') or ($module == 'salon')) {
 								include('sol/sonde.php');
 							}
+							if($module == 'interrupteurs') {
+								include('sol/interrupteurs.php');
+							}
 							if($module == 'meteo') {
 								include('sol/meteo.php');
 							}
