@@ -79,5 +79,3 @@ Installation serveur test-pi3
 #### Mise en place des crontab
 	crontab -e 
 	0 1 * * * php /var/www/html/script/daily.php >/dev/null 2>&1 
-	* * * * * php /var/www/html/script/minutly.php >/dev/null 2>&1 
-	0 * * * * php /var/www/html/script/hourly.php >/dev/null 2>&1 
