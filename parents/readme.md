@@ -73,4 +73,4 @@ Installation de la sonde parents
 	
 #### Mise en place des crontab
 	crontab -e 
-	0 1 * * * php /var/www/html/script/daily.php >/dev/null 2>&1 
+	0 1 * * * php /var/www/html/parents/daily.php >/dev/null 2>&1 

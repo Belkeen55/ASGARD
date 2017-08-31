@@ -54,4 +54,4 @@ Installation la passerelle SSH
 
 #### Mise en place des crontab
 	crontab -e 
-	0 1 * * * php /var/www/html/script/daily.php >/dev/null 2>&1 
+	0 1 * * * php /var/www/html/passerelle/daily.php >/dev/null 2>&1 
