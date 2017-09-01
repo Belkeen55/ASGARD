@@ -49,7 +49,7 @@
 							if($module == 'global') {
 								include('sol/global.php');
 							}
-							if(($module == 'chambre') or ($module == 'cuisine') or ($module == 'salon')) {
+							if(($module == 'chambre zacharie') or ($module == 'cuisine') or ($module == 'salon')) {
 								include('sol/sonde.php');
 							}
 							if($module == 'interrupteurs') {
