@@ -1,68 +1,101 @@
 <div class="line">
 	<div class="display_center">
 		<?php
-			$pieces_BDD = $bdd->query('SELECT Pieces.Id, Pieces.Nom 
-												FROM Pieces, Equipements 
-												WHERE DHT22 = 1
-												AND Equipements.Id_Pieces = Pieces.Id');
-			while($infos_piece = $pieces_BDD->fetch()) {
-				$infos_sonde = donnees_piece_live($bdd, $infos_piece['Id']);
-			//$infos = ['Tetat', 'temperature', 'Tideal', 'Hetat', 'humidite', 'Hideal', 'Retat', 'radiateur', 'reglage']
-				if($infos_sonde['temperature'] <> -1) {
+			$pieces_BDD = $bdd->query('	SELECT Distinct Id_Pieces 
+										FROM Mesures');
+			$nombre_pieces = $pieces_BDD->rowCount();
+			if($nombre_pieces != 0) {
+				while($infos_piece = $pieces_BDD->fetch()) {
+					$mesures_BDD = $bdd->query('	SELECT Mesures.Id, Mesures.Tempint, Mesures.Humidite, Pieces.Nom 
+													FROM Mesures, Pieces 
+													WHERE Mesures.Id_Pieces = ' . $infos_piece['Id_Pieces'] . ' 
+													AND Mesures.Id_Pieces = Pieces.Id 
+													ORDER BY Mesures.Id DESC 
+													LIMIT 1');
+					$nombre_mesures = $mesures_BDD->rowCount();
+					if($nombre_mesures != 0) {
+						$infos_mesure = $mesures_BDD->fetch();
+						$reponse = $bdd->query('SELECT T_ideal, H_ideal 
+												FROM Pieces
+												WHERE Id = ' . $infos_piece['Id_Pieces']);
+						$donnees = $reponse->fetch();
+						$Tideal = $donnees['T_ideal'];
+						$Hideal = $donnees['H_ideal'];
+						$reponse->closeCursor();
+						$Tmin = $Tideal*0.9;
+						$Tmax = $Tideal*1.1;
+						$Hmin = $Hideal*0.8;
+						$Hmax = $Hideal*1.2;
+						if($infos_mesure['Tempint'] <= $Tmin) 
+						{
+							$Tetat = 'low';
+						}
+						else
+						{
+							if(($infos_mesure['Tempint'] > $Tmin) AND ($infos_mesure['Tempint'] < $Tmax))
+							{
+								$Tetat = 'ok';
+							}
+							else
+							{
+								if($infos_mesure['Tempint'] >= $Tmax)
+								{
+									$Tetat = 'high';
+								}
+							}
+						}
+						if($infos_mesure['Humidite'] < $Hmin) 
+						{
+							$Hetat = 'low';
+						}
+						else
+						{
+							if(($infos_mesure['Humidite'] > $Hmin) AND ($infos_mesure['Humidite'] < $Hmax))
+							{
+								$Hetat = 'ok';
+							}
+							else
+							{
+								if($infos_mesure['Humidite'] > $Hmax)
+								{
+									$Hetat = 'high';
+								}
+							}
+						}
+						$reponse->closeCursor();
 		?>
-		<div class="inline-W200px">
-			<a href="/Odin/sol.php?module=<?php echo strtolower($infos_piece['Nom']); ?>" class="black">
-				<div class="titre">
-					<div class="lefttitre"></div>
-					<?php echo $infos_piece['Nom']; ?>
-				</div>
-			</a>
-			<div class="cadre_center">
-				<div class="liner"></div>
-				<div class="colonne">
-					<div class="line"><img src="/img/black/temperature<?php echo $infos_sonde['Tetat']; ?>.png" height="40"></img></div>
-					<div class="liner"></div>
-					<div class="line"><?php echo $infos_sonde['temperature']; ?>&deg;C</div>
-				</div>
-				<div class="lefttitre"></div>
-				<div class="colonne">
-					<div class="line"><img src="/img/black/humidity<?php echo $infos_sonde['Hetat']; ?>.png" height="40"></img></div>
-					<div class="liner"></div>
-					<div class="line"><?php echo $infos_sonde['humidite']; ?>%</div>
-				</div>
-				<div class="lefttitre"></div>	
-				<div class="liner"></div>
-			</div>
-		</div>
-		<div class="left1pct"></div>
+						<div class="inline-W200px">
+							<a href="/Odin/sol.php?module=<?php echo strtolower($infos_mesure['Nom']); ?>" class="black">
+								<div class="titre">
+									<div class="lefttitre"></div>
+									<?php echo $infos_mesure['Nom']; ?>
+								</div>
+							</a>
+							<div class="cadre_center">
+								<div class="liner"></div>
+								<div class="colonne">
+									<div class="line"><img src="/img/black/temperature<?php echo $Tetat; ?>.png" height="40"></img></div>
+									<div class="liner"></div>
+									<div class="line"><?php echo $infos_mesure['Tempint']; ?>&deg;C</div>
+								</div>
+								<div class="lefttitre"></div>
+								<div class="colonne">
+									<div class="line"><img src="/img/black/humidity<?php echo $Hetat; ?>.png" height="40"></img></div>
+									<div class="liner"></div>
+									<div class="line"><?php echo $infos_mesure['Humidite']; ?>%</div>
+								</div>
+								<div class="lefttitre"></div>	
+								<div class="liner"></div>
+							</div>
+						</div>
+						<div class="left1pct"></div>
 		<?php
+					}
+					$mesures_BDD->closeCursor();
 				}
-				else {
-		?>
-		<div class="inline-W200px">
-			<a href="/Odin/sol.php?module=<?php echo strtolower($infos_piece['Nom']); ?>" class="black">
-				<div class="titre">
-					<div class="lefttitre"></div>
-					<?php echo $infos_piece['Nom']; ?>
-				</div>
-			</a>
-			<div class="cadre_center">
-				<div class="liner"></div>
-				<div class="colonne">
-					<div class="line">Equipement déconnecté</div>
-					<div class="liner"></div>
-				</div>
-				<div class="liner"></div>
-			</div>
-		</div>
-		<div class="left1pct"></div>
-		<?php
-				}
+				$pieces_BDD->closeCursor();
 			}
-			$pieces_BDD->closeCursor();
 		?>
-	</div>
-</div>
 <div class="liner"></div>
 <div class="line">
 	<div class="display_center">
