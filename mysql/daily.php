@@ -1,6 +1,9 @@
 <!/usr/bin/php>
 <?php
+	// ---------- Verification des MAJ possible sur la machine ----------
 	exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
+	
+	// ---------- Sauvegarde de la base de données ----------
 	exec('sudo mount -a');
 	exec('mysqldump --user=root --password=shiva77680 --databases ASGARD > asgard.sql');
 	exec('cp asgard.sql /media/docs/mysql/');
