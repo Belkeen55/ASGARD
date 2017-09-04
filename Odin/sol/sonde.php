@@ -44,14 +44,6 @@
 						<div class="line"><?php echo $infos_sonde['temperature']; ?>&deg;C</div>
 					</div>
 					<div class="lefttitre"></div>
-					<div class="colonne">
-						<div class="line">Ideal</div>
-						<div class="liner"></div>
-						<div class="line"><img src="/img/black/temperatureok.png" height="40"></img></div>
-						<div class="liner"></div>
-						<div class="line"><?php echo (int)$infos_sonde['Tideal']; ?>&deg;C</div>
-					</div>
-					<div class="lefttitre"></div>
 					<div class="liner"></div>
 				</div>
 			</div>
@@ -70,14 +62,6 @@
 						<div class="line"><img src="/img/black/humidity<?php echo $infos_sonde['Hetat']; ?>.png" height="40"></img></div>
 						<div class="liner"></div>
 						<div class="line"><?php echo $infos_sonde['humidite']; ?>%</div>
-					</div>
-					<div class="lefttitre"></div>
-					<div class="colonne">
-						<div class="line">Ideal</div>
-						<div class="liner"></div>
-						<div class="line"><img src="/img/black/humidityok.png" height="40"></img></div>
-						<div class="liner"></div>
-						<div class="line"><?php echo (int)$infos_sonde['Hideal']; ?>%</div>
 					</div>
 					<div class="lefttitre"></div>
 					<div class="liner"></div>
