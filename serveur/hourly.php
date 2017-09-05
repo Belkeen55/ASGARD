@@ -84,28 +84,28 @@
 			$infos_performance = $performances_BDD->fetch();
 			$myPicture = new pImage(250,16);
 	 		$myPicture->drawFilledRectangle(0,0,250,16,$Settings);
-	 		$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
+	 		$myPicture->setFontProperties(array("FontName"=>"/var/www/html/lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
 	 		$myPicture->setShadow(TRUE,array("X"=>1, "Y"=>1, "R"=>0, "G"=>0, "B"=>0, "Alpha"=>20));
 	 		$myPicture->drawProgress(50,0,$infos_performance['Proc'],$progressOptions);
 	 		$myPicture->render('/var/www/html/Odin/progresscpu' . $infos_equipement['Id'] . '.png');
 			
 			$myPicture = new pImage(250,16);
 	 		$myPicture->drawFilledRectangle(0,0,250,16,$Settings);
-	 		$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
+	 		$myPicture->setFontProperties(array("FontName"=>"/var/www/html/lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
 	 		$myPicture->setShadow(TRUE,array("X"=>1, "Y"=>1, "R"=>0, "G"=>0, "B"=>0, "Alpha"=>20));
 	 		$myPicture->drawProgress(50,0,$infos_performance['Temp'],$progressOptions);
 	 		$myPicture->render('/var/www/html/Odin/progresstemp' . $infos_equipement['Id'] . '.png');
 			
 			$myPicture = new pImage(250,16);
 	 		$myPicture->drawFilledRectangle(0,0,250,16,$Settings);
-	 		$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
+	 		$myPicture->setFontProperties(array("FontName"=>"/var/www/html/lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
 	 		$myPicture->setShadow(TRUE,array("X"=>1, "Y"=>1, "R"=>0, "G"=>0, "B"=>0, "Alpha"=>20));
 	 		$myPicture->drawProgress(50,0,$infos_performance['Vive'],$progressOptions);
 	 		$myPicture->render('/var/www/html/Odin/progressram' . $infos_equipement['Id'] . '.png');
 			
 			$myPicture = new pImage(250,16);
 	 		$myPicture->drawFilledRectangle(0,0,250,16,$Settings);
-	 		$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
+	 		$myPicture->setFontProperties(array("FontName"=>"/var/www/html/lib/Pchart/fonts/Forgotte.ttf", "FontSize"=>15));
 	 		$myPicture->setShadow(TRUE,array("X"=>1, "Y"=>1, "R"=>0, "G"=>0, "B"=>0, "Alpha"=>20));
 	 		$myPicture->drawProgress(50,0,$infos_performance['Rom'],$progressOptions);
 	 		$myPicture->render('/var/www/html/Odin/progressrom' . $infos_equipement['Id'] . '.png');
