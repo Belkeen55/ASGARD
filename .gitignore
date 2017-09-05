@@ -10,3 +10,4 @@ extract.html
 /Codiad
 mysqldump.php
 test.sh
+*.save

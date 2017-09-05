@@ -67,6 +67,10 @@ Installation du serveur principal
 	sudo blkid 
 	sudo rpi-clone "sdX" 
 	
+#### Recuperation des informations de Telegram
+	@BotFather pour l'ID du Bot 
+	@userinfobot pour l'ID personnel 
+	
 #### Mise en place des crontab
 	crontab -e 
 	0 2 * * * php /var/www/html/serveur/daily.php >/dev/null 2>&1 
