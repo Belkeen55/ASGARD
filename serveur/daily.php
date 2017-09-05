@@ -8,8 +8,9 @@
 	exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
 	
 	// ---------- Import des informations de MAJ de tous les éléments ----------
-	$equipements_BDD = $bdd->query('SELECT Id, Ip 
+	$equipements_BDD = $bdd->query('SELECT Id, Nom, Ip 
 									FROM Equipements');
+	$i = 0;
 	while($infos_equipement = $equipements_BDD->fetch()) {
 		$html = file_get_html('http://' . $infos_equipement['Ip'] . '/script/systeme.php');
 		foreach($html->find('input[name=update]') as $element) 
@@ -28,6 +29,19 @@
 						WHERE Id = ' . $infos_equipement['Id']);
 		}
 		$MAJ_BDD->closeCursor();
+		if($update != 'Le système est à jour') {
+			if($i == 0) {
+				$liste = $infos_equipement['Nom'];
+				$i = 1;
+			}
+			else {
+				$liste = $liste . ', ' . $infos_equipement['Nom'];
+				$i = $i + 1;
+			}
+		}
+	}
+	if($i != 0) {
+		exec('echo "' . 'MAJ en attente : ' . $liste . '" | /var/www/html/lib/./telegramsend.sh');
 	}
 	$equipements_BDD->closeCursor();
 	
