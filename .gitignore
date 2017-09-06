@@ -11,3 +11,5 @@ extract.html
 mysqldump.php
 test.sh
 *.save
+temperaturegraph.png
+humiditygraph.png
