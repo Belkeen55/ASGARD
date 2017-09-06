@@ -1,18 +1,18 @@
 <div class="line">
 	<div class="display_center">
 		<span>
-			<div class="inline-W200px">
+			<div class="bouton_appli">
 				<a href="/Odin/odin.php?module=smworld" class="black">
-					<div class="titre">
+					<div class="titre_bouton_appli">
 						<div class="lefttitre"></div>
 						SM World
 					</div>
 				</a>
 			</div>
 			<div class="left1pct"></div>
-			<div class="inline-W200px">
+			<div class="bouton_appli">
 				<a href="/Odin/odin.php?module=tickets" class="black">
-					<div class="titre">
+					<div class="titre_bouton_appli">
 						<div class="lefttitre"></div>
 						Tickets
 					</div>
