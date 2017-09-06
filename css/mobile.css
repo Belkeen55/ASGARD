@@ -264,6 +264,19 @@ div
 	margin: 10px 0px 0px 0px;
 }
 
+.cadre_meteo /* OK */
+{
+	display: inline-block;
+	height: 180px;
+}
+
+.cadre_prevision24
+{
+	display: inline-block;
+	height: 264px;
+}
+
+
 
 
 

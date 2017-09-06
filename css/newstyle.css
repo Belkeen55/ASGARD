@@ -245,6 +245,18 @@ div
 	text-align: left;		
 }
 
+.cadre_meteo
+{
+	display: inline-block;
+	height: 180px;
+}
+
+.cadre_prevision24
+{
+	display: inline-block;
+	height: 264px;
+}
+
 
 
 
