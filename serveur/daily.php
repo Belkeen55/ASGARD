@@ -29,7 +29,7 @@
 						WHERE Id = ' . $infos_equipement['Id']);
 		}
 		$MAJ_BDD->closeCursor();
-		if($update != 'Le système est à jour') {
+		if(strpos($update, 'Le syst') != FALSE) {
 			if($i == 0) {
 				$liste = $infos_equipement['Nom'];
 				$i = 1;
