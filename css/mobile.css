@@ -264,18 +264,52 @@ div
 	margin: 10px 0px 0px 0px;
 }
 
-.cadre_meteo /* OK */
+.cadre_meteo
 {
 	display: inline-block;
-	height: 180px;
+	width: 200px;
 }
 
 .cadre_prevision24
 {
 	display: inline-block;
 	height: 264px;
+	width: 450px;
 }
 
+.cadre_sonde
+{
+	display: inline-block;
+	width: 400px;
+}
+
+.titre_sonde
+{
+	display: block;
+	background-color: #E6E6E6;
+	border: 1px solid #BDBDBD;
+	width: 100%;
+	height: 45px;
+	vertical-align: -30%;
+	text-align: left;
+	font-size: 30px;
+}
+
+.image_sonde
+{
+	height:90px;
+}
+
+.valeur_sonde
+{
+	display: block;
+	font-size: 30px;
+}
+
+.image_meteo
+{
+	height:90px;
+}
 
 
 

@@ -64,9 +64,9 @@
 						}
 						$reponse->closeCursor();
 		?>
-						<div class="inline-W200px">
+						<div class="cadre_sonde">
 							<a href="/Odin/sol.php?module=<?php echo strtolower($infos_mesure['Nom']); ?>" class="black">
-								<div class="titre">
+								<div class="titre_sonde">
 									<div class="lefttitre"></div>
 									<?php echo $infos_mesure['Nom']; ?>
 								</div>
@@ -74,15 +74,15 @@
 							<div class="cadre_center">
 								<div class="liner"></div>
 								<div class="colonne">
-									<div class="line"><img src="/img/black/temperature<?php echo $Tetat; ?>.png" height="40"></img></div>
+									<div class="line"><img src="/img/black/temperature<?php echo $Tetat; ?>.png" class="image_sonde"></img></div>
 									<div class="liner"></div>
-									<div class="line"><?php echo $infos_mesure['Tempint']; ?>&deg;C</div>
+									<div class="valeur_sonde"><?php echo $infos_mesure['Tempint']; ?>&deg;C</div>
 								</div>
 								<div class="lefttitre"></div>
 								<div class="colonne">
-									<div class="line"><img src="/img/black/humidity<?php echo $Hetat; ?>.png" height="40"></img></div>
+									<div class="line"><img src="/img/black/humidity<?php echo $Hetat; ?>.png" class="image_sonde"></img></div>
 									<div class="liner"></div>
-									<div class="line"><?php echo $infos_mesure['Humidite']; ?>%</div>
+									<div class="valeur_sonde"><?php echo $infos_mesure['Humidite']; ?>%</div>
 								</div>
 								<div class="lefttitre"></div>	
 								<div class="liner"></div>
@@ -102,9 +102,9 @@
 		<?php
 			$result = meteo_act_BDD($bdd);
 		?>		
-		<div class="inline-H146px">
+		<div class="cadre_meteo">
 			<a href="/Odin/sol.php?module=meteo" class="black">
-				<div class="titre">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
 					Meteo
 				</div>
@@ -113,11 +113,11 @@
 				<div class="liner"></div>
 				<div class="lefttitre"></div>
 				<div class="inline">
-					<img src="/img/<?php echo $result['code']; ?>.png" height=78></img>
+					<img src="/img/<?php echo $result['code']; ?>.png" class="image_meteo"></img>
 				</div>
 				<div class="lefttitre"></div>
 				<div class="inline">
-					<div class="t1">
+					<div class="valeur_sonde">
 						<?php echo (int)$result['temperature'] . '&deg;C'; ?>
 					</div>
 				</div>
@@ -188,9 +188,9 @@
 				$temperature2 = '--';
 			}
 		?>
-		<div class="inline-H146px">
+		<div class="cadre_prevision24">
 			<a href="/Odin/sol.php?module=meteo" class="black">
-				<div class="titre">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
 					Pr&eacute;visions
 				</div>
@@ -199,15 +199,15 @@
 				<div class="liner"></div>
 				<div class="lefttitre"></div>
 				<div class="colonne">
-					<div class="line"><?php echo $periode1; ?></div>
-					<div class="line"><img src="/img/<?php echo $code1; ?>.png" height=60></img></div>
-					<div class="line"><?php echo $temperature1 . '&deg;C'; ?></div>
+					<div class="valeur_sonde"><?php echo $periode1; ?></div>
+					<div class="line"><img src="/img/<?php echo $code1; ?>.png" class="image_meteo"></img></div>
+					<div class="valeur_sonde"><?php echo $temperature1 . '&deg;C'; ?></div>
 				</div>
 				<div class="lefttitre"></div>
 				<div class="colonne">
-					<div class="line"><?php echo $periode2; ?></div>
-					<div class="line"><img src="/img/<?php echo $code2; ?>.png" height=60></img></div>
-					<div class="line"><?php echo $temperature2 . '&deg;C'; ?></img></div>
+					<div class="valeur_sonde"><?php echo $periode2; ?></div>
+					<div class="line"><img src="/img/<?php echo $code2; ?>.png" class="image_meteo"></img></div>
+					<div class="valeur_sonde"><?php echo $temperature2 . '&deg;C'; ?></img></div>
 				</div>
 				<div class="lefttitre"></div>
 				<div class="liner"></div>						
