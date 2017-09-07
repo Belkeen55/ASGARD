@@ -13,6 +13,7 @@
 ?>
 		<a href="/Odin/sol.php?module=global"><div class="ongletsubmenu<?php if($module == 'global') {echo 'selected';} ?>"><div class="textesubmenu">Global</div></div></a>
 		<a href="/Odin/sol.php?module=toutespieces"><div class="ongletsubmenu<?php if($module == 'pieces') {echo 'selected';} ?>"><div class="textesubmenu">Pieces</div></div></a>
+		<a href="/Odin/sol.php?module=meteo"><div class="ongletsubmenu<?php if($module == 'meteo') {echo 'selected';} ?>"><div class="textesubmenu">Meteo</div></div></a>
 		<a href="/Odin/sol.php?module=interrupteurs"><div class="ongletsubmenu<?php if($module == 'interrupteurs') {echo 'selected';} ?>"><div class="textesubmenu">Interrupteurs</div></div></a>
 <?php
 	}
