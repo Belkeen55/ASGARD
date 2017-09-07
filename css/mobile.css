@@ -267,7 +267,7 @@ div
 .cadre_meteo
 {
 	display: inline-block;
-	width: 200px;
+	width: 250px;
 }
 
 .cadre_prevision24
@@ -311,8 +311,32 @@ div
 	height:90px;
 }
 
+.graphique
+{
+	display: inline-block;
+	vertical-align: -40%;
+	width: 900px;
+	height: 300px;
+}
 
+.cadre_previsionsemaine
+{
+	display: inline-block;
+	width: 900px;
+}
 
+.valeur_previsions
+{
+	display: block;
+	font-size: 25px;
+}
+
+.bouton_pin
+{
+	height:47px;
+	width: 200px;
+	font-size: 30px;
+}
 
 
 
@@ -465,12 +489,6 @@ div
 {
 	height: 100%;
 	display: inline-block;
-}
-
-.graphique
-{
-	display: inline-block;
-	vertical-align: -40%;
 }
 
 .performances

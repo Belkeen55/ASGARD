@@ -5,7 +5,7 @@
 		?>		
 		<div class="cadre_meteo">
 			<a href="/Odin/sol.php?module=meteo" class="black">
-				<div class="titre">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
 					Meteo
 				</div>
@@ -14,11 +14,11 @@
 				<div class="liner"></div>
 				<div class="lefttitre"></div>	
 				<div class="inline">
-					<img src="/img/<?php echo $result['code']; ?>.png" height=78></img>
+					<img src="/img/<?php echo $result['code']; ?>.png" class="image_meteo"></img>
 				</div>
 				<div class="lefttitre"></div>
 				<div class="inline">
-					<div class="t1">
+					<div class="valeur_sonde">
 						<?php echo (int)$result['temperature'] . '&deg;C'; ?>
 					</div>
 				</div>
@@ -91,7 +91,7 @@
 		?>
 		<div class="cadre_prevision24">
 			<a href="/Odin/sol.php?module=meteo" class="black">
-				<div class="titre">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
 					Pr&eacute;visions 24h
 				</div>
@@ -100,15 +100,15 @@
 				<div class="liner"></div>
 				<div class="lefttitre"></div>
 				<div class="colonne">
-					<div class="line"><?php echo $periode1; ?></div>
-					<div class="line"><img src="/img/<?php echo $code1; ?>.png" height=60></img></div>
-					<div class="line"><?php echo $temperature1 . '&deg;C'; ?></div>
+					<div class="valeur_sonde"><?php echo $periode1; ?></div>
+					<div class="line"><img src="/img/<?php echo $code1; ?>.png" class="image_meteo"></img></div>
+					<div class="valeur_sonde"><?php echo $temperature1 . '&deg;C'; ?></div>
 				</div>
 				<div class="lefttitre"></div>
 				<div class="colonne">
-					<div class="line"><?php echo $periode2; ?></div>
-					<div class="line"><img src="/img/<?php echo $code2; ?>.png" height=60></img></div>
-					<div class="line"><?php echo $temperature2 . '&deg;C'; ?></div>
+					<div class="valeur_sonde"><?php echo $periode2; ?></div>
+					<div class="line"><img src="/img/<?php echo $code2; ?>.png" class="image_meteo"></img></div>
+					<div class="valeur_sonde"><?php echo $temperature2 . '&deg;C'; ?></div>
 				</div>
 				<div class="lefttitre"></div>
 				<div class="liner"></div>						
@@ -121,9 +121,9 @@
 <div class="liner"></div>
 <div class="line">
 	<div class="display_center">
-		<div class="inline-H146px">
+		<div class="cadre_previsionsemaine">
 			<a href="/Odin/sol.php?module=meteo" class="black">
-				<div class="titre">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
 					Pr&eacute;visions de la semaine
 				</div>
@@ -179,9 +179,9 @@
 							}
 				?>
 							<div class="colonne">
-								<div class="line"><?php echo $jour ?></div>
-								<div class="line"><img src="/img/<?php echo $code; ?>.png" height=60></img></div>
-								<div class="line"><?php echo (int)$mini . '&deg;C'; ?>/<?php echo (int)$maxi . '&deg;C'; ?></div>
+								<div class="valeur_previsions"><?php echo $jour ?></div>
+								<div class="line"><img src="/img/<?php echo $code; ?>.png" class="image_meteo"></img></div>
+								<div class="valeur_previsions"><?php echo (int)$mini . '&deg;C'; ?>/<?php echo (int)$maxi . '&deg;C'; ?></div>
 							</div>
 							<div class="lefttitre"></div>
 				<?php

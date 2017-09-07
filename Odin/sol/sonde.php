@@ -28,8 +28,8 @@
 ?>
 	<div class="line">
 		<div class="display_center">
-			<div class="inline-H146px">
-				<div class="titre">
+			<div class="cadre_meteo">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
 					Temperature
 				</div>
@@ -37,19 +37,19 @@
 					<div class="liner"></div>
 					<div class="lefttitre"></div>
 					<div class="colonne">
-						<div class="line">Actuel</div>
+						<div class="valeur_sonde">Actuel</div>
 						<div class="liner"></div>
-						<div class="line"><img src="/img/black/temperature<?php echo $infos_sonde['Tetat']; ?>.png" height="40"></img></div>
+						<div class="line"><img src="/img/black/temperature<?php echo $infos_sonde['Tetat']; ?>.png" class="image_sonde"></img></div>
 						<div class="liner"></div>
-						<div class="line"><?php echo $infos_sonde['temperature']; ?>&deg;C</div>
+						<div class="valeur_sonde"><?php echo $infos_sonde['temperature']; ?>&deg;C</div>
 					</div>
 					<div class="lefttitre"></div>
 					<div class="liner"></div>
 				</div>
 			</div>
 			<div class="left1pct"></div>
-			<div class="inline-H146px">
-				<div class="titre">
+			<div class="cadre_meteo">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
 					Humidité
 				</div>
@@ -57,11 +57,11 @@
 					<div class="liner"></div>
 					<div class="lefttitre"></div>
 					<div class="colonne">
-						<div class="line">Actuel</div>
+						<div class="valeur_sonde">Actuel</div>
 						<div class="liner"></div>
-						<div class="line"><img src="/img/black/humidity<?php echo $infos_sonde['Hetat']; ?>.png" height="40"></img></div>
+						<div class="line"><img src="/img/black/humidity<?php echo $infos_sonde['Hetat']; ?>.png" class="image_sonde"></img></div>
 						<div class="liner"></div>
-						<div class="line"><?php echo $infos_sonde['humidite']; ?>%</div>
+						<div class="valeur_sonde"><?php echo $infos_sonde['humidite']; ?>%</div>
 					</div>
 					<div class="lefttitre"></div>
 					<div class="liner"></div>
