@@ -148,12 +148,17 @@
 	
 	function last_24($bdd, $piece) {
 		$heurodatage = date('Y-m-d H:i:s');
-		$heurodatage24H = date('Y-m-d H:i:s', mktime(date('H')-24, date('i'), date('s'), date('m'), date('d'), date('Y')));
+		$heurodatage24H = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d')-1, date('Y')));
 		$reponse = $bdd->query('SELECT *
 								FROM Mesures 
 								WHERE Heurodatage BETWEEN \'' . $heurodatage24H . '\' AND \'' . $heurodatage . '\'
 								AND MINUTE(Heurodatage) = 0
 								AND Id_Pieces = ' . $piece);
+		echo 'SELECT *
+								FROM Mesures 
+								WHERE Heurodatage BETWEEN \'' . $heurodatage24H . '\' AND \'' . $heurodatage . '\'
+								AND MINUTE(Heurodatage) = 0
+								AND Id_Pieces = ' . $piece;
 		return $reponse;
 	}
 	

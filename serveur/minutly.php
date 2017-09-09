@@ -25,7 +25,7 @@
 			if($DHT22Temp != '') {
 				foreach($html->find('input[name=DHT22Hum]') as $element) 
 				$DHT22Hum=$element->value;
-				$heurodatage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m')+1, date('d'), date('Y')));
+				$heurodatage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')));
 				$bdd->exec('INSERT INTO `Mesures`(`Id`, `Heurodatage`, `Tempint`, `Humidite`, `Id_Pieces`) 
 							VALUES (null,\'' . $heurodatage . '\',' . $DHT22Temp . ',' . $DHT22Hum . ',' . $infos_equipement['Id_Pieces'] . ')');
 				$bdd->exec('UPDATE Equipements
