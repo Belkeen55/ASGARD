@@ -154,11 +154,6 @@
 								WHERE Heurodatage BETWEEN \'' . $heurodatage24H . '\' AND \'' . $heurodatage . '\'
 								AND MINUTE(Heurodatage) = 0
 								AND Id_Pieces = ' . $piece);
-		echo 'SELECT *
-								FROM Mesures 
-								WHERE Heurodatage BETWEEN \'' . $heurodatage24H . '\' AND \'' . $heurodatage . '\'
-								AND MINUTE(Heurodatage) = 0
-								AND Id_Pieces = ' . $piece;
 		return $reponse;
 	}
 	
