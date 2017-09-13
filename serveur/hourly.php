@@ -40,7 +40,7 @@
 			echo 'essai ajout';
 			if(isset($meteo['temperature'])) {
 				// ---- Recuperation des données de chacune des sondes
-				if(ping($sonde['Ip']) == 1) {
+				if(ping($sonde['Ip'])) {
 					$donnees_sonde = donnees_sonde_live($sonde['Ip']);
 					if(($donnees_sonde['temperature'] > 0) AND ($donnees_sonde['humidite'] > 0)) {
 						$bdd->exec('INSERT INTO Mesures(Heurodatage, Tempint, Tempext, Humidite, Id_Pieces) 
