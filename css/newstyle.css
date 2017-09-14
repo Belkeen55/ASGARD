@@ -316,6 +316,21 @@ div
 	font-size: 13px;
 }
 
+.image_action
+{
+	display: inline-block;
+	height: 25px;
+	text-align: right;
+	vertical-align: -40%;
+}
+
+.espace_titre
+{
+	display: inline-block;
+	text-align: left;
+	width: 80%;
+}
+
 
 
 

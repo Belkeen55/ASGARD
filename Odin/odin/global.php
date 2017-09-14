@@ -2,10 +2,10 @@
 	<div class="display_center">
 		<span>
 			<div class="bouton_appli">
-				<a href="/Odin/odin.php?module=smworld" class="black">
+				<a href="/Odin/odin.php?module=liste_courses&action=view" class="black">
 					<div class="titre_bouton_appli">
 						<div class="lefttitre"></div>
-						SM World
+						Liste Courses
 					</div>
 				</a>
 			</div>

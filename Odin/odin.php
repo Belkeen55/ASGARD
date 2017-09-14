@@ -44,8 +44,8 @@
 								case 'global':
 									include('odin/global.php');
 									break;
-								case 'smworld':
-									include('odin/smworld.php');
+								case 'liste_courses':
+									include('odin/liste_courses.php');
 									break;
 								case 'tickets':
 									include('odin/tickets.php');
