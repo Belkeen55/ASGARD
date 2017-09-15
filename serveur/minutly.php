@@ -68,7 +68,7 @@
 				echo 'UPDATE Downtime SET Valeur = ' . $downtime . ' WHERE Id = ' . $infos_equipement['Id'];
 				if($infos_downtime['Valeur'] == 9) {
 					
-					exec('echo "' . $infos_equipement['Id'] . ' est injoinable depuis 10 minutes." | /var/www/html/lib/./telegramsend.sh');
+					exec('echo "' . $infos_equipement['Nom'] . ' est injoinable depuis 10 minutes." | /var/www/html/lib/./telegramsend.sh');
 				}
 			}
 			else {
