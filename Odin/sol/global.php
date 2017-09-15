@@ -4,12 +4,15 @@
 			$pieces_BDD = $bdd->query('	SELECT Distinct Id_Pieces 
 										FROM Mesures');
 			$nombre_pieces = $pieces_BDD->rowCount();
+			$heurodatage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')));
+			$heurodatage5 = date('Y-m-d H:i:s', mktime(date('H'), date('i')-5, date('s'), date('m'), date('d'), date('Y')));
 			if($nombre_pieces != 0) {
 				while($infos_piece = $pieces_BDD->fetch()) {
-					$mesures_BDD = $bdd->query('	SELECT Mesures.Id, Mesures.Tempint, Mesures.Humidite, Pieces.Nom 
+					$mesures_BDD = $bdd->query('	SELECT Mesures.Id, Mesures.Tempint, Mesures.Humidite, Pieces.Nom, Mesures.Heurodatage 
 													FROM Mesures, Pieces 
 													WHERE Mesures.Id_Pieces = ' . $infos_piece['Id_Pieces'] . ' 
 													AND Mesures.Id_Pieces = Pieces.Id 
+													AND Mesures.Heurodatage BETWEEN \'' . $heurodatage5 . '\' AND \'' . $heurodatage . '\' 
 													ORDER BY Mesures.Id DESC 
 													LIMIT 1');
 					$nombre_mesures = $mesures_BDD->rowCount();
