@@ -354,6 +354,35 @@ div
 }
 
 
+.liste_courses
+{
+	display: inline-block;
+	width: 505px;	
+}
+
+.produits_courses
+{
+	height: 100%;
+	display: inline-block;
+	font-size: 25px;
+}
+
+.bouton_courses
+{
+	height: 35px;
+	width: 150px;
+	font-size: 25px;
+}
+
+.select_courses
+{
+	height: 35px;
+	width: 150px;
+	font-size: 25px;
+}
+
+
+
 
 
 /* -------------- Police d'ecriture -------------- */

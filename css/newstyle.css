@@ -331,9 +331,29 @@ div
 	width: 80%;
 }
 
+.liste_courses
+{
+	display: inline-block;
+	width: 505px;	
+}
 
+.produits_courses
+{
+	height: 100%;
+	display: inline-block;
+}
 
+.bouton_courses
+{
+	height:21px;
+	width: 62px;
+	font-size: 13px;
+}
 
+.select_courses
+{
+	display: inline-block;
+}
 
 
 
@@ -489,12 +509,6 @@ div
 {
 	display: inline-block;
 	width: 500px;	
-}
-
-.joueurs
-{
-	display: inline-block;
-	width: 505px;	
 }
 
 /* -------------- Font -------------- */
