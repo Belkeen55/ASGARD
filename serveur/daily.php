@@ -6,7 +6,7 @@
 	include('/var/www/html/lib/network.php');
 	
 	// ---------- Verification des MAJ possibles sur l'element ----------
-	//exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
+	exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
 	
 	// ---------- Import des informations de MAJ de tous les éléments ----------
 	$equipements_BDD = $bdd->query('SELECT Id, Nom, Ip 

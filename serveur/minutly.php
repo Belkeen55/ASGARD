@@ -54,21 +54,25 @@
 			}
 		}
 		else {
+			echo "deconnecté. ";
 			$downtime_BDD = $bdd->query('	SELECT Valeur 
 											FROM Downtime
 											WHERE Id = ' . $infos_equipement['Id']);
 			$nombre_downtime = $downtime_BDD->rowCount();
+			echo 'Recherche de ligne. ';
 			if($nombre_downtime != 0) {
+				echo 'ligne trouvée. ';
 				$infos_downtime = $downtime_BDD->fetch();
-				$bdd->exec('UPDATE Downtime
-							SET Valeur = ' . $infos_downtime['Valeur'] + 1 . ' 
-							WHERE Id = ' . $infos_equipement['Id']);
+				$downtime = $infos_downtime['Valeur'] + 1;
+				$bdd->exec('UPDATE Downtime	SET Valeur = ' . $downtime . ' WHERE Id = ' . $infos_equipement['Id']);
+				echo 'UPDATE Downtime SET Valeur = ' . $downtime . ' WHERE Id = ' . $infos_equipement['Id'];
 				if($infos_downtime['Valeur'] == 9) {
 					
 					exec('echo "' . $infos_equipement['Id'] . ' est injoinable depuis 10 minutes." | /var/www/html/lib/./telegramsend.sh');
 				}
 			}
 			else {
+				echo 'ligne non existante ';
 				$bdd->exec('INSERT INTO Downtime(Id, Valeur) 
 							VALUES('. $infos_equipement['Id'] . ',1)');
 			}
