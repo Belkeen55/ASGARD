@@ -3,40 +3,43 @@
 	// ---------- Import des librairies necessaires au script ----------
 	include('/var/www/html/lib/simple_html_dom.php');
 	include('/var/www/html/lib/BDD.php');
+	include('/var/www/html/lib/network.php');
 	
 	// ---------- Verification des MAJ possibles sur l'element ----------
-	exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
+	//exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
 	
 	// ---------- Import des informations de MAJ de tous les éléments ----------
 	$equipements_BDD = $bdd->query('SELECT Id, Nom, Ip 
 									FROM Equipements');
 	$i = 0;
 	while($infos_equipement = $equipements_BDD->fetch()) {
-		$html = file_get_html('http://' . $infos_equipement['Ip'] . '/script/systeme.php');
-		foreach($html->find('input[name=update]') as $element) 
-		$update=$element->value;
-		$MAJ_BDD = $bdd->query('SELECT MAJ.Id
-								FROM MAJ
-								WHERE MAJ.Id = ' . $infos_equipement['Id']);
-		$nombre_MAJ = $MAJ_BDD->rowCount();
-		if($nombre_MAJ == 0) {
-			$bdd->exec('INSERT INTO MAJ(Id, Etat) 
-						VALUES(' . $infos_equipement['Id'] . ', \'' . $update . '\')');	
-		}
-		else {
-			$bdd->exec('UPDATE MAJ
-						SET Etat = \'' . $update . '\' 
-						WHERE Id = ' . $infos_equipement['Id']);
-		}
-		$MAJ_BDD->closeCursor();
-		if(strpos($update, 'Le syst') != FALSE) {
-			if($i == 0) {
-				$liste = $infos_equipement['Nom'];
-				$i = 1;
+		if(ping($infos_equipement['Ip'])) {
+			$html = file_get_html('http://' . $infos_equipement['Ip'] . '/script/systeme.php');
+			foreach($html->find('input[name=update]') as $element) 
+			$update=$element->value;
+			$MAJ_BDD = $bdd->query('SELECT MAJ.Id
+									FROM MAJ
+									WHERE MAJ.Id = ' . $infos_equipement['Id']);
+			$nombre_MAJ = $MAJ_BDD->rowCount();
+			if($nombre_MAJ == 0) {
+				$bdd->exec('INSERT INTO MAJ(Id, Etat) 
+							VALUES(' . $infos_equipement['Id'] . ', \'' . $update . '\')');	
 			}
 			else {
-				$liste = $liste . ', ' . $infos_equipement['Nom'];
-				$i = $i + 1;
+				$bdd->exec('UPDATE MAJ
+							SET Etat = \'' . $update . '\' 
+							WHERE Id = ' . $infos_equipement['Id']);
+			}
+			$MAJ_BDD->closeCursor();
+			if(strpos($update, 'Le syst') != FALSE) {
+				if($i == 0) {
+					$liste = $infos_equipement['Nom'];
+					$i = 1;
+				}
+				else {
+					$liste = $liste . ', ' . $infos_equipement['Nom'];
+					$i = $i + 1;
+				}
 			}
 		}
 	}
