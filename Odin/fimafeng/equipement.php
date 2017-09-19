@@ -57,18 +57,18 @@
 		while($infos_equipement = $equipements_BDD->fetch()) {
 			
 ?>
-			<div class="inline-W400px">
-				<div class="titre">
+			<div class="cadre_sonde">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
-					<div class="inline-45pct-left"><?php echo $infos_equipement['Nom']; ?></div>
-					<div class="inline-W45pct-right"><a href="#null" onclick="javascript:open_infos(<?php echo $infos_equipement['Id']; ?>);"><img src="/img/edit.png" height="20"></img></a></div>
+					<div class="espace_titre"><?php echo $infos_equipement['Nom']; ?></div>
+					<a href="#null" onclick="javascript:open_infos(<?php echo $infos_equipement['Id']; ?>);"><img src="/img/edit.png" class="image_action"></img></a>
 				</div>			
 				<div class="cadre_left">
 					<div class="liner"></div>
 					<div class="lefttitre"></div>
 						<div class="colonne">
-							<div class="line">Type : <?php echo $infos_equipement['Type']; ?></div>
-							<div class="line">IP : <?php echo $infos_equipement['Ip']; ?></div>
+							<div class="valeur_sonde">Type : <?php echo $infos_equipement['Type']; ?></div>
+							<div class="valeur_sonde">IP : <?php echo $infos_equipement['Ip']; ?></div>
 						</div>
 					<div class="lefttitre"></div>
 					<div class="liner"></div>

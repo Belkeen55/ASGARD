@@ -53,16 +53,13 @@
 	if($nombre_types != 0) { // Si il existe des pièces
 		while($infos_type = $types_BDD->fetch()) {
 ?>
-	
-		<div class="inline-W350px">
-			<div class="titre">
-				<div class="lefttitre"></div>
-				<div class="inline-45pct-left"><?php echo $infos_type['Nom']; ?></div>
-				<div class="inline-W45pct-right"><a href="#null" onclick="javascript:open_infos(<?php echo $infos_type['Id']; ?>);"><img src="/img/edit.png" height="20"></img></a></div>
-			</div>			
-		</div>
-	
-
+			<div class="cadre_sonde">
+				<div class="titre_sonde">
+					<div class="lefttitre"></div>
+					<div class="espace_titre"><?php echo $infos_type['Nom']; ?></div>
+					<a href="#null" onclick="javascript:open_infos(<?php echo $infos_type['Id']; ?>);"><img src="/img/edit.png" class="image_action"></img></a>
+				</div>			
+			</div>
 <?php
 		}
 		$types_BDD->closeCursor();

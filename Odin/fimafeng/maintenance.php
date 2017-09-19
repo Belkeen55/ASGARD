@@ -10,10 +10,10 @@
 <div class="liner"></div>
 <div class="line">
 	<div class="display_center">
-		<div class="inline-W350px">
-			<div class="titre">
+		<div class="cadre_maintenance">
+			<div class="titre_sonde">
 				<div class="lefttitre"></div>
-				<div class="inline-45pct-left">Mise à jour à faire</div>
+				<div class="espace_titre">Mise à jour à faire</div>
 			</div>			
 			<div class="cadre_left">
 				<div class="liner"></div>
@@ -23,7 +23,7 @@
 							if($nombre_equipements != 0) {
 								while($infos_equipement = $equipements_BDD->fetch()) {
 						?>
-											<div class="line"><?php echo $infos_equipement['Nom'] . ' : ' . $infos_equipement['Etat']; ?></div>
+											<div class="valeur_previsions"><?php echo $infos_equipement['Nom'] . ' : ' . $infos_equipement['Etat']; ?></div>
 						<?php
 								}
 								$equipements_BDD->closeCursor();
@@ -34,10 +34,10 @@
 				<div class="liner"></div>
 			</div>
 		</div>
-		<div class="inline-W250px">
-			<div class="titre">
+		<div class="cadre_sonde">
+			<div class="titre_sonde">
 				<div class="lefttitre"></div>
-				<div class="inline-45pct-left">Surcharge CPU</div>
+				<div class="espace_titre">Surcharge CPU</div>
 			</div>			
 			<div class="cadre_left">
 				<div class="liner"></div>
@@ -51,7 +51,7 @@
 							if($nombre_equipements != 0) {
 								while($infos_equipement = $equipements_BDD->fetch()) {
 						?>
-									<div class="line"><?php echo $infos_equipement['Nom'] . ' : ' . $infos_equipement['Etat'] . '%'; ?></div>
+									<div class="valeur_previsions"><?php echo $infos_equipement['Nom'] . ' : ' . $infos_equipement['Etat'] . '%'; ?></div>
 						<?php
 								}
 							}
@@ -62,10 +62,10 @@
 				<div class="liner"></div>
 			</div>
 		</div>
-		<div class="inline-W250px">
-			<div class="titre">
+		<div class="cadre_sonde">
+			<div class="titre_sonde">
 				<div class="lefttitre"></div>
-				<div class="inline-45pct-left">Surcharge RAM</div>
+				<div class="espace_titre">Surcharge RAM</div>
 			</div>			
 			<div class="cadre_left">
 				<div class="liner"></div>
@@ -79,7 +79,7 @@
 							if($nombre_equipements != 0) {
 								while($infos_equipement = $equipements_BDD->fetch()) {
 						?>
-									<div class="line"><?php echo $infos_equipement['Nom'] . ' : ' . $infos_equipement['Etat'] . '%'; ?></div>
+									<div class="valeur_previsions"><?php echo $infos_equipement['Nom'] . ' : ' . $infos_equipement['Etat'] . '%'; ?></div>
 						<?php
 								}
 							}
@@ -90,10 +90,10 @@
 				<div class="liner"></div>
 			</div>
 		</div>
-		<div class="inline-W250px">
-			<div class="titre">
+		<div class="cadre_sonde">
+			<div class="titre_sonde">
 				<div class="lefttitre"></div>
-				<div class="inline-45pct-left">Uptime</div>
+				<div class="espace_titre">Uptime</div>
 			</div>			
 			<div class="cadre_left">
 				<div class="liner"></div>
@@ -107,7 +107,7 @@
 							if($nombre_equipements != 0) {
 								while($infos_equipement = $equipements_BDD->fetch()) {
 						?>
-									<div class="line"><?php echo $infos_equipement['Nom'] . ' : ' . $infos_equipement['Etat'] . '%'; ?></div>
+									<div class="valeur_previsions"><?php echo $infos_equipement['Nom'] . ' : ' . $infos_equipement['Etat'] . '%'; ?></div>
 						<?php
 								}
 							}

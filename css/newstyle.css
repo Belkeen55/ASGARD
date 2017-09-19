@@ -328,7 +328,7 @@ div
 {
 	display: inline-block;
 	text-align: left;
-	width: 80%;
+	width: 75%;
 }
 
 .liste_courses
@@ -354,6 +354,52 @@ div
 {
 	display: inline-block;
 }
+
+.cadre_performances
+{
+	display: inline-block;
+	width: 350px;	
+}
+
+.donnees_performances
+{
+	height: 100%;
+	display: inline-block;
+}
+
+.libelle_performances
+{
+	display: inline-block;
+	width: 17%;
+	text-align: left;
+}
+
+.barre_performances
+{
+	display: inline-block;
+	text-align: right;
+	width: 80%;
+}
+
+.graphique_barre_performances
+{
+	height: 16px;
+	width: 250px;
+}
+
+.black
+{
+	color: black;
+	text-decoration: none;
+}
+
+.cadre_maintenance
+{
+	display: inline-block;
+	width: 300px;
+}
+
+
 
 
 
@@ -560,11 +606,6 @@ a
 	text-decoration: none;
 }
 
-.black
-{
-	color: black;
-	text-decoration: none;
-}
 
 /* -------------- Spacer -------------- */
 

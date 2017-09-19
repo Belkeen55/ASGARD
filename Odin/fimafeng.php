@@ -72,6 +72,10 @@
 							}
 						?>
 					</div>
+					<div class="liner"></div>
+					<div class="liner"></div>
+					<div class="liner"></div>
+					<div class="liner"></div>
 				</body>
 			</html>
 <?php

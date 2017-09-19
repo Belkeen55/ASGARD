@@ -53,27 +53,23 @@
 	if($nombre_pieces != 0) { // Si il existe des pièces
 		while($infos_pieces = $pieces_BDD->fetch()) {
 ?>
-
-	
-		<div class="inline-W300px">
-			<div class="titre">
-				<div class="lefttitre"></div>
-				<div class="inline-45pct-left"><?php echo $infos_pieces['Nom']; ?></div>
-				<div class="inline-W45pct-right"><a href="#null" onclick="javascript:open_infos(<?php echo $infos_pieces['Id']; ?>);"><img src="/img/edit.png" height="20"></img></a></div>
-			</div>			
-			<div class="cadre_left">
-				<div class="liner"></div>
-				<div class="lefttitre"></div>
-					<div class="colonne">
-						<div class="line">Temperature idéeale : <?php echo $infos_pieces['T_ideal']; ?></div>
-						<div class="line">Humidité idéale : <?php echo $infos_pieces['H_ideal']; ?></div>
-					</div>
-				<div class="lefttitre"></div>
-				<div class="liner"></div>
+			<div class="cadre_sonde">
+				<div class="titre_sonde">
+					<div class="lefttitre"></div>
+					<div class="espace_titre"><?php echo $infos_pieces['Nom']; ?></div>
+					<a href="#null" onclick="javascript:open_infos(<?php echo $infos_pieces['Id']; ?>);"><img src="/img/edit.png" class="image_action"></img></a>
+				</div>			
+				<div class="cadre_left">
+					<div class="liner"></div>
+					<div class="lefttitre"></div>
+						<div class="colonne">
+							<div class="valeur_sonde">Temperature idéeale : <?php echo $infos_pieces['T_ideal']; ?></div>
+							<div class="valeur_sonde">Humidité idéale : <?php echo $infos_pieces['H_ideal']; ?></div>
+						</div>
+					<div class="lefttitre"></div>
+					<div class="liner"></div>
+				</div>
 			</div>
-		</div>
-	
-
 <?php
 		}
 		$pieces_BDD->closeCursor();

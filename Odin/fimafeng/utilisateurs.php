@@ -56,17 +56,17 @@
 	if($nombre_utilisateurs != 0) {
 		while($infos_utilisateur = $utilisateurs_BDD->fetch()) {
 ?>
-			<div class="inline-W400px">
-				<div class="titre">
+			<div class="cadre_sonde">
+				<div class="titre_sonde">
 					<div class="lefttitre"></div>
-					<div class="inline-45pct-left"><?php echo $infos_utilisateur['Login']; ?></div>
-					<div class="inline-W45pct-right"><a href="#null" onclick="javascript:open_infos(<?php echo $infos_utilisateur['Id']; ?>);"><img src="/img/edit.png" height="20"></img></a></div>
+					<div class="espace_titre"><?php echo $infos_utilisateur['Login']; ?></div>
+					<a href="#null" onclick="javascript:open_infos(<?php echo $infos_utilisateur['Id']; ?>);"><img src="/img/edit.png" class="image_action"></img></a>
 				</div>			
 				<div class="cadre_left">
 					<div class="liner"></div>
 					<div class="lefttitre"></div>
 						<div class="colonne">
-							<div class="line">Droits : <?php echo $infos_utilisateur['Droit']; ?></div>
+							<div class="valeur_sonde">Droits : <?php echo $infos_utilisateur['Droit']; ?></div>
 						</div>
 					<div class="lefttitre"></div>
 					<div class="liner"></div>

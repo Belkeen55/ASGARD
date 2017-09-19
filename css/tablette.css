@@ -381,6 +381,11 @@ div
 	font-size: 25px;
 }
 
+.cadre_performances
+{
+	display: inline-block;
+	width: 350px;	
+}
 
 
 
