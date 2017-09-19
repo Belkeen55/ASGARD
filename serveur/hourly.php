@@ -151,11 +151,11 @@
 		$myPicture->drawRectangle(0,0,699,229,array("R"=>255,"G"=>255,"B"=>255));  
 		  
 		/* Write the chart title */  
-		$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf","FontSize"=>11)); 
+		$myPicture->setFontProperties(array("FontName"=>"/var/www/html/lib/Pchart/fonts/Forgotte.ttf","FontSize"=>11)); 
 		$myPicture->drawText(100,45,"Temperature moyenne",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE)); 
 
 		/* Set the default font */ 
-		$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/pf_arma_five.ttf","FontSize"=>6)); 
+		$myPicture->setFontProperties(array("FontName"=>"/var/www/html/lib/Pchart/fonts/Forgotte.ttf","FontSize"=>6)); 
 
 		/* Define the chart area */ 
 		$myPicture->setGraphArea(60,40,650,200); 
@@ -196,11 +196,11 @@
 		$myPicture->drawRectangle(0,0,699,229,array("R"=>255,"G"=>255,"B"=>255)); 
 		  
 		/* Write the chart title */  
-		$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/Forgotte.ttf","FontSize"=>11)); 
+		$myPicture->setFontProperties(array("FontName"=>"/var/www/html/lib/Pchart/fonts/Forgotte.ttf","FontSize"=>11)); 
 		$myPicture->drawText(100,45,"Humidité moyenne",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE)); 
 
 		/* Set the default font */ 
-		$myPicture->setFontProperties(array("FontName"=>"../lib/Pchart/fonts/pf_arma_five.ttf","FontSize"=>6)); 
+		$myPicture->setFontProperties(array("FontName"=>"/var/www/html/lib/Pchart/fonts/pf_arma_five.ttf","FontSize"=>6)); 
 
 		/* Define the chart area */ 
 		$myPicture->setGraphArea(60,40,650,200); 
