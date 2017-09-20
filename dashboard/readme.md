@@ -24,6 +24,7 @@ Installation du dashboard
         sudo apt install apache2 
         sudo apt install php5 
         sudo apt install git 
+		sudo apt install xfce4-power-manager 
 
 #### Preparation des dossiers
         sudo nano /etc/php5/apache2/php.ini 
@@ -56,6 +57,9 @@ Installation du dashboard
         cd rpi-clone 
         sudo cp rpi-clone /usr/local/sbin 
         sudo blkid 
+
+#### Desactiver la mise en veille
+		Aller dans le menu > Preference > Gestion de l'alimentation 
 
 #### Mise en place des crontab
 	crontab -e 
