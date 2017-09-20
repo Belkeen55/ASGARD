@@ -6,7 +6,7 @@
 	include('/var/www/html/lib/network.php');
 	
 	// ---------- Verification des MAJ possibles sur l'element ----------
-	exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
+	//exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
 	
 	// ---------- Import des informations de MAJ de tous les éléments ----------
 	$equipements_BDD = $bdd->query('SELECT Id, Nom, Ip 
@@ -31,14 +31,17 @@
 							WHERE Id = ' . $infos_equipement['Id']);
 			}
 			$MAJ_BDD->closeCursor();
-			if(strpos($update, 'Le syst') != FALSE) {
+			echo 'Test = ' . strpos($update, 'package') . ' ';
+			if(strpos($update, 'package') != 0) {
 				if($i == 0) {
 					$liste = $infos_equipement['Nom'];
 					$i = 1;
+					echo 'i = ' . $i . ' ';
 				}
 				else {
 					$liste = $liste . ', ' . $infos_equipement['Nom'];
 					$i = $i + 1;
+					echo 'i = ' . $i . ' ';
 				}
 			}
 		}
