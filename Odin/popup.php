@@ -9,56 +9,48 @@
 	
 	// ---- chargement des librairies
 	include('../lib/BDD.php');
-	
-	if (!$_SESSION['login']) {
-		// ---- Si l'utilisateur n'est pas loggé
-		echo "<script type='text/javascript'>document.location.replace('../index.php');</script>";
-	}
-	else {
+	include('commun/connect.php');
 ?>
-			<html>
-				<head>
-					<?php include('commun/head.php'); ?>
-				</head>
-				<body class="ecran_clair" <?php if(isset($_GET['close'])) { echo 'onunload="window.opener.location.reload(true);"'; } ?>>
-					<div class="redline"></div>
-					<div class="header">
-						<?php include('commun/header.php'); ?>
-					</div>
-					<div class="contenu">
-						<?php
-							switch($_GET['action']) {
-								case 'edit':
-									switch($_GET['type']) {
-										case 'equipement':
-											include('popup/equipement.php');
-											break;
-										case 'joueur':
-											include('popup/joueur.php');
-											break;
-										case 'formation':
-											include('popup/formation.php');
-											break;
-										case 'piece':
-											include('popup/piece.php');
-											break;
-										case 'type':
-											include('popup/type.php');
-											break;
-										case 'utilisateurs':
-											include('popup/utilisateurs.php');
-											break;
-										default:
-											echo 'Erreur 1';
-									}
+	<html>
+		<head>
+			<?php include('commun/head.php'); ?>
+		</head>
+		<body class="ecran_clair" <?php if(isset($_GET['close'])) { echo 'onunload="window.opener.location.reload(true);"'; } ?>>
+			<div class="redline"></div>
+			<div class="header">
+				<?php include('commun/header.php'); ?>
+			</div>
+			<div class="contenu">
+				<?php
+					switch($_GET['action']) {
+						case 'edit':
+							switch($_GET['type']) {
+								case 'equipement':
+									include('popup/equipement.php');
+									break;
+								case 'joueur':
+									include('popup/joueur.php');
+									break;
+								case 'formation':
+									include('popup/formation.php');
+									break;
+								case 'piece':
+									include('popup/piece.php');
+									break;
+								case 'type':
+									include('popup/type.php');
+									break;
+								case 'utilisateurs':
+									include('popup/utilisateurs.php');
 									break;
 								default:
-								   echo 'Erreur 2';
+									echo 'Erreur 1';
 							}
-						?>
-					</div>
-				</body>
-			</html>
-<?php
-	}
-?>
+							break;
+						default:
+						   echo 'Erreur 2';
+					}
+				?>
+			</div>
+		</body>
+	</html>

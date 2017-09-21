@@ -31,6 +31,10 @@
 			$_SESSION['login'] = True;
 		}
 	}
+	if($_SESSION['login']) {
+		// ---- Si l'utilisateur est loggé
+		echo "<script type='text/javascript'>document.location.replace('/Odin/odin.php');</script>";
+	}
 ?>
 <html>
     <head>
@@ -53,15 +57,6 @@
 				<img class="logo-big" src="/img/giphy.gif">
 			</div>
 			<div class="titreConnexion">ASGARD</div>
-			<?php
-				if($_SESSION['login']) {
-					// ---- Si l'utilisateur est loggé
-					echo "<script type='text/javascript'>document.location.replace('Odin/odin.php');</script>";
-				}
-				else
-				{
-				// ---- Si l'utilisateur n'est pas loggé
-			?>
 			<div class="formulaireConnexion">
 				<!-- On renvoit vers la même page avec des POST -->
 				<form action="index.php" method="post">
@@ -85,9 +80,6 @@
 			<div class="ligneLicence">
 				<img class="ccbyncsa" src="/img/Cc-by-nc-sa_icon.png">
 			</div>
-			<?php
-				}
-			?>
 		</div>
     </body>
 </html>

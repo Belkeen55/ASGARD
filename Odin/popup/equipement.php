@@ -3,6 +3,7 @@
 		$bdd->exec('UPDATE Equipements
 					SET Nom = \'' . str_replace('\'', '\'\'', $_GET['nom']) . '\', 
 					Ip = \'' . $_GET['ip'] . '\', 
+					Adresse = \'' . $_GET['adresse'] . '\', 
 					Commentaires = \'' . str_replace('\'', '\'\'', $_GET['commentaire']) . '\', 
 					Id_Pieces = ' . $_GET['location'] . ', 
 					Id_Typ_Equip = ' . $_GET['equip'] . '
@@ -11,8 +12,8 @@
 	}
 	if(isset($_GET['creation'])) {
 		$clonage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')));
-		$bdd->exec('INSERT INTO Equipements(Id, Nom, Ip, Commentaires, Id_Pieces, Id_Typ_Equip, Clonage, DHT22) 
-					VALUES(NULL, \'' . $_GET['nom'] . '\', \'' . $_GET['ip'] . '\', \'' . $_GET['commentaire'] . '\', ' . $_GET['location'] . ', ' . $_GET['equip'] . ', \'' . $clonage . '\', 0)');
+		$bdd->exec('INSERT INTO Equipements(Id, Nom, Ip, Adresse, Commentaires, Id_Pieces, Id_Typ_Equip, Clonage, DHT22) 
+					VALUES(NULL, \'' . $_GET['nom'] . '\', \'' . $_GET['ip'] . '\', \'' . $_GET['adresse'] . '\', \'' . $_GET['commentaire'] . '\', ' . $_GET['location'] . ', ' . $_GET['equip'] . ', \'' . $clonage . '\', 0)');
 		echo "<script type='text/javascript'>window.close();</script>";	
 	}
 	if(isset($_GET['delete'])) {
@@ -32,7 +33,7 @@
 	$pieces_BDD = $bdd->query('	SELECT Id, Nom
 									FROM Pieces');
 	if(!isset($_GET['create'])) {
-		$equipements_BDD = $bdd->query('SELECT Id, Nom, Ip, Commentaires, Clonage, Id_Pieces, Id_Typ_Equip, DHT22
+		$equipements_BDD = $bdd->query('SELECT Id, Nom, Ip, Adresse, Commentaires, Clonage, Id_Pieces, Id_Typ_Equip, DHT22
 										FROM Equipements
 										WHERE Id = ' . $_GET['module']);
 		$infos_equipement = $equipements_BDD->fetch();
@@ -56,6 +57,11 @@
 <div class="line">
 	<div class="inline-20-Left">IP</div>
 	<div class="inline-20-Left"><input type="text" name="ip" size="25" value="<?php echo $infos_equipement['Ip']; ?>"></div>
+</div>
+<div class="liner"></div>
+<div class="line">
+	<div class="inline-20-Left">Adresse</div>
+	<div class="inline-20-Left"><input type="text" name="adresse" size="25" value="<?php echo $infos_equipement['Adresse']; ?>"></div>
 </div>
 <div class="liner"></div>
 <div class="line">
@@ -168,6 +174,11 @@
 <div class="line">
 	<div class="inline-20-Left">IP</div>
 	<div class="inline-20-Left"><input type="text" name="ip" size="25"></div>
+</div>
+<div class="liner"></div>
+<div class="line">
+	<div class="inline-20-Left">Adresse</div>
+	<div class="inline-20-Left"><input type="text" name="adresse" size="25"></div>
 </div>
 <div class="liner"></div>
 <div class="line">
