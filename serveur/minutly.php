@@ -79,4 +79,15 @@
 		}
 	}
 	$equipements_BDD->closeCursor();
+	$heurodatage = date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')));
+	$events_BDD = $bdd->query('	SELECT Id, Heurodatage, Action 
+								FROM Events
+								WHERE Heurodatage < \'' . $heurodatage . '\'');
+	$volume = $events_BDD->rowCount();
+	if($volume <> 0) {
+		while($infos_event = $events_BDD->fetch()) {
+			exec($infos_event['Action']);
+			$bdd->exec('DELETE FROM Events WHERE Action = \'' . $infos_event['Action'] . '\'');
+		}
+	}
 ?>
