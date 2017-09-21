@@ -1,4 +1,7 @@
 <?php
+	if(!isset($_SESSION['login'])) {
+		$_SESSION['login'] = false;
+	}
 	if(!$_SESSION['login']) {
 		if(isset($_COOKIE['infos'])) {
 			if($_COOKIE['infos'] == 'BelkhomeLogin') {
@@ -10,6 +13,7 @@
 											FROM Equipements
 											WHERE Adresse = \'' . $_SERVER["REMOTE_ADDR"] . '\'');
 			$volume = $equipements_BDD->rowCount();
+			$equipements_BDD->closeCursor();
 			if($volume <> 0) {
 				$_SESSION['login'] = True;
 			}
