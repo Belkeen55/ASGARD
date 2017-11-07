@@ -28,7 +28,6 @@ Installation serveur MySQL
 	sudo apt install git 
 
 #### Preparation des dossiers
-	sudo nano /etc/php5/apache2/php.ini 
 	sudo chown -R www-data:"Utilisateur" /var/www/html/ 
 	sudo chmod -R 770 /var/www/html 
 	sudo reboot 
@@ -38,7 +37,6 @@ Installation serveur MySQL
         GRANT ALL PRIVILEGES ON exemple.* TO user@'%' IDENTIFIED BY 'mot_de_passe'; 
         flush privileges; 
 	exit 
-	sudo nano /etc/mysql/my.cnf 
 	#bind-address = 127.0.0.1 
 	/etc/init.d/mysql restart 
 
