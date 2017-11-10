@@ -431,8 +431,46 @@ div
 	text-align: center;	
 }
 
+.cadre_forza
+{
+	display: inline-block;
+	width: 450px;
+	vertical-align: top;
+}
 
+.cadre_forza_big
+{
+	display: inline-block;
+	width: 700px;
+	vertical-align: top;
+}
 
+.titre_sonde
+{
+	display: block;
+	background-color: #E6E6E6;
+	border: 1px solid #BDBDBD;
+	width: 100%;
+	height: 40px;
+	vertical-align: -10%;
+	text-align: left;		
+}
+
+.image_sonde
+{
+	height:40px;
+}
+
+.valeur_sonde
+{
+	display: block;
+}
+
+.display_center_up
+{
+	text-align: center;
+	vertical-align: top;
+}
 
 .full-screen /* OK */
 {

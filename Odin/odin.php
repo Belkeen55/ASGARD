@@ -50,6 +50,9 @@
 							case 'tickets':
 								include('odin/tickets.php');
 								break;
+							case 'forza':
+								include('odin/forza.php');
+								break;
 						}
 						?>
 					</div>
