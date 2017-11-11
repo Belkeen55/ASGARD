@@ -120,9 +120,32 @@
 						<td><?php echo $infos_tour['Marque'] . ' ' . $infos_tour['Modèle'] . ' (' . $infos_tour['Année'] . ')'; ?></td>
 						<td><?php echo $infos_tour['Circuit'] . ' ' . $infos_tour['Portion'] . ' ' . $infos_tour['Condition']; ?></td>
 						<td><?php echo $temps; ?></td>
-						<td><?php echo $infos_tour['Europe']; ?></td>
-						<td><?php echo $infos_tour['Amis']; ?></td>
+						<form action="odin.php" method="get">
+						<td><input type="text" name="europe" size="2" value="<?php echo $infos_tour['Europe']; ?>"></td>
+						<td><input type="text" name="amis" size="2" value="<?php echo $infos_tour['Amis']; ?>"></td>
 						<td>
+								<input type="hidden" name="module" value="forza">
+								<input type="hidden" name="vue" value="tours">
+								<input type="hidden" name="action" value="editer">
+								<input type="hidden" name="id" value="<?php echo $infos_tour['Id']; ?>">
+<?php
+								if(isset($_GET['action'])) {
+									if($_GET['action'] == 'filtrer') {
+										if(isset($_GET['division'])) {
+											if($_GET['division'] <> 0) {
+												echo '<input type="hidden" name="division" value="' . $_GET['division'] . '">';
+											}
+										}
+										if(isset($_GET['circuit'])) {
+											if($_GET['circuit'] <> 0) {
+												echo '<input type="hidden" name="circuit" value="' . $_GET['circuit'] . '">';
+											}
+										}
+									}
+								}
+?>
+								<input type="submit" value="Editer">
+							</form>
 							<form action="odin.php" method="get">
 								<input type="hidden" name="module" value="forza">
 								<input type="hidden" name="vue" value="tours">
