@@ -17,7 +17,11 @@
 			$bdd->exec('UPDATE `FM7_Tours` SET `Europe` = \'0\' WHERE `FM7_Tours`.`Id` = ' . $_GET['id']);
 			$bdd->exec('UPDATE `FM7_Tours` SET `Amis` = \'0\' WHERE `FM7_Tours`.`Id` = ' . $_GET['id']);
 		}
-		if($_GET['action'] == 'filtrer' or $_GET['action'] == 'supprimer') {
+		if($_GET['action'] == 'editer') {
+			$bdd->exec('UPDATE `FM7_Tours` SET `Europe` = \'' . $_GET['europe'] . '\' WHERE `FM7_Tours`.`Id` = ' . $_GET['id']);
+			$bdd->exec('UPDATE `FM7_Tours` SET `Amis` = \'' . $_GET['amis'] . '\' WHERE `FM7_Tours`.`Id` = ' . $_GET['id']);
+		}
+		if($_GET['action'] == 'filtrer' or $_GET['action'] == 'supprimer' or $_GET['action'] == 'editer') {
 			if(isset($_GET['division'])) {
 				if($_GET['division'] <> 0) {
 					$requete = $requete . ' AND FM7_Divisions.Id = ' . $_GET['division'];
@@ -75,7 +79,7 @@
 					<input type="hidden" name="module" value="forza">
 					<input type="hidden" name="vue" value="tours">
 					<input type="hidden" name="action" value="filtrer">
-					<div class="line"><input type="submit" value="Ajouter"></div>
+					<div class="line"><input type="submit" value="Filtrer"></div>
 				</form>
 				<table border="1">
 					<tr>

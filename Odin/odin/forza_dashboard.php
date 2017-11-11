@@ -21,13 +21,13 @@
 										FROM FM7_Voitures');
 	}
 	$nombre_voitures = $voitures_BDD->rowCount();
-	$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition
+	$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, MIN(DATEDIFF(NOW(),FM7_Tours.Date)) AS Jours
 								FROM FM7_Tours, FM7_Voitures, FM7_Reglages, FM7_Circuits, FM7_Divisions
 								WHERE FM7_Tours.Reglage = FM7_Reglages.Id
 								AND FM7_Tours.Circuit = FM7_Circuits.Id
 								AND FM7_Voitures.Id = FM7_Reglages.Voiture
 								AND FM7_Voitures.Division = FM7_Divisions.Id
-								AND DATEDIFF(NOW(),FM7_Tours.Date) > 30');
+								GROUP BY FM7_Divisions.Nom, FM7_Circuits.Id');
 	$nombre_tours = $tours_BDD->rowCount();
 ?>
 <div class="liner"></div>
@@ -153,6 +153,7 @@
 <?php
 	if($nombre_tours != 0) {
 		while($infos_tours = $tours_BDD->fetch()) {
+			if($infos_tours['Jours'] >= 30) {
 ?>
 					<tr>
 						<td><?php echo $infos_tours['Nom']; ?></td>
@@ -161,6 +162,7 @@
 						<td><?php echo $infos_tours['Condition']; ?></td>
 					</tr>
 <?php
+			}
 		}
 	}
 	$tours_BDD->closeCursor();
