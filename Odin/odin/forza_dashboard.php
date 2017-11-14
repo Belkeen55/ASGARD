@@ -189,6 +189,28 @@
 			}
 		}
 	}
+	$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, SUM(FM7_Tours.Europe) AS Classement 
+								FROM FM7_Tours, FM7_Reglages, FM7_Circuits, FM7_Voitures, FM7_Divisions 
+								WHERE FM7_Tours.Reglage = FM7_Reglages.Id 
+								AND FM7_Circuits.Id = FM7_Tours.Circuit 
+								AND FM7_Divisions.Id = FM7_Voitures.Division 
+								AND FM7_Reglages.Voiture = FM7_Voitures.Id 
+								GROUP BY FM7_Divisions.Id, FM7_Circuits.Id ORDER BY `Classement`');
+	$nombre_tours = $tours_BDD->rowCount();
+	if($nombre_tours != 0) {
+		while($infos_tours = $tours_BDD->fetch()) {
+			if($infos_tours['Classement'] == 0) {
+?>
+					<tr>
+						<td><?php echo $infos_tours['Nom']; ?></td>
+						<td><?php echo $infos_tours['Circuit']; ?></td>
+						<td><?php echo $infos_tours['Portion']; ?></td>
+						<td><?php echo $infos_tours['Condition']; ?></td>
+					</tr>
+<?php
+			}
+		}
+	}
 ?>
 				</table>
 			</div>

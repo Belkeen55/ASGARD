@@ -12,6 +12,15 @@
 					VALUES(NULL, \'' . $_GET['date'] . '\', ' . $_GET['reglage'] . ', ' . $_GET['circuit'] . ', ' . $secondes . ', ' . $_GET['millis'] . ', ' . $_GET['europe'] . ', ' . $_GET['amis'] . ')');
 		$bdd->exec('INSERT INTO FM7_Commentaires(Id, Reglage, Boite, Differentiel, Frein, Virage, Puissance) 
 					VALUES(NULL, ' . $_GET['reglage'] . ', ' . $_GET['boite'] . ', ' . $_GET['diff'] . ', ' . $_GET['frein'] . ', ' . $_GET['virage'] . ', ' . $_GET['puissance'] . ')');
+		$requete = $requete . ' AND FM7_Circuits.Id = ' . $_GET['circuit'];
+		$divisions_BDD = $bdd->query('	SELECT FM7_Divisions.Id
+										FROM FM7_Voitures, FM7_Reglages, FM7_Divisions
+										WHERE FM7_Voitures.Id = FM7_Reglages.Voiture
+										AND FM7_Divisions.Id = FM7_Voitures.Division
+										AND FM7_Reglages.Id = '. $_GET['reglage']);
+		$infos_division = $divisions_BDD->fetch();
+		$requete = $requete . ' AND FM7_Divisions.Id = ' . $infos_division['Id'];
+		$divisions_BDD->closeCursor();
 		}
 		if($_GET['action'] == 'supprimer') {
 			$bdd->exec('UPDATE `FM7_Tours` SET `Europe` = \'0\' WHERE `FM7_Tours`.`Id` = ' . $_GET['id']);

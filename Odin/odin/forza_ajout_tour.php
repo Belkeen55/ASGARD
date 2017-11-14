@@ -32,6 +32,9 @@
 	$reglages_BDD = $bdd->query('	SELECT FM7_Reglages.Id, FM7_Voitures.Marque, FM7_Voitures.Modèle, FM7_Voitures.Année, FM7_Reglages.Version
 									FROM FM7_Voitures, FM7_Reglages
 									WHERE FM7_Voitures.Id = FM7_Reglages.Voiture
+									AND FM7_Reglages.Version = (SELECT MAX(FM7_Reglages.Version)
+									                            FROM FM7_Reglages
+									                            WHERE FM7_Reglages.Voiture = FM7_Voitures.Id)
 									ORDER BY FM7_Voitures.Marque, FM7_Voitures.Modèle, FM7_Voitures.Année, FM7_Reglages.Version');
 	while ($infos_reglage = $reglages_BDD->fetch()) {
 		echo '<option value="' . $infos_reglage['Id'] . '">' . $infos_reglage['Marque'] . ' ' . $infos_reglage['Modèle'] . ' (' . $infos_reglage['Année'] . ') V.' . $infos_reglage['Version'] . '</option>';
