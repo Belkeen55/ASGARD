@@ -37,12 +37,14 @@ Installation serveur MySQL
         GRANT ALL PRIVILEGES ON exemple.* TO user@'%' IDENTIFIED BY 'mot_de_passe'; 
         flush privileges; 
 	exit 
+	sudo nano /etc/mysql/my.cnf 
 	#bind-address = 127.0.0.1 
-	/etc/init.d/mysql restart 
+	sudo /etc/init.d/mysql restart 
 
 #### Montage du disque de backup
 	sudo nano /etc/fstab 
-	//samba/docs/ /media/docs/ cifs rw,username=belkeen,password=shiva77680 0 0 
+	//samba/docs/ /media/docs/ cifs rw,username=[utilisateur],password=[password] 0 0 
+	sudo mkdir /media/docs
 	sudo reboot 
 
 #### Mise en place du git de déploiement
