@@ -21,13 +21,25 @@
 										FROM FM7_Voitures');
 	}
 	$nombre_voitures = $voitures_BDD->rowCount();
-	$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, MIN(DATEDIFF(NOW(),FM7_Tours.Date)) AS Jours
-								FROM FM7_Tours, FM7_Voitures, FM7_Reglages, FM7_Circuits, FM7_Divisions
-								WHERE FM7_Tours.Reglage = FM7_Reglages.Id
-								AND FM7_Tours.Circuit = FM7_Circuits.Id
-								AND FM7_Voitures.Id = FM7_Reglages.Voiture
-								AND FM7_Voitures.Division = FM7_Divisions.Id
-								GROUP BY FM7_Divisions.Nom, FM7_Circuits.Id');
+	if(isset($_GET['circuit'])) {
+		$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, MIN(DATEDIFF(NOW(),FM7_Tours.Date)) AS Jours, CEILING(10/FM7_Circuits.Taille) AS Nb_Tours
+									FROM FM7_Tours, FM7_Voitures, FM7_Reglages, FM7_Circuits, FM7_Divisions
+									WHERE FM7_Tours.Reglage = FM7_Reglages.Id
+									AND FM7_Tours.Circuit = FM7_Circuits.Id
+									AND FM7_Voitures.Id = FM7_Reglages.Voiture
+									AND FM7_Voitures.Division = FM7_Divisions.Id
+									AND FM7_Circuits.Id = ' . $_GET['circuit'] . '
+									GROUP BY FM7_Divisions.Nom, FM7_Circuits.Id');
+	}
+	else {
+				$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, MIN(DATEDIFF(NOW(),FM7_Tours.Date)) AS Jours, CEILING(10/FM7_Circuits.Taille) AS Nb_Tours
+									FROM FM7_Tours, FM7_Voitures, FM7_Reglages, FM7_Circuits, FM7_Divisions
+									WHERE FM7_Tours.Reglage = FM7_Reglages.Id
+									AND FM7_Tours.Circuit = FM7_Circuits.Id
+									AND FM7_Voitures.Id = FM7_Reglages.Voiture
+									AND FM7_Voitures.Division = FM7_Divisions.Id
+									GROUP BY FM7_Divisions.Nom, FM7_Circuits.Id');
+	}
 	$nombre_tours = $tours_BDD->rowCount();
 ?>
 <div class="liner"></div>
@@ -143,12 +155,31 @@
 				Classements à refaire
 			</div>
 			<div class="valeur_sonde">
+				<div class="line">
+					<form action="odin.php" method="get">
+						<select name="circuit">
+<?php
+	$circuits_BDD = $bdd->query('	SELECT Id, Circuit, Portion, `Condition`
+									FROM FM7_Circuits
+									ORDER BY Circuit, Portion, `Condition`');
+	while ($infos_circuit = $circuits_BDD->fetch()) {
+		echo '<option value="' . $infos_circuit['Id'] . '">' . $infos_circuit['Circuit'] . ' ' . $infos_circuit['Portion'] . ' ' . $infos_circuit['Condition'] . '</option>';
+	}
+	$circuits_BDD->closeCursor();				
+?>
+						</select>
+						<input type="hidden" name="module" value="forza">
+						<input type="hidden" name="vue" value="dashboard">
+						<input type="submit" value="Filtrer">
+					</form>
+				</div>
 				<table border="1">
 					<tr>
 						<th>Division</th>
 						<th>Circuit</th>
 						<th>Portion</th>
 						<th>Condition</th>
+						<th>Tours</th>
 					</tr>
 <?php
 	if($nombre_tours != 0) {
@@ -160,20 +191,34 @@
 						<td><?php echo $infos_tours['Circuit']; ?></td>
 						<td><?php echo $infos_tours['Portion']; ?></td>
 						<td><?php echo $infos_tours['Condition']; ?></td>
+						<td><?php echo $infos_tours['Nb_Tours']; ?></td>
 					</tr>
 <?php
 			}
 		}
 	}
 	$tours_BDD->closeCursor();
-	$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, COUNT(FM7_Tours.Id) AS Classement 
-								FROM FM7_Tours, FM7_Reglages, FM7_Circuits, FM7_Voitures, FM7_Divisions 
-								WHERE FM7_Tours.Europe <> 0 
-								AND FM7_Tours.Reglage = FM7_Reglages.Id 
-								AND FM7_Circuits.Id = FM7_Tours.Circuit 
-								AND FM7_Divisions.Id = FM7_Voitures.Division 
-								AND FM7_Reglages.Voiture = FM7_Voitures.Id 
-								GROUP BY FM7_Divisions.Id, FM7_Circuits.Id ORDER BY `Classement`');
+	if(isset($_GET['circuit'])) {
+		$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, COUNT(FM7_Tours.Id) AS Classement, CEILING(10/FM7_Circuits.Taille) AS Nb_Tours
+									FROM FM7_Tours, FM7_Reglages, FM7_Circuits, FM7_Voitures, FM7_Divisions 
+									WHERE FM7_Tours.Europe <> 0 
+									AND FM7_Tours.Reglage = FM7_Reglages.Id 
+									AND FM7_Circuits.Id = FM7_Tours.Circuit 
+									AND FM7_Divisions.Id = FM7_Voitures.Division 
+									AND FM7_Reglages.Voiture = FM7_Voitures.Id 
+									AND FM7_Circuits.Id = ' . $_GET['circuit'] . '
+									GROUP BY FM7_Divisions.Id, FM7_Circuits.Id ORDER BY `Classement`');
+	}
+	else {
+		$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, COUNT(FM7_Tours.Id) AS Classement, CEILING(10/FM7_Circuits.Taille) AS Nb_Tours
+									FROM FM7_Tours, FM7_Reglages, FM7_Circuits, FM7_Voitures, FM7_Divisions 
+									WHERE FM7_Tours.Europe <> 0 
+									AND FM7_Tours.Reglage = FM7_Reglages.Id 
+									AND FM7_Circuits.Id = FM7_Tours.Circuit 
+									AND FM7_Divisions.Id = FM7_Voitures.Division 
+									AND FM7_Reglages.Voiture = FM7_Voitures.Id 
+									GROUP BY FM7_Divisions.Id, FM7_Circuits.Id ORDER BY `Classement`');
+	}
 	$nombre_tours = $tours_BDD->rowCount();
 	if($nombre_tours != 0) {
 		while($infos_tours = $tours_BDD->fetch()) {
@@ -184,18 +229,31 @@
 						<td><?php echo $infos_tours['Circuit']; ?></td>
 						<td><?php echo $infos_tours['Portion']; ?></td>
 						<td><?php echo $infos_tours['Condition']; ?></td>
+						<td><?php echo $infos_tours['Nb_Tours']; ?></td>
 					</tr>
 <?php
 			}
 		}
 	}
-	$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, SUM(FM7_Tours.Europe) AS Classement 
-								FROM FM7_Tours, FM7_Reglages, FM7_Circuits, FM7_Voitures, FM7_Divisions 
-								WHERE FM7_Tours.Reglage = FM7_Reglages.Id 
-								AND FM7_Circuits.Id = FM7_Tours.Circuit 
-								AND FM7_Divisions.Id = FM7_Voitures.Division 
-								AND FM7_Reglages.Voiture = FM7_Voitures.Id 
-								GROUP BY FM7_Divisions.Id, FM7_Circuits.Id ORDER BY `Classement`');
+	if(isset($_GET['circuit'])) {
+		$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, SUM(FM7_Tours.Europe) AS Classement, CEILING(10/FM7_Circuits.Taille) AS Nb_Tours
+									FROM FM7_Tours, FM7_Reglages, FM7_Circuits, FM7_Voitures, FM7_Divisions 
+									WHERE FM7_Tours.Reglage = FM7_Reglages.Id 
+									AND FM7_Circuits.Id = FM7_Tours.Circuit 
+									AND FM7_Divisions.Id = FM7_Voitures.Division 
+									AND FM7_Reglages.Voiture = FM7_Voitures.Id 
+									AND FM7_Circuits.Id = ' . $_GET['circuit'] . '
+									GROUP BY FM7_Divisions.Id, FM7_Circuits.Id ORDER BY `Classement`');
+	}
+	else {
+		$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, SUM(FM7_Tours.Europe) AS Classement, CEILING(10/FM7_Circuits.Taille) AS Nb_Tours
+									FROM FM7_Tours, FM7_Reglages, FM7_Circuits, FM7_Voitures, FM7_Divisions 
+									WHERE FM7_Tours.Reglage = FM7_Reglages.Id 
+									AND FM7_Circuits.Id = FM7_Tours.Circuit 
+									AND FM7_Divisions.Id = FM7_Voitures.Division 
+									AND FM7_Reglages.Voiture = FM7_Voitures.Id 
+									GROUP BY FM7_Divisions.Id, FM7_Circuits.Id ORDER BY `Classement`');
+	}
 	$nombre_tours = $tours_BDD->rowCount();
 	if($nombre_tours != 0) {
 		while($infos_tours = $tours_BDD->fetch()) {
@@ -206,6 +264,7 @@
 						<td><?php echo $infos_tours['Circuit']; ?></td>
 						<td><?php echo $infos_tours['Portion']; ?></td>
 						<td><?php echo $infos_tours['Condition']; ?></td>
+						<td><?php echo $infos_tours['Nb_Tours']; ?></td>
 					</tr>
 <?php
 			}

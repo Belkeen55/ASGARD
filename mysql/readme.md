@@ -52,6 +52,7 @@ Installation serveur MySQL
         git init 
         git config receive.denyCurrentBranch ignore 
         faire un push de test-pi3 
+        rm /var/www/html/index.html 
         git clone /home/belkeen/asgard.git /var/www/html 
         sudo nano /home/belkeen/asgard.git/.git/hooks/post-update 
         coller 

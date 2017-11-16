@@ -36,6 +36,15 @@
 					</div>
 				</a>
 			</div>
+			<div class="left1pct"></div>
+			<div class="bouton_appli">
+				<a href="/Odin/odin.php?module=forza&vue=classements" class="black">
+					<div class="titre_bouton_appli">
+						<div class="lefttitre"></div>
+						Classements
+					</div>
+				</a>
+			</div>
 		</span>
 	</div>
 </div>
@@ -60,6 +69,9 @@
 					break;
 				case 'nouveau_reglage':
 					include('odin/forza_nouveau_reglage.php');
+					break;
+				case 'classements':
+					include('odin/forza_classements.php');
 					break;
 			}
 		?>
