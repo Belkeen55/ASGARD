@@ -16,6 +16,20 @@
 		if($_GET['action'] == 'edition') {
 			$bdd->exec('UPDATE FM7_Voitures SET Division = ' . $_GET['division'] . ' WHERE FM7_Voitures.Id = ' . $_GET['voiture']);
 		}
+		if($_GET['action'] == 'supprimer') {
+			$reglages_BDD = $bdd->query('	SELECT Id
+											FROM FM7_Reglages
+											WHERE Voiture = ' . $_GET['voiture'] );
+			$nombre_reglages = $reglages_BDD->rowCount();
+			if($nombre_reglages <> 0) {
+				while ($infos_reglage = $reglages_BDD->fetch()) {
+					$bdd->exec('DELETE FROM FM7_Tours WHERE FM7_Tours.Reglage = ' . $infos_reglage['Id'] );
+					$bdd->exec('DELETE FROM FM7_Commentaires WHERE FM7_Commentaires.Reglage = ' . $infos_reglage['Id'] );
+				}
+			}
+			$bdd->exec('DELETE FROM FM7_Reglages WHERE FM7_Reglages.Voiture = ' . $_GET['voiture']);
+			$bdd->exec('DELETE FROM FM7_Voitures WHERE FM7_Voitures.Id = ' . $_GET['voiture']);
+		}
 	}
 	$voitures_BDD = $bdd->query('	SELECT FM7_Voitures.Id, FM7_Voitures.Marque, FM7_Voitures.Modèle, FM7_Voitures.Année, FM7_Voitures.Division
 									FROM FM7_Voitures');
@@ -37,7 +51,8 @@
 						<th>Modele</th>
 						<th>Annee</th>
 						<th>Division</th>
-						<th>Action</th>
+						<th>Editer</th>
+						<th>Supprimer</th>
 					</tr>
 <?php
 	if($nombre_voitures != 0) {
@@ -70,8 +85,20 @@
 ?>
 								</select>
 							</td>
-							<td><input type="submit" value="Editer"></td>
+							<td>
+								<input type="submit" value="Editer">
+							</td>
+							<td>
+								<form action="odin.php" method="get">
+									<input type="hidden" name="module" value="forza">
+									<input type="hidden" name="vue" value="voitures">
+									<input type="hidden" name="action" value="supprimer">
+									<input type="hidden" name="voiture" value="<?php echo $infos_voitures['Id'] ?>">
+									<input type="submit" value="Supprimer">
+								</form>
+							</td>
 						</form>
+						
 					</tr>
 <?php
 		}
