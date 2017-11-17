@@ -23,7 +23,8 @@
 	
 		<div class="cadre_forza">
 			<div class="titre_sonde">
-				Classement général
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Classement général</div>
 			</div>
 			<div class="valeur_sonde">
 				<table border="1">
@@ -43,11 +44,12 @@
 				</table>
 			</div>
 		</div>
-	
+		<div class="left1pct"></div>
 	
 		<div class="cadre_forza">
 			<div class="titre_sonde">
-				Classement par divisions
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Classements par divisions</div>
 			</div>
 			<div class="valeur_sonde">
 				<table border="1">
@@ -70,10 +72,12 @@
 				</table>
 			</div>
 		</div>
+		<div class="left1pct"></div>
 		
 			<div class="cadre_forza">
 			<div class="titre_sonde">
-				Classements par circuits
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Classements par circuit</div>
 			</div>
 			<div class="valeur_sonde">
 				<table border="1">

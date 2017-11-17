@@ -48,7 +48,8 @@
 	
 		<div class="cadre_forza">
 			<div class="titre_sonde">
-				Setups à faire
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Setups à faire</div>
 			</div>
 			<div class="valeur_sonde">
 				<table border="1">
@@ -81,11 +82,12 @@
 				</table>
 			</div>
 		</div>
-	
+		<div class="left1pct"></div>
 	
 		<div class="cadre_forza">
 			<div class="titre_sonde">
-				Voitures à utiliser
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Runs par voitures</div>
 			</div>
 			<div class="valeur_sonde">
 				<div class="line">
@@ -160,10 +162,12 @@
 				</table>
 			</div>
 		</div>
+		<div class="left1pct"></div>
 		
 			<div class="cadre_forza">
 			<div class="titre_sonde">
-				Classements à refaire
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Classements à rafraichir</div>
 			</div>
 			<div class="valeur_sonde">
 				<div class="line">

@@ -22,7 +22,8 @@
 	
 		<div class="cadre_forza">
 			<div class="titre_sonde">
-				Réglages
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Réglages</div>
 			</div>
 			<div class="valeur_sonde">
 				<table border="1">
@@ -50,10 +51,12 @@
 				</table>
 			</div>
 		</div>
+		<div class="left1pct"></div>
 		
 		<div class="cadre_forza">
 			<div class="titre_sonde">
-				Ajouter une voiture
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Ajouter un réglage</div>
 			</div>
 			<div class="valeur_sonde">
 				<form action="odin.php" method="get">

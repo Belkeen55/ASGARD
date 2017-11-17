@@ -42,7 +42,8 @@
 	
 		<div class="cadre_forza_big">
 			<div class="titre_sonde">
-				Voitures
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Voitures</div>
 			</div>
 			<div class="valeur_sonde">
 				<table border="1">
@@ -108,10 +109,12 @@
 				</table>
 			</div>
 		</div>
+		<div class="left1pct"></div>
 		
 		<div class="cadre_forza">
 			<div class="titre_sonde">
-				Ajouter une voiture
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Ajouter une voiture</div>
 			</div>
 			<div class="valeur_sonde">
 				<form action="odin.php" method="get">

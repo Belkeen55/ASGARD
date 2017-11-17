@@ -53,7 +53,9 @@
 	
 		<div class="cadre_forza_big">
 			<div class="titre_sonde">
-				Tours <a href="/Odin/odin.php?module=forza&vue=ajout_tour" class="black">Ajouter</a>
+				<div class="lefttitre"></div>
+				<div class="espace_titre">Runs</div>
+				<a href="/Odin/odin.php?module=forza&vue=ajout_tour" class="black">Ajouter</a>
 			</div>
 			<div class="valeur_sonde">
 				<form action="odin.php" method="get">
