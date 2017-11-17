@@ -65,7 +65,12 @@
 															FROM FM7_Divisions
 															ORDER BY Nom');
 							while ($infos_division = $divisions_BDD->fetch()) {
-								echo '<option value="' . $infos_division['Id'] . '">' . $infos_division['Nom'] . '</option>';
+								if((isset($_GET['division'])) and ($infos_division['Id'] == $_GET['division'])) {
+									echo '<option value="' . $infos_division['Id'] . '" selected>' . $infos_division['Nom'] . '</option>';
+								}
+								else {
+									echo '<option value="' . $infos_division['Id'] . '">' . $infos_division['Nom'] . '</option>';
+								}
 							}
 							$divisions_BDD->closeCursor();				
 ?>
@@ -79,7 +84,12 @@
 															FROM FM7_Circuits 
 															ORDER BY Circuit, Portion, `Condition`');
 							while ($infos_circuit = $circuits_BDD->fetch()) {
-								echo '<option value="' . $infos_circuit['Id'] . '">' . $infos_circuit['Circuit'] . ' ' . $infos_circuit['Portion'] . ' ' . $infos_circuit['Condition'] . '</option>';
+								if((isset($_GET['circuit'])) and ($infos_circuit['Id'] == $_GET['circuit'])) {
+									echo '<option value="' . $infos_circuit['Id'] . '" selected>' . $infos_circuit['Circuit'] . ' ' . $infos_circuit['Portion'] . ' ' . $infos_circuit['Condition'] . '</option>';
+								}
+								else {
+									echo '<option value="' . $infos_circuit['Id'] . '">' . $infos_circuit['Circuit'] . ' ' . $infos_circuit['Portion'] . ' ' . $infos_circuit['Condition'] . '</option>';
+								}
 							}
 							$circuits_BDD->closeCursor();				
 ?>

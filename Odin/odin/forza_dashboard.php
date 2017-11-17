@@ -10,7 +10,7 @@
 									                            WHERE FM7_Reglages.Voiture = FM7_Voitures.Id)
 									GROUP BY FM7_Voitures.Id');
 	$nombre_reglages = $reglages_BDD->rowCount();
-	if(isset($_GET['division'])) {
+	if((isset($_GET['division'])) and ($_GET['division'] <> 0)) {
 		$voitures_BDD = $bdd->query('	SELECT FM7_Voitures.Id, FM7_Voitures.Marque, FM7_Voitures.Modèle, FM7_Voitures.Année
 										FROM FM7_Voitures, FM7_Divisions
 										WHERE FM7_Voitures.Division = FM7_Divisions.Id
@@ -21,7 +21,7 @@
 										FROM FM7_Voitures');
 	}
 	$nombre_voitures = $voitures_BDD->rowCount();
-	if(isset($_GET['circuit'])) {
+	if((isset($_GET['circuit'])) and ($_GET['circuit'] <> 0)) {
 		$tours_BDD = $bdd->query('	SELECT FM7_Divisions.Nom, FM7_Circuits.Circuit, FM7_Circuits.Portion, FM7_Circuits.Condition, MIN(DATEDIFF(NOW(),FM7_Tours.Date)) AS Jours, CEILING(10/FM7_Circuits.Taille) AS Nb_Tours
 									FROM FM7_Tours, FM7_Voitures, FM7_Reglages, FM7_Circuits, FM7_Divisions
 									WHERE FM7_Tours.Reglage = FM7_Reglages.Id
@@ -91,18 +91,29 @@
 				<div class="line">
 					<form action="odin.php" method="get">
 						<select name="division">
+							<option value="0">Toutes les divisions</option>
 <?php
 	$divisions_BDD = $bdd->query('	SELECT Id, Nom
 									FROM FM7_Divisions
 									ORDER BY Nom');
 	while ($infos_division = $divisions_BDD->fetch()) {
-		echo '<option value="' . $infos_division['Id'] . '">' . $infos_division['Nom'] . '</option>';
+		if((isset($_GET['division'])) and ($infos_division['Id'] == $_GET['division'])) {
+			echo '<option value="' . $infos_division['Id'] . '" selected>' . $infos_division['Nom'] . '</option>';
+		}
+		else {
+			echo '<option value="' . $infos_division['Id'] . '">' . $infos_division['Nom'] . '</option>';
+		}
 	}
 	$divisions_BDD->closeCursor();				
 ?>
 						</select>
 						<input type="hidden" name="module" value="forza">
 						<input type="hidden" name="vue" value="dashboard">
+<?php
+						if((isset($_GET['circuit'])) and ($_GET['circuit'] <> 0)) {
+							echo '<input type="hidden" name="circuit" value="' . $_GET['circuit'] . '">';
+						}
+?>
 						<input type="submit" value="Filtrer">
 					</form>
 				</div>
@@ -158,18 +169,29 @@
 				<div class="line">
 					<form action="odin.php" method="get">
 						<select name="circuit">
+							<option value="0">Tous les circuits</option>
 <?php
-	$circuits_BDD = $bdd->query('	SELECT Id, Circuit, Portion, `Condition`
-									FROM FM7_Circuits
-									ORDER BY Circuit, Portion, `Condition`');
-	while ($infos_circuit = $circuits_BDD->fetch()) {
-		echo '<option value="' . $infos_circuit['Id'] . '">' . $infos_circuit['Circuit'] . ' ' . $infos_circuit['Portion'] . ' ' . $infos_circuit['Condition'] . '</option>';
-	}
-	$circuits_BDD->closeCursor();				
+							$circuits_BDD = $bdd->query('	SELECT Id, Circuit, Portion, `Condition`
+															FROM FM7_Circuits
+															ORDER BY Circuit, Portion, `Condition`');
+							while ($infos_circuit = $circuits_BDD->fetch()) {
+								if((isset($_GET['circuit'])) and ($infos_circuit['Id'] == $_GET['circuit'])) {
+									echo '<option value="' . $infos_circuit['Id'] . '" selected>' . $infos_circuit['Circuit'] . ' ' . $infos_circuit['Portion'] . ' ' . $infos_circuit['Condition'] . '</option>';
+								}
+								else {
+									echo '<option value="' . $infos_circuit['Id'] . '">' . $infos_circuit['Circuit'] . ' ' . $infos_circuit['Portion'] . ' ' . $infos_circuit['Condition'] . '</option>';
+								}
+							}
+							$circuits_BDD->closeCursor();				
 ?>
 						</select>
 						<input type="hidden" name="module" value="forza">
 						<input type="hidden" name="vue" value="dashboard">
+<?php						
+						if((isset($_GET['division'])) and ($_GET['division'] <> 0)) {
+							echo '<input type="hidden" name="division" value="' . $_GET['division'] . '">';
+						}
+?>
 						<input type="submit" value="Filtrer">
 					</form>
 				</div>
