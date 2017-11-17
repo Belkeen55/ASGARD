@@ -4,6 +4,9 @@
 	exec('sudo /usr/bin/apt update > /var/www/html/update.txt');
 	
 	// ---------- Sauvegarde de la base de données ----------
+	exec('mysql -u belkeen -pshiva77680 -e "use ASGARD"');
+	exec('mysql -u belkeen -pshiva77680 -e "DELETE FROM Performances WHERE MINUTE(Heurodatage) <> 0 AND YEAR(Heurodatage) <= YEAR(NOW()) AND MONTH(Heurodatage) <= MONTH(NOW())-1 AND DAY(Heurodatage) <= DAY(NOW())"');
+	exec('mysql -u belkeen -pshiva77680 -e "DELETE FROM Mesures WHERE MINUTE(Heurodatage) <> 0 AND YEAR(Heurodatage) <= YEAR(NOW()) AND MONTH(Heurodatage) <= MONTH(NOW())-1 AND DAY(Heurodatage) <= DAY(NOW())"');
 	exec('sudo mount -a');
 	exec('mysqldump --user=root --password=shiva77680 --databases ASGARD > asgard.sql');
 	exec('cp asgard.sql /media/docs/mysql/');
