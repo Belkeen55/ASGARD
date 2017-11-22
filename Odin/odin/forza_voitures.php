@@ -89,6 +89,7 @@
 							<td>
 								<input type="submit" value="Editer">
 							</td>
+						</form>
 							<td>
 								<form action="odin.php" method="get">
 									<input type="hidden" name="module" value="forza">
